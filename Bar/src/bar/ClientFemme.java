@@ -9,17 +9,20 @@ package bar;
  *
  * @author Théo
  */
-public class Fournisseur {
+public class ClientFemme {
+    String boissonFavorite;
+    String boissonFavorite2;
+    int alcoolemie;
     
-    void commande(){
+    void seFaireOffrirUnVerre(){
         
     }
     
-    void livrer(){
+    void sePresenterComplementaire(){
         
     }
     
-    void seFairePayer(){
+    void Tshirt(){
         
     }
 }

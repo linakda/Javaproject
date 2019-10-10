@@ -9,6 +9,14 @@ package bar;
  *
  * @author Théo
  */
-public class Serveur {
+public class ServeurHomme {
+    int tailleBiceps;
     
+    void mettreDehors(){
+        
+    }
+    
+    void servir(){
+        
+    }
 }
