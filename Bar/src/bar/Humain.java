@@ -10,5 +10,9 @@ package bar;
  * @author Théo
  */
 public class Humain {
-    
+    String prenom;
+    String surnom;
+    float portemonnaie;
+    int popularite;
+    String cri;
 }
