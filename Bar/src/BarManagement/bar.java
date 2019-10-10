@@ -9,24 +9,7 @@ package BarManagement;
  *
  * @author Théo
  */
-public class Patron {
-    void bijoux(){
-        
-    }
-    
-    void reccupMonnaie(){
-        
-    }
-    
-    void offrirUnVerre(){
-        
-    }
-    
-    void ordonner(){
-        
-    }
-    
-    void exclure(){
-        
-    }
+public class bar {
+    int table;
+    String nom = "Chez LEONTINE";     
 }

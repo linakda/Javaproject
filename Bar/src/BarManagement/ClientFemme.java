@@ -9,7 +9,7 @@ package BarManagement;
  *
  * @author Théo
  */
-public class ClientFemme {
+public class ClientFemme extends Humain{
     String boissonFavorite;
     String boissonFavorite2;
     int alcoolemie;
@@ -19,10 +19,10 @@ public class ClientFemme {
     }
     
     void sePresenterComplementaire(){
-        
+       System.out.print("Je m'appelle"+ prenom);
     }
     
-    void Tshirt(){
+    void bijoux(){
         
     }
 }
