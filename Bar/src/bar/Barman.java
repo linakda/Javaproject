@@ -10,5 +10,23 @@ package bar;
  * @author Théo
  */
 public class Barman {
+    void stocker(){
+        
+    }
     
+    void boire(){
+        
+    }
+    
+    void encaisser(){
+        
+    }
+    
+    void parler(){
+        
+    }
+    
+    void rendreMonnaie(){
+        
+    }
 }
