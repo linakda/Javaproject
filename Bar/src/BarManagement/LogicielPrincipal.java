@@ -3,16 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bar;
+package BarManagement;
 
 /**
  *
  * @author Théo
  */
-public class ServeurFemme {
-    int charme;
-    
-    void servir(){
-        
+public class LogicielPrincipal {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
     }
+    
 }

@@ -3,23 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bar;
+package BarManagement;
 
 /**
  *
  * @author Théo
  */
-public class Fournisseur {
+public class ServeurFemme {
+    int charme;
     
-    void commande(){
-        
-    }
-    
-    void livrer(){
-        
-    }
-    
-    void seFairePayer(){
+    void servir(){
         
     }
 }

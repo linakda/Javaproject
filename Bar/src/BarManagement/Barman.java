@@ -3,36 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bar;
+package BarManagement;
 
 /**
  *
  * @author Théo
  */
-public class Humain {
-    String prenom;
-    String surnom;
-    float portemonnaie;
-    int popularite;
-    String cri;
-    
-    void parler(){
-    
+public class Barman {
+    void stocker(){
+        
     }
     
     void boire(){
         
     }
     
-    void payer(){
+    void encaisser(){
         
     }
     
-    void sePresenter(){
+    void parler(){
         
     }
     
-    void offrirUnVerre(){
+    void rendreMonnaie(){
         
     }
+    
+ 
 }

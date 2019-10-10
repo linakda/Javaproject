@@ -3,26 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bar;
+package BarManagement;
 
 /**
  *
  * @author Théo
  */
-public class ClientFemme {
-    String boissonFavorite;
-    String boissonFavorite2;
-    int alcoolemie;
+public class Fournisseur {
     
-    void seFaireOffrirUnVerre(){
+    void commande(){
         
     }
     
-    void sePresenterComplementaire(){
+    void livrer(){
         
     }
     
-    void Tshirt(){
+    void seFairePayer(){
         
     }
 }

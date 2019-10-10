@@ -3,20 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bar;
+package BarManagement;
 
 /**
  *
  * @author Théo
  */
-public class ServeurHomme {
-    int tailleBiceps;
+public class Patron {
     
-    void mettreDehors(){
-        
-    }
-    
-    void servir(){
-        
-    }
 }
