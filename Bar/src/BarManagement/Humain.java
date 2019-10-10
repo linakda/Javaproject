@@ -11,7 +11,7 @@ package BarManagement;
  */
 public class Humain {
     
-    enum bijoux{collier, boucle, bracelet, bague}
+    enum bijoux{collier, boucle, bracelet, bague, piercing}
     enum tshirtColor {noir, bleau, vert, rouge, jaune}
     
     String[] boissonSansAlcool = {"eau","jus d'orange","jus d'abricot","café"};
