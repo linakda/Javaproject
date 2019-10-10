@@ -9,30 +9,20 @@ package bar;
  *
  * @author Théo
  */
-public class Humain {
-    String prenom;
-    String surnom;
-    float portemonnaie;
-    int popularite;
-    String cri;
+public class clientHomme {
+    String boissonFavorite;
+    String boissonFavorite2;
+    int alcoolemie;
     
-    void parler(){
-    
-    }
-    
-    void boire(){
+    void seFaireOffrirUnVerre(){
         
     }
     
-    void payer(){
+    void sePresenterComplementaire(){
         
     }
     
-    void sePresenter(){
-        
-    }
-    
-    void offrirUnVerre(){
+    void Tshirt(){
         
     }
 }
