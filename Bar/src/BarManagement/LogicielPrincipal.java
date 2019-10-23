@@ -4,6 +4,17 @@
  * and open the template in the editor.
  */
 package BarManagement;
+import BarManagement.Boisson;
+import BarManagement.Barman;
+import BarManagement.ClientHomme;
+import BarManagement.ClientFemme;
+import BarManagement.Humain;
+import BarManagement.Patron;
+import BarManagement.ServeurHomme;
+import BarManagement.ServeurFemme;
+import BarManagement.Fournisseur;
+import BarManagement.bar;
+
 
 /**
  *
@@ -15,7 +26,8 @@ public class LogicielPrincipal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        ClientHomme cli = new ClientHomme();
+        cli.alcoolemie();
     }
     
 }

@@ -9,7 +9,11 @@ package BarManagement;
  *
  * @author Théo
  */
-public class Barman {
+public class Barman extends Humain{
+    
+    private double caisse = 0;
+    
+    
     void stocker(){
         
     }
@@ -18,8 +22,8 @@ public class Barman {
         
     }
     
-    void encaisser(){
-        
+    void encaisser(double prix){
+        caisse = caisse + prix;
     }
     
     void parler(){

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package BarManagement;
+import BarManagement.Barman;
 
 /**
  *
@@ -13,20 +14,14 @@ public class Humain {
     
     enum bijoux{collier, boucle, bracelet, bague, piercing}
     enum tshirtColor {noir, bleau, vert, rouge, jaune}
-    
-    String[] boissonSansAlcool = {"eau","jus d'orange","jus d'abricot","café"};
-    double[] prixSansAlcool = {1.0,2.5,3.4};
-    double[] tauxAlcoolemie1 = {0,0,0};
-    
-    String[] boissonAlcool = {"bourbon","bière","cocktail"};
-    double[] prixAlcool = {10.0,5.0,8.0};
-    double[] tauxAlcoolemie2 = {10,5,5};
-    
+   
     String prenom;
     String surnom;
     double portemonnaie;
     int popularite;
     String cri;
+    
+    Barman bar = new Barman();
     
     void parler(){
         
@@ -37,7 +32,11 @@ public class Humain {
     }
     
     void payer(double prix){
+        
         portemonnaie=portemonnaie-prix;
+        System.out.println("J'ai payé mon verre.");
+        bar.encaisser(prix);
+        
     }
     
     void sePresenter(){
