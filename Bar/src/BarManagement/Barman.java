@@ -9,7 +9,7 @@ package BarManagement;
  *
  * @author Théo
  */
-public class Barman extends Humain{
+public class Barman{
     
     private double caisse = 0;
     
