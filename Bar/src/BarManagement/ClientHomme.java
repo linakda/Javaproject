@@ -5,6 +5,7 @@
  */
 package BarManagement;
 import BarManagement.Boisson;
+import java.util.Random;
 
 /**
  *
@@ -12,8 +13,19 @@ import BarManagement.Boisson;
  */
 public class ClientHomme extends Humain{
     
+    enum tshirtColor {noir, bleau, vert, rouge, jaune}
     Boisson Boisson1 = new Boisson();
     
+   public static tshirtColor getRandomColor() {
+            Random random = new Random();
+            return values()[random.nextInt(values().length)];
+        }
+   
+    void Tshirt(){
+        System.out.print("[Tee-shirt");
+        tshirtColor[] alltshirtColor = tshirtColor.values();
+        tshirtColor randomColor = randomElement(alltshirtColor);
+    }
     int random(){
        double random =  Math.random() * ( 6 );
         int ran = (int)random;
@@ -44,8 +56,6 @@ public class ClientHomme extends Humain{
         System.out.println("HiYAAAAAAA je m'appelle " + surnom);
     }
     
-    void Tshirt(){
-        
-    }
+    
     
 }

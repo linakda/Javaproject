@@ -12,7 +12,7 @@ package BarManagement;
 public class ServeurFemme extends Humain{
     int charme;
     
-    void servir(String boisson){
+   /* void servir(String boisson){
         for (int i = 0; i<= boissonSansAlcool.length;i++){
             if (boissonSansAlcool[i] == boisson ){
                 stockage boissonSansAlcool[i]=boissonSansAlcool-1;
@@ -28,5 +28,5 @@ public class ServeurFemme extends Humain{
                 System.out.println("Voila votre "+ this.boissonAlcool[i]);
             }
         }
-    }
+    }*/
 }
