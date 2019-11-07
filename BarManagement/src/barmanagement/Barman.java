@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BarManagement;
+package barmanagement;
 
 /**
  *
  * @author Théo
  */
-public class belotte {
+public class Barman {
     
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package BarManagement;
+package barmanagement;
 
 /**
  *
@@ -11,15 +11,4 @@ package BarManagement;
  */
 public class Fournisseur {
     
-    void commande(){
-        
-    }
-    
-    void livrer(){
-        
-    }
-    
-    void seFairePayer(){
-        
-    }
 }
