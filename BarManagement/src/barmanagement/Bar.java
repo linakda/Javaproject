@@ -897,235 +897,230 @@ public class Bar {
 	 		this.clients();
 	 		fail = true;
 	 		while(fail){
-	 		try{
-                            choix = Integer.parseInt(sc.nextLine());
-                            if(choix == clients.size()-1){
-                                System.out.println("Ce numéro ne correspond à aucun client");
-                                fail = true ;
+                            try{
+                                choix = Integer.parseInt(sc.nextLine());
+                                if(choix == clients.size()-1){
+                                    System.out.println("Ce numéro ne correspond à aucun client");
+                                    fail = true ;
+                                }
+                                else{
+                                    try{
+                                        destinataire = this.clients.get(choix);
+                                        fail = false;
+                                    }
+                                    catch(IndexOutOfBoundsException e){
+                                        System.out.println("Ce numero ne correspond à aucun client");
+                                        fail = true;
+                                    }
+                                }
+		 	}
+                        catch(NumberFormatException e){
+                            System.out.println("Entrez un entier");
+                            fail = true;
+                        }                     
+	 		}
+			System.out.println("Commander au barman ou a un serveur ?(barman/serveur)");
+	        	String reponse = sc.nextLine();	
+	        	while(!reponse.equals("barman") && !reponse.equals("serveur")){
+                            System.out.println("Entrez serveur ou barman.");
+                            reponse = sc.nextLine();
+                        }
+	        	if(reponse.equals("serveur")){
+                            this.commanderServeur(this.joueur,destinataire);
+                        }
+	        	else{
+                            this.commanderBarman(this.joueur,destinataire);
+	        	}
+			break;
+                    case 3:
+	        	System.out.println("Commander au barman ou a un serveur ?(barman/serveur)");
+	        	reponse = sc.nextLine();	
+	        	while(!reponse.equals("barman") && !reponse.equals("serveur")){
+                            System.out.println("Entrez serveur ou barman.");
+                            reponse = sc.nextLine();
+		    	}
+	        	if(reponse.equals("serveur")){
+                            this.commanderServeur(this.joueur,this.joueur);
+	        	}
+	        	else{
+                            this.commanderBarman(this.joueur,this.joueur);
+	        	}
+	        	break;
+                    case 4:
+                        System.out.println(this.barman.parler("TOURNEE GENERAL "));
+	        	System.out.println(this.patronne.parler("Tout va bien, les affaires reprennent"));
+	        	for(int i = 0 ;i < clients.size() ; i++){
+                            System.out.println(clients.get(i).parler(clients.get(i).getCri()));
+	        	}
+	        	for(int i = 0 ;i < clients.size() ; i++){
+                            this.commanderBarman(this.joueur,clients.get(i));
+	        	}
+	        	break;
+                    case 5:
+                        System.out.println("Payer l'addition au barman ou a un serveur ?(barman/serveur)");
+                        String reponse1 = sc.nextLine();	
+                        float addition = this.joueur.addition;
+                        while(!reponse1.equals("barman") && !reponse1.equals("serveur")){
+                            System.out.println("Entrez serveur ou barman.");
+                            reponse1 = sc.nextLine();
+                        }
+                        if(reponse1.equals("serveur")){
+                            System.out.println("Choissisez un seveur(numero)");
+                            this.serveurs();
+                            int numServeur = Integer.parseInt(sc.nextLine());
+                            while(numServeur < 0 || numServeur >= serveurs.size()){
+	    		 	System.out.println("Numero de serveur invalide \nEntrer un numéro valide");
+	    		 	numServeur = Integer.parseInt(sc.nextLine());
                             }
-                            else{
-                                try{
-                                    destinataire = this.clients.get(choix);
-                                    fail = false;
-		 		}
-                                catch(IndexOutOfBoundsException e){
-                                    System.out.println("Ce numero ne correspond à aucun client");
+                            System.out.println(this.joueur.parler("L'addition s'il vous plaît"));
+                            System.out.println(this.serveurs.get(numServeur).parler("ça vous fera " + this.joueur.addition + " s'il vous plaît"));
+                        }
+                        else{
+                            System.out.println(this.joueur.parler("L'addition s'il vous plaît"));
+                            System.out.println(this.barman.parler("ça vous fera " + this.joueur.addition));
+                        }
+                        if(this.joueur.payer()){
+                            this.caisse += addition;
+                            System.out.println(this.barman.parler("Merci"));
+                        }
+                        else{
+                            System.out.println(this.barman.parler("Degage d'ici et que je ne te revoie plus dans les alentours"));
+                            System.out.println("Vous avez été virer du bar car vous n'aviez pas assez d'argent pour payer");
+                            this.patronne.exclure(this.joueur);
+                            return;
+                        }
+                        break ;
+                    case 6:
+	       		System.out.println(this.joueur);
+	       		break ;
+                    case 7 :
+	       		fail = true;
+                        if(joueur.numTable == -1){
+                            while(fail){	
+        			try{	
+                                    for(int i = 0 ; i < this.tables.size() ; i ++ ) {                        
+				        System.out.println("Table n°" + i + "("+this.tables.get(i).personne.size() +" personne(s) sont assise(s) à cette table)");
+                                        System.out.println("Sont assis à cette table :");
+                                        for (int j = 0 ; j < this.tables.get(i).personne.size() ; j++){
+                                            System.out.println(this.tables.get(i).personne.get(j).getPrenom());
+                                        }
+                                    }
+                                    System.out.println("A quelle table voulez-vous vous asseoir");
+                                    int choix1 = Integer.parseInt(sc.nextLine());
+                                    if(choix1 < 0 || choix1 >= this.tables.size()){
+	        			System.out.println("Ce numero ne correspond à aucune table");
+	        			fail = true;
+                                    }
+                                    else{
+	        			if(this.tables.get(choix1).ajouterPersonne(this.joueur)){
+                                            this.joueur.numTable = choix1;
+                                            System.out.println("Vous êtes assis à la table "+choix1);
+                                            fail = false;
+	        			}
+                                    else{
+                                        System.out.println("La table "+choix1+" est remplie");
+	        			fail = true;
+                                    }
+                                    }
+                                }
+                                catch(NumberFormatException e){
+                                    System.out.println("Saissier un entier s'il vous plait");
                                     fail = true;
-		 		}
+	        		}
                             }
-		 					
-		 				}catch(NumberFormatException e){
-		 					System.out.println("Entrez un entier");
-		 					fail = true;
-		 				}
-                                               
-	 				}
-			 		System.out.println("Commander au barman ou a un serveur ?(barman/serveur)");
-	        		String reponse = sc.nextLine();	
-	        		while(!reponse.equals("barman") && !reponse.equals("serveur")){
-		    			System.out.println("Entrez serveur ou barman.");
-		    			reponse = sc.nextLine();
-		    		}
-	        		if(reponse.equals("serveur")){
-	        			this.commanderServeur(this.joueur,destinataire);
-	        		}
-	        		else{
-	        			this.commanderBarman(this.joueur,destinataire);
-	        		}
-					break;
-	        	case 3:
-	        		System.out.println("Commander au barman ou a un serveur ?(barman/serveur)");
-	        		reponse = sc.nextLine();	
-	        		while(!reponse.equals("barman") && !reponse.equals("serveur")){
-		    			System.out.println("Entrez serveur ou barman.");
-		    			reponse = sc.nextLine();
-		    		}
-	        		if(reponse.equals("serveur")){
-	        			this.commanderServeur(this.joueur,this.joueur);
-	        		}
-	        		else{
-	        			this.commanderBarman(this.joueur,this.joueur);
-	        		}
-	        		break;
-	        	case 4:
-	        		System.out.println(this.barman.parler("TOURNEE GENERAL "));
-	        		System.out.println(this.patronne.parler("Tout va bien, les affaires reprennent"));
-	        		for(int i = 0 ;i < clients.size() ; i++){
-	        			System.out.println(clients.get(i).parler(clients.get(i).getCri()));
-	        		}
-	        		for(int i = 0 ;i < clients.size() ; i++){
-	        			this.commanderBarman(this.joueur,clients.get(i));
-	        		}
-	        		break;
-	        	case 5:
-	        		System.out.println("Payer l'addition au barman ou a un serveur ?(barman/serveur)");
-	        		String reponse1 = sc.nextLine();	
-	        		float addition = this.joueur.addition;
-	        		while(!reponse1.equals("barman") && !reponse1.equals("serveur")){
-		    			System.out.println("Entrez serveur ou barman.");
-		    			reponse1 = sc.nextLine();
-		    		}
-	        		if(reponse1.equals("serveur")){
-	        			System.out.println("Choissisez un seveur(numero)");
-	        			this.serveurs();
-	        			int numServeur = Integer.parseInt(sc.nextLine());
-	    		 		while(numServeur < 0 || numServeur >= serveurs.size()){
-	    		 			System.out.println("Numero de serveur invalide \nEntrer un numéro valide");
-	    		 			numServeur = Integer.parseInt(sc.nextLine());
-	    		 		}
-	    		 		System.out.println(this.joueur.parler("L'addition s'il vous plaît"));
-	    		 		System.out.println(this.serveurs.get(numServeur).parler("ça vous fera " + this.joueur.addition + " s'il vous plaît"));
-	    		 	}
-	        		else{
-	        			System.out.println(this.joueur.parler("L'addition s'il vous plaît"));
-	    		 		System.out.println(this.barman.parler("ça vous fera " + this.joueur.addition));
-	        		}
-	        		if(this.joueur.payer()){
-	        			this.caisse += addition;
-	        			System.out.println(this.barman.parler("Merci"));
-	        		}
-	        		else{
-	        			System.out.println(this.barman.parler("Degage d'ici et que je ne te revoie plus dans les alentours"));
-	        			System.out.println("Vous avez été virer du bar car vous n'aviez pas assez d'argent pour payer");
-	        			this.patronne.exclure(this.joueur);
-	        			return;
-	        		}
-	        		break ;
-	        	case 6:
-	        		System.out.println(this.joueur);
-	        		break ;
-	        	case 7 :
-	        		fail = true;
-        			if(joueur.numTable == -1){
-        				while(fail){	
-        					try{	
-	        					for(int i = 0 ; i < this.tables.size() ; i ++ ) {
-                                                            
-				        			System.out.println("Table n°" + i + "("+this.tables.get(i).personne.size() +" personne(s) sont assise(s) à cette table)");
-                                                                System.out.println("Sont assis à cette table :");
-                                                                for (int j = 0 ; j < this.tables.get(i).personne.size() ; j++)
-                                                                {
-                                                                    System.out.println(this.tables.get(i).personne.get(j).getPrenom());
-                                                                }
-				        		}
-                                                        System.out.println("A quelle table voulez-vous vous asseoir");
-	        					int choix1 = Integer.parseInt(sc.nextLine());
-	        					if(choix1 < 0 || choix1 >= this.tables.size()){
-	        						System.out.println("Ce numero ne correspond à aucune table");
-	        						fail = true;
-	        					}
-	        					else{
-	        						if(this.tables.get(choix1).ajouterPersonne(this.joueur)){
-		        						this.joueur.numTable = choix1;
-		        						System.out.println("Vous êtes assis à la table "+choix1);
-		        						fail = false;
-	        						}
-	        						else{
-	        							System.out.println("La table "+choix1+" est remplie");
-	        							fail = true;
-	        						}
-	        					}
-	        				}
-	        				catch(NumberFormatException e){
-	        					System.out.println("Saissier un entier s'il vous plait");
-	        					fail = true;
-	        				}
-        				}
-        			}
-        			else{
-        				this.tables.get(this.joueur.numTable).seLever(this.joueur);
-        				System.out.println("Vous n'êtes plus assis");
-        				this.joueur.numTable = -1;
-        			}
-        			break;
-	        	case 8:
-	        		
-	        		TournoiBelote tournoiBelote = new TournoiBelote(10);
-	        		System.out.println("--------------------------------------");
+                        }
+        		else{
+                            this.tables.get(this.joueur.numTable).seLever(this.joueur);
+                            System.out.println("Vous n'êtes plus assis");
+                            this.joueur.numTable = -1;
+        		}
+        		break;
+                    case 8 :		
+	        	TournoiBelote tournoiBelote = new TournoiBelote(10);
+	        	System.out.println("--------------------------------------");
 	            	System.out.println("Création de tournoi de belote");
 	            	System.out.println("--------------------------------------");
 	            	System.out.println(this.patronne.parler("Tournoi de belote !!! le coût d'inscription est de 10 e"));
 	            	System.out.println("Voulez-vous que le tournoi se créer automatiquement ?(o/n)");
 	            	reponse = sc.nextLine();
 	            	while(!reponse.equals("o") && !reponse.equals("n")){
-	 					System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
-	 					reponse = sc.nextLine();
-	 				}
+                            System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
+                            reponse = sc.nextLine();
+	 		}
 	            	if(reponse.equals("o")){
-	            		TournoiBelote tournoiBeloteAuto = new TournoiBelote(10);
-	            		tournoiBeloteAuto.inscrire(new Equipe("Equipe 1",this.joueur,clients.get(1)));
-	            		tournoiBeloteAuto.inscrire(new Equipe("Equipe 2",clients.get(2),clients.get(3)));
-	            		tournoiBeloteAuto.inscrire(new Equipe("Equipe 3",clients.get(3),clients.get(4)));
-	            		tournoiBeloteAuto.lancerTournoi();
-	            	}else{
-	            		System.out.println("Création d'équipe");
-		            	boolean equipe = true;
-		            	int joueur1 = 0;
-		            	int joueur2 = 0;
-		            	while(equipe){
-		            		System.out.println("Nom de l'équipe");
-			            	String nomEquipe = sc.nextLine();
-			            	
-		            		this.joueurs();
-		            		System.out.println("Choissisez le premier joueur");
-			 				fail = true;
-			 				while(fail){
-			 					try{
-				 					choix = Integer.parseInt(sc.nextLine());
-				 					try{
-				 						joueur1=choix;
-				 						fail = false;
-				 					}catch(IndexOutOfBoundsException e){
-				 						System.out.println("Ce numero ne correspond à aucun client");
-				 						fail = true;
-				 					}
-				 				}catch(NumberFormatException e){
-				 					System.out.println("Entrez un entier");
-				 					fail = true;
-				 				}
-			 				}
-			 				System.out.println("Choissisez le deuxième joueur");
-			 				fail = true;
-			 				while(fail){
-			 					try{
-				 					choix = Integer.parseInt(sc.nextLine());
-				 					try{
-				 						joueur2 = choix;
-				 						fail = false;
-				 					}catch(IndexOutOfBoundsException e){
-				 						System.out.println("Ce numero ne correspond à aucun client");
-				 						fail = true;
-				 					}
-				 				}catch(NumberFormatException e){
-				 					System.out.println("Entrez un entier");
-				 					fail = true;
-				 				}
-			 				}
-			 				System.out.println("Voulez-vous créer une autre éuipe?(o/n)");
-			 				reponse = sc.nextLine();
-			 				while(!reponse.equals("o") && !reponse.equals("n")){
-			 					System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
-			 					reponse = sc.nextLine();
-			 				}
-			 				tournoiBelote.inscrire(new Equipe(nomEquipe,clients.get(joueur1),clients.get(joueur2)));
-			 				if(reponse.equals("n"))
-			 					equipe = false;
-		            	}
-		            	tournoiBelote.lancerTournoi();
+                            TournoiBelote tournoiBeloteAuto = new TournoiBelote(10);
+                            tournoiBeloteAuto.inscrire(new Equipe("Equipe 1",this.joueur,clients.get(1)));
+                            tournoiBeloteAuto.inscrire(new Equipe("Equipe 2",clients.get(2),clients.get(3)));
+                            tournoiBeloteAuto.inscrire(new Equipe("Equipe 3",clients.get(3),clients.get(4)));
+                            tournoiBeloteAuto.lancerTournoi();
 	            	}
-	            	
-	        		break;
-                        case 9 : 
-                            this.presentationComplementaire();
-                            
-                            
-                            
-                            break ;
-                                
-	        	default:
-	        		break;
+                        else{
+                            System.out.println("Création d'équipe");
+		            boolean equipe = true;
+		            int joueur1 = 0;
+		            int joueur2 = 0;
+		            while(equipe){
+                                System.out.println("Nom de l'équipe");
+			        String nomEquipe = sc.nextLine();    	
+		            	this.joueurs();
+		            	System.out.println("Choissisez le premier joueur");
+				fail = true;
+                                while(fail){
+                                    try{
+					choix = Integer.parseInt(sc.nextLine());
+				 	try{
+                                            joueur1=choix;
+                                            fail = false;
+                                            }
+                                        catch(IndexOutOfBoundsException e){
+                                            System.out.println("Ce numero ne correspond à aucun client");
+                                            fail = true;
+				 	}
+                                    }
+                                    catch(NumberFormatException e){
+					System.out.println("Entrez un entier");
+                                        fail = true;
+                                    }
+			 	}
+			 	System.out.println("Choissisez le deuxième joueur");
+			 	fail = true;
+			 	while(fail){
+                                    try{
+				 	choix = Integer.parseInt(sc.nextLine());
+				 	try{
+                                            joueur2 = choix;
+                                            fail = false;
+                                            }
+                                        catch(IndexOutOfBoundsException e){
+                                            System.out.println("Ce numero ne correspond à aucun client");
+                                            fail = true;
+				 	}
+                                    }
+                                    catch(NumberFormatException e){
+				 	System.out.println("Entrez un entier");
+				 	fail = true;
+                                    }
+                                }
+                                System.out.println("Voulez-vous créer une autre éuipe?(o/n)");
+			 	reponse = sc.nextLine();
+			 	while(!reponse.equals("o") && !reponse.equals("n")){
+                                    System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
+                                    reponse = sc.nextLine();
+			 	}
+                                tournoiBelote.inscrire(new Equipe(nomEquipe,clients.get(joueur1),clients.get(joueur2)));
+                                if(reponse.equals("n"))
+                                    equipe = false;
+                            }
+		            tournoiBelote.lancerTournoi();
+	            	}
+	        	break;
+                    case 9 : 
+                        this.presentationComplementaire();            
+                        break ;        
+                    default:
+	       		break;
 	            }
-				this.patronne.recuperCaisse(this.caisse);
+            	this.patronne.recuperCaisse(this.caisse);
         }
      }
 }

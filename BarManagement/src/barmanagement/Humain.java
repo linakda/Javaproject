@@ -5,10 +5,104 @@
  */
 package barmanagement;
 
+import java.util.Scanner;
+
 /**
- *
+ * Classe mère Humain 
+ * possèdent les différents attributs et méthodes de la classe
+ * C'est de cette méthode que vont découler toute les classes filles
+ * @author ISEN
  * @author Théo
  */
-public class Humain {
+public abstract class Humain {
     
+   private String nom, prenom, cri, sexe ;
+   private int popularite = 0 ;
+   private float porteMonnaie;
+
+    public Humain(String prenom , String nom , String sexe , String cri,float porteMonnaie) {
+       this.nom = nom ;
+       this.prenom = prenom ;
+       this.cri = cri ;
+       this.sexe = sexe ;
+       this.porteMonnaie = porteMonnaie;
+   }
+   
+   /**
+    * méthode permettant de vérifier si les deux humains sont identiques ou non
+    * @param  a permet de stocker notre type humain
+    * @return un boolean permettant de voir si la condition eest vérifié ou non
+    */
+    @Override
+    public boolean equals(Object a){
+        Humain b  = (Humain) a;
+        if(this.nom.equals(b.nom) && this.prenom.equals(b.prenom) && this.cri.equals(b.cri))
+	   return true;
+        return false;   
+   }
+    
+   /**
+    * differents accesseur et mutateurs
+    * 
+    */
+    public String getNom(){
+       return this.nom ;
+    }
+   
+    public String getPrenom(){
+       return this.prenom ;
+    }
+    
+    public float getPorteMonnaie(){
+       return this.porteMonnaie ;
+    }
+    public int getPopularite(){
+       return this.popularite ;
+    }
+    
+    public String getCri(){
+       return this.cri ;
+    }
+    
+    public String getSexe(){
+       return this.sexe ;
+    }
+   
+    public void setNom(String nom){
+       this.nom = nom ;
+    }
+   
+    public void setPrenom(String prenom){
+       this.prenom = prenom ;
+    }
+   
+    public void setPorteMonnaie(float porteMonnaie){
+       this.porteMonnaie = porteMonnaie ;
+    }
+   
+    public void setPopularite(int popularite){
+       this.popularite = popularite ;
+    }
+   
+    public void setCrie(String cri){
+       this.cri = cri ;
+    }
+   
+    public void setSexe(String sexe){
+       this.sexe = sexe ;
+    }
+   
+   
+   /**
+    * méthodes abstraites définissant les méthodes nécessaire à avoir pour être
+    * une classe ou une sous-classe de "Humain"
+    * @param phrase
+    * @return 
+    */
+   
+    abstract public void boire(Boisson consommation);
+    abstract public boolean payer();
+    abstract public String sePresenter(); 
+    abstract public void offrir(Client client); 
+    abstract public String parler(String phrase); 
 }
