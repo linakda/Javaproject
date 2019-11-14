@@ -36,6 +36,7 @@ public class Boisson{
      * Méthode permettant de retourner les caractéristiques de la boisson
      * à l'aide de la fonction pré-défini toString
      * notamment son nom, son prix, son taux d'alcoolemie
+     * @return 
     */
     @Override
     public String toString(){

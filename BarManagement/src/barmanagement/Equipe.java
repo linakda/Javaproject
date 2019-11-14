@@ -11,4 +11,18 @@ package barmanagement;
  */
 public class Equipe {
     
+    Client joueur1;
+    Client joueur2;
+    String nomEquipe;
+
+	
+    public Equipe (String nom, Client j1, Client j2){
+	nomEquipe = nom;
+	joueur1 = j1;
+	joueur2 = j2;
+    }
+	
+    public String toString () {
+	return nomEquipe;
+    }
 }

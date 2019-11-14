@@ -5,8 +5,6 @@
  */
 package barmanagement;
 
-import java.util.Scanner;
-
 /**
  * Classe mère Humain 
  * possèdent les différents attributs et méthodes de la classe
@@ -44,6 +42,7 @@ public abstract class Humain {
    /**
     * differents accesseur et mutateurs
     * 
+     * @return 
     */
     public String getNom(){
        return this.nom ;
@@ -96,8 +95,7 @@ public abstract class Humain {
    /**
     * méthodes abstraites définissant les méthodes nécessaire à avoir pour être
     * une classe ou une sous-classe de "Humain"
-    * @param phrase
-    * @return 
+    * @param consommation 
     */
    
     abstract public void boire(Boisson consommation);
