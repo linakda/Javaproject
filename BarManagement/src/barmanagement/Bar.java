@@ -54,15 +54,15 @@ public class Bar {
         this.clients.add(this.joueur);
     	tables = new LinkedList<Table>();
         for(int i = 0 ; i < nbTables ; i++)
-        	tables.add(new Table());
+            tables.add(new Table());
         
         for(int i = 0 ; i < clients.size()-1 ; i++){
-        	if(i%4 == 0)
-        		j++;
-        	if(j>= tables.size()){
-        		tables.add(new Table());
-        	}
-        	this.tables.get(j).ajouterPersonne(clients.get(i));
+            if(i%4 == 0)
+        	j++;
+            if(j>= tables.size()){
+        	tables.add(new Table());
+            }
+        this.tables.get(j).ajouterPersonne(clients.get(i));
         }
     }
     
@@ -95,53 +95,54 @@ public class Bar {
             conversionFail = false;
             System.out.println("Combien d'argent a "+name +" dans son porte monnaie ?");
             porteMonnaie = Float.parseFloat(sc.nextLine());
-        }catch(NumberFormatException e){
-        		conversionFail = true;
-        		System.out.println("Entre un float s'il vous plaît ");
+        }
+        catch(NumberFormatException e){
+            conversionFail = true;
+            System.out.println("Entre un float s'il vous plaît ");
         	}
     	}
     	System.out.print("\nSexe(homme/femme) : ");
     	sexe = sc.nextLine();
     	while(!sexe.equals("homme") && !sexe.equals("femme")){
-    		System.out.print("saisisser homme ou femme");
-    		sexe = sc.nextLine();
+            System.out.print("saisisser homme ou femme");
+            sexe = sc.nextLine();
     	}
     	while(numBoissonFail){
     		try{
-        		System.out.println("Choissiez votre boisson favorite(Saisissez le numero correspondant)");
-        		carte ();
-            	num = sc.nextLine();
+                    System.out.println("Choissiez votre boisson favorite(Saisissez le numero correspondant)");
+                    carte ();
+                    num = sc.nextLine();
+                    indiceBoissonFavorite = Integer.parseInt(num);
+                    while(indiceBoissonFavorite < 0 || indiceBoissonFavorite >= boissons.size() ){
+        		System.out.println("Ce numero ne correspond a aucune boisson disponible dans le bar,\n veuillez saisir un numéro compris entre 0 et " + (boissons.size()-1));
+        		num = sc.nextLine();
         		indiceBoissonFavorite = Integer.parseInt(num);
-        		while(indiceBoissonFavorite < 0 || indiceBoissonFavorite >= boissons.size() ){
-        			System.out.println("Ce numero ne correspond a aucune boisson disponible dans le bar,\n veuillez saisir un numéro compris entre 0 et " + (boissons.size()-1));
-        			num = sc.nextLine();
-        			indiceBoissonFavorite = Integer.parseInt(num);
-        		}
-        		numBoissonFail = false;
+                    }
+                    numBoissonFail = false;
         	}
         	catch(NumberFormatException e){
-        		System.out.println("Saissisez un entier s'il vous plaît.");
-        		numBoissonFail = true;
+                    System.out.println("Saissisez un entier s'il vous plaît.");
+                    numBoissonFail = true;
         	}
     	}
     	numBoissonFail = true;
     	while(numBoissonFail){
-    		try{
-        		System.out.println("Choissiez votre boisson de secours(Saisissez le numero correspondant)");
-        		carte ();
-            	num = sc.nextLine();
+            try{
+        	System.out.println("Choissiez votre boisson de secours(Saisissez le numero correspondant)");
+        	carte ();
+           	num = sc.nextLine();
             	indiceBoissonSecour = Integer.parseInt(num);
-        		while(indiceBoissonSecour < 0 || indiceBoissonSecour >= boissons.size() ){
-        			System.out.println("Ce numero ne correspond a aucune boisson disponible dans le bar,\n veuillez saisir un numéro compris entre 0 et " + (boissons.size()-1));
-        			num = sc.nextLine();
-        			indiceBoissonSecour = Integer.parseInt(num);
-        		}
-        		numBoissonFail = false;
+            	while(indiceBoissonSecour < 0 || indiceBoissonSecour >= boissons.size() ){
+                    System.out.println("Ce numero ne correspond a aucune boisson disponible dans le bar,\n veuillez saisir un numéro compris entre 0 et " + (boissons.size()-1));
+                    num = sc.nextLine();
+                    indiceBoissonSecour = Integer.parseInt(num);
         	}
-        	catch(NumberFormatException e){
-        		System.out.println("Saissisez un entier s'il vous plaît.");
-        		numBoissonFail = true;
-        	}
+        	numBoissonFail = false;
+            }
+            catch(NumberFormatException e){
+            	System.out.println("Saissisez un entier s'il vous plaît.");
+        	numBoissonFail = true;
+            }
     	}
     	joueur = new Client(name ,surname,sexe ,cri,porteMonnaie,boissons.get(indiceBoissonFavorite),boissons.get(indiceBoissonSecour));
     }
@@ -215,42 +216,43 @@ public class Bar {
     	String reponse;
     	System.out.println("Nous allons commencer par créér les boissons");
     	System.out.println("Voulez-vous que les boissons se créer automatiquement ?(o/n)");
-		reponse = sc.nextLine();
-		System.out.println(reponse);
-		while(!reponse.equals("o") && !reponse.equals("n")){
-			System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
-			reponse = sc.nextLine();
-		}
-		if(reponse.equals("o")){
-			creationBoissonParDefaut();
-		}else{
-			creationBoissonParDefaut();
-			System.out.println("Voici les boissons déja disponible dans le bar");
-			carte ();
-	    	while(continu){
-	    		System.out.println("Vous voulez créér une boisson sans alcool ? (o/n)");
-	    		reponse = sc.nextLine();
-	    		while(!reponse.equals("o") && !reponse.equals("n")){
-	    			System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
-	    			reponse = sc.nextLine();
-	    		}
-	    		if(reponse.equals("o"))
-	    			creationBoissonSansAlcool();
-	    		else
-	    			creationBoissonAvecAlcool();
-	    		System.out.println("Voulez-vous créer une autre boisson ?(o/n)");
-	    		reponse = sc.nextLine();
-	    		while(!reponse.equals("o") && !reponse.equals("n")){
-	    			System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
-	    			reponse = sc.nextLine();
-	    		}
-	    		if(reponse.equals("n"))
-	    			continu = false;
-	    	}
-		}
+	reponse = sc.nextLine();
+	System.out.println(reponse);
+	while(!reponse.equals("o") && !reponse.equals("n")){
+            System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
+            reponse = sc.nextLine();
+	}
+	if(reponse.equals("o")){
+            creationBoissonParDefaut();
+	}
+        else{
+            creationBoissonParDefaut();
+            System.out.println("Voici les boissons déja disponible dans le bar");
+            carte ();
+        while(continu){
+            System.out.println("Vous voulez créér une boisson sans alcool ? (o/n)");
+	    reponse = sc.nextLine();
+	    while(!reponse.equals("o") && !reponse.equals("n")){
+	    	System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
+	    	reponse = sc.nextLine();
+	    }
+	    if(reponse.equals("o"))
+	    	creationBoissonSansAlcool();
+	    else
+	    	creationBoissonAvecAlcool();
+	    	System.out.println("Voulez-vous créer une autre boisson ?(o/n)");
+	    	reponse = sc.nextLine();
+	    	while(!reponse.equals("o") && !reponse.equals("n")){
+                    System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
+                    reponse = sc.nextLine();
+                }
+                if(reponse.equals("n"))
+                    continu = false;
+	}
+        }   
     }
     
-     /**
+    /**
      * Méthode permettant la création de boisson sans alcool 
      * ses différentes caractéristiques tel que son prix de vente et d'achat
      * utilisation d'excpetion afin de vérifier si l'utilisateur rentre bien une donnée valide ,
@@ -264,27 +266,27 @@ public class Bar {
     	name = sc.nextLine();
     	boolean conversionFail = true;
     	while(conversionFail){
-    		try
-        	{
-        		conversionFail = false;
-    			System.out.println("Quel est le prix de votre boisson ?");
-        	    prix = Float.parseFloat(sc.nextLine());
-        	}catch(NumberFormatException e){
-        		conversionFail = true;
-        		System.out.println("Entre un float s'il vous plaît ");
+            try{
+        	conversionFail = false;
+    		System.out.println("Quel est le prix de votre boisson ?");
+        	prix = Float.parseFloat(sc.nextLine());
         	}
+            catch(NumberFormatException e){
+        	conversionFail = true;
+        	System.out.println("Entre un float s'il vous plaît ");
+            }
     	}
     	conversionFail = true;
     	while(conversionFail){
-    		try
-        	{
-        		conversionFail = false;
-    			System.out.println("Quel est le prix d'achat de votre boisson au prés du fournisseur?");
-        	    prixAchat = Float.parseFloat(sc.nextLine());
-        	}catch(NumberFormatException e){
-        		conversionFail = true;
-        		System.out.println("Entre un float s'il vous plaît ");
+            try{
+        	conversionFail = false;
+    		System.out.println("Quel est le prix d'achat de votre boisson au prés du fournisseur?");
+        	prixAchat = Float.parseFloat(sc.nextLine());
         	}
+            catch(NumberFormatException e){
+        	conversionFail = true;
+        	System.out.println("Entre un float s'il vous plaît ");
+            }
     	}
     	boissons.add(new Boisson(name,prix,prixAchat));
     }
@@ -303,39 +305,39 @@ public class Bar {
     	System.out.println("Quel est le nom de votre boisson ?");
     	name = sc.nextLine();
     	while(conversionFail){
-    		try
-        	{
-        		conversionFail = false;
-    			System.out.println("Quel est le prix de votre boisson ?");
-        	    prix = Float.parseFloat(sc.nextLine());
-        	}catch(NumberFormatException e){
-        		conversionFail = true;
-        		System.out.println("Entre un float s'il vous plaît ");
-        	}
+            try{
+                conversionFail = false;
+                System.out.println("Quel est le prix de votre boisson ?");
+                prix = Float.parseFloat(sc.nextLine());
+            }
+            catch(NumberFormatException e){
+        	conversionFail = true;
+        	System.out.println("Entre un float s'il vous plaît ");
+            }
     	}
     	conversionFail = true;
     	while(conversionFail){
-    		try
-        	{
-        		conversionFail = false;
-    			System.out.println("Quel est le prix d'achat de votre boisson au prés du fournisseur?");
-        	    prixAchat = Float.parseFloat(sc.nextLine());
-        	}catch(NumberFormatException e){
-        		conversionFail = true;
-        		System.out.println("Entre un float s'il vous plaît ");
-        	}
+            try{
+                conversionFail = false;
+                System.out.println("Quel est le prix d'achat de votre boisson au prés du fournisseur?");
+                prixAchat = Float.parseFloat(sc.nextLine());
+            }
+            catch(NumberFormatException e){
+                conversionFail = true;
+                System.out.println("Entre un float s'il vous plaît ");
+            }
     	}
     	conversionFail = true;
     	while(conversionFail){
-    		try
-        	{
-        		conversionFail = false;
-    			System.out.println("Quel est le taux d'alccolemie de votre boisson ?");
-        	    tauxAlcoolemie = Float.parseFloat(sc.nextLine());
-        	}catch(NumberFormatException e){
-        		conversionFail = true;
-        		System.out.println("Entre un float s'il vous plaît ");
-        	}
+            try{
+        	conversionFail = false;
+    		System.out.println("Quel est le taux d'alccolemie de votre boisson ?");
+        	   tauxAlcoolemie = Float.parseFloat(sc.nextLine());
+            }
+            catch(NumberFormatException e){
+        	conversionFail = true;
+        	System.out.println("Entre un float s'il vous plaît ");
+            }
     	}
     	boissons.add(new Boisson(name,prix,tauxAlcoolemie));
     }
@@ -372,28 +374,29 @@ public class Bar {
         boolean continu = true;
     	System.out.println("Nous allons maintenant créér les clients");
     	System.out.println("Voulez-vous que les clients se crééent automatiquement?(o/n)");
-		reponse = sc.nextLine();
-		while(!reponse.equals("o") && !reponse.equals("n")){
-			System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
-			reponse = sc.nextLine();
-		}
-		if(reponse.equals("o") ){
-			creationClientPnjDefaut();
-			continu = false;
-		}else{
-                    creationClientPnjDefaut();
-	    	while(continu){
-	    		creationClient();
-	    		System.out.println("Voulez-vous créer un autre client ?(o/n)");
-	    		reponse = sc.nextLine();
-	    		while(!reponse.equals("o") && !reponse.equals("n")){
-	    			System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
-	    			reponse = sc.nextLine();
-	    		}
-	    		if(reponse.equals("n"))
-	    			continu = false;
-	    	}
-		}
+        reponse = sc.nextLine();
+    	while(!reponse.equals("o") && !reponse.equals("n")){
+            System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
+            reponse = sc.nextLine();
+	}
+	if(reponse.equals("o") ){
+            creationClientPnjDefaut();
+            continu = false;
+	}
+        else{
+            creationClientPnjDefaut();
+	while(continu){
+            creationClient();
+	    System.out.println("Voulez-vous créer un autre client ?(o/n)");
+	    reponse = sc.nextLine();
+	    while(!reponse.equals("o") && !reponse.equals("n")){
+	    	System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
+	    	reponse = sc.nextLine();
+	    }
+	    if(reponse.equals("n"))
+	    	continu = false;
+	    }
+	}
     }
     
     /*

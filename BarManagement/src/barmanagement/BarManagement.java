@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package barmanagement;
-
-import java.util.Scanner;
 /**
  *
  * @author Théo
