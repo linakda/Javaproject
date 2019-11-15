@@ -5,11 +5,9 @@
  */
 package barmanagement;
 
-import java.util.Scanner;
-
 /**
- * Classe fille de Human
- * possède toute les méthodes et les paramètres de ce même type tel que
+ * Cette classe est une classe fille de Humain.
+ * Elle possède toute les méthodes et les paramètres de ce même type tel que
  * l'acoolemie, la boissonFavorite, la boissonSecours, le qualificatif, l'addition , le numéro de table
  * @author Théo
  */
@@ -24,16 +22,16 @@ public class Client extends Humain{
     
     
     /**
-     * Constructeur de Client , méthode exécutée à la création de l'objet et permettant l'initialisation de l'objet .
-     * @param prenom permettant de stocker le paramétre prénom du Client en question
-     * @param nom    permettant de stocker le paramétre nom du Client en question
-     * @param sexe   permettant de stocker le paramétre sexe du Client en question
-     * @param crie   permettant de stocker le paramétre cri du Client en question
-     * @param porteMonnaie permettant de stocker le paramétre porteMonnaie du Client en question
-     * @param boisson_favorite permettant de stocker le paramétre boisson_favorite du Client en question
-     * @param boisson_secours permettant de stocker le paramétre boisson_secours du Client en question
-     */
-    
+     * Cette méthode est le constructeur de Client. 
+     * Elle est exécutée à la création de l'objet et permet l'initialisation de l'objet .
+     * @param prenom : Stock le paramétre prénom du Client en question
+     * @param nom    : Stock le paramétre nom du Client en question
+     * @param sexe   : Stock le paramétre sexe du Client en question
+     * @param crie   : Stock le paramétre cri du Client en question
+     * @param porteMonnaie : Stock le paramétre porteMonnaie du Client en question
+     * @param boisson_favorite : Stock le paramétre boisson_favorite du Client en question
+     * @param boisson_secours : Stock le paramétre boisson_secours du Client en question
+    */
     public Client(String prenom , String nom , String sexe , String crie ,float porteMonnaie, Boisson boisson_favorite , Boisson boisson_secours){
     	super(prenom,nom,sexe,crie,porteMonnaie);
         this.boissonFavorite = boisson_favorite ;
@@ -45,31 +43,29 @@ public class Client extends Humain{
     }
     
     /**
-     * Méthode permettant d'ajuster le taux d'alcoolemie 
-     * en fonction de la boisson consommée
-     * @param consommation 
+     * Cette méthode permet d'ajuster le taux d'alcoolemie en fonction de la boisson consommée
+     * @param consommation : Stock le paramètre de la boisson actuelle. 
     */
+    @Override
     public void boire(Boisson consommation){
     	this.alcoolemie += consommation.tauxAlcoolemie;
     }
     
     /**
-     *   
-     * Méthode permettant d'ajuster l'addition 
-     * en fonction de la boisson consommée
-     * @param consommation 
+     * Cette méthode permet d'ajouter la consommation à l'addition du client
+     * @param consommation : Stock le paramètre de la boisson actuelle.
      */
-    
+ 
     public void ajouterAddition(Boisson consommation){
     	this.addition += consommation.prix;
     }
     
     /**
-     *   
-     * Méthode permettant de régler l'addition 
-     * en fonction des boisson consommée
-     * et ainsi de réinitialiser cette dernière
+     * Cette méthode permet de régler l'ardoise du client en fonction des
+     * boissons qu'il a commandé. L'ardoise sera ainsi remise à 0. 
+     * @return 
     */
+    @Override
     public boolean payer() {
     	if(this.getPorteMonnaie() >= this.addition){
             this.setPorteMonnaie(this.getPorteMonnaie()-this.addition) ;
@@ -80,12 +76,11 @@ public class Client extends Humain{
     }
     
     /** 
-     * Méthode permettant d'ajuster le taux d'alcoolemie 
-     * et l'addition
+     * Cette méthode permet d'ajuster le taux d'alcoolemie et l'addition
      * en fonction de la boisson à offrir
-     * 
-     * @param client va permettre de stocker le type Client à qui la boisson favorite va être offerte, et ainsi ajuster son taux d'alcoolemie et l'addition de l'offreur
+     * @param client : Stock le Client à qui la boisson est offerte
      */
+    @Override
     public void offrir(Client client) {
 	System.out.println(this.parler("Tu veux quoi "+client.getPrenom()));
 	System.out.println(client.parler("un verre de  "+client.boissonFavorite));
@@ -94,25 +89,26 @@ public class Client extends Humain{
     }
     
    /**
-    * Méthode permettant l'ajout d'argent utilisé
-    * @param total 
+    * Cette méthode permet l'ajout d'argent au porte monnaie
+    * @param total : Stock l'argent a ajouter à l'utilisateur. 
     */
     public void ajouterArgent(float total){
     	this.setPorteMonnaie(this.getPorteMonnaie() + total) ;
     }
+    
     /**
-     * méthode permettant de renvoyer 
-     * textuellement la présentation du sujet
-     * @return 
+     * Cette méthode permet de renvoyer dans la console la présentation de l'utilisateur. 
+     * @return : Le texte de la présentation. 
     */
+    @Override
     public String sePresenter() {
     	return "Bonjour, je m'appelle "+this.getNom()+" "+this.getPrenom()+"."; 
     }
     
     
     /**
-     * méthode permettant de renvoyer les statistiques du personnage
-     * @return les statistiques du personnages à chaque appel de cette dernière 
+     * Cette méthode permet de renvoyer les statistiques du personnage.
+     * @return : les statistiques du personnages dans la console. 
      */
     @Override
     public String toString(){
@@ -120,17 +116,17 @@ public class Client extends Humain{
     }
    
     /**
-     * méthode permettant de renvoyer le texte dis par
-     * le personnage
-     * @param phrase va permettre de stocker les textes pouvant être dit
-     * @return un standard d'écriture , soit le prenom et le texte censé être dit par ce dernier
+     * Cette méthode permet de renvoyer le texte du client. 
+     * @param phrase : Stock la phrase qui va etre dite. 
+     * @return : Retourne la phrase avec une certaine nomenclature. 
     */
+    @Override
     public String parler(String phrase) {
 	   return this.getPrenom() + " : " + phrase;
     }
    
     /**
-     * méthode permettant d'ajuster la côte de popularité 
+     * Cette méthode permet d'ajuster la côte de popularité.
     */
     public void monterCotePopularite(){
        this.setPopularite(this.getPopularite() + 10) ;

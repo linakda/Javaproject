@@ -6,18 +6,25 @@
 package barmanagement;
 
 /**
- * Classe mère Humain 
- * possèdent les différents attributs et méthodes de la classe
+ * Cette classe est la classe mère Humain. 
+ * Elle possède les méthodes qui permet d'initialiser un "humain", 
  * C'est de cette méthode que vont découler toute les classes filles
- * @author ISEN
  * @author Théo
  */
 public abstract class Humain {
     
-   private String nom, prenom, cri, sexe ;
-   private int popularite = 0 ;
-   private float porteMonnaie;
-
+    private String nom, prenom, cri, sexe ;
+    private int popularite = 0 ;
+    private float porteMonnaie;
+    
+    /**
+     * Cette methode permet de sauvegarder et d'organiser les variables.
+     * @param prenom
+     * @param nom
+     * @param sexe
+     * @param cri
+     * @param porteMonnaie
+     */
     public Humain(String prenom , String nom , String sexe , String cri,float porteMonnaie) {
        this.nom = nom ;
        this.prenom = prenom ;
@@ -27,8 +34,8 @@ public abstract class Humain {
    }
    
    /**
-    * méthode permettant de vérifier si les deux humains sont identiques ou non
-    * @param  a permet de stocker notre type humain
+    * Cette méthode permet de vérifier si deux humains sont identiques ou non
+    * @param  a : Stock notre type humain
     * @return un boolean permettant de voir si la condition eest vérifié ou non
     */
     @Override
@@ -40,7 +47,7 @@ public abstract class Humain {
    }
     
    /**
-    * differents accesseur et mutateurs
+    * Ces methodes vont donner tous les accesseur et mutateurs
     * 
      * @return 
     */
@@ -93,9 +100,9 @@ public abstract class Humain {
    
    
    /**
-    * méthodes abstraites définissant les méthodes nécessaire à avoir pour être
-    * une classe ou une sous-classe de "Humain"
-    * @param consommation 
+     * Ces méthodes abstraites définissant les méthodes nécessaire à avoir pour être
+     * une classe ou une sous-classe de "Humain".
+     * @param consommation : Parametre de la premiere fonction. 
     */
    
     abstract public void boire(Boisson consommation);

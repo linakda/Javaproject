@@ -6,7 +6,7 @@
 package barmanagement;
 
 /**
- * C'est classe est la classe fille de Humain.
+ * Cette classe est une classe fille de Humain.
  * Elle possède les methodes qui permettent d'initialiser le Barman, parler avec
  * le coco à la fin, payer un verre, offrir un verre, se présenter, la disponibilité des boissons,
  * boire un verre, boire une boisson, commander du stock et recevoir une commande. 
@@ -16,12 +16,13 @@ public class Barman extends Humain{
     String finDePhrase;
     
     /**
-     * Cette methode permet de sauvegarder et d'organiser les variables du barman. 
+     * Cette méthode est le constructeur de Barman. 
+     * Elle est exécutée à la création de l'objet et permettant l'initialisation de l'objet .
      * Ainsi que la fin de phrase avec le coco demandé dans le sujet.
-     * @param prenom
-     * @param nom
-     * @param sexe
-     * @param crie
+     * @param prenom : Stock le paramétre prénom du Barman en question
+     * @param nom    : Stock le paramétre nom du Barman en question
+     * @param sexe   : Stock le paramétre sexe du Barman en question
+     * @param crie   : Stock le paramétre cri du Barman en question
      */
     public Barman (String prenom , String nom , String sexe , String crie){
         super(prenom,nom,sexe,crie,1000);
@@ -71,10 +72,9 @@ public class Barman extends Humain{
     }
     
     /**
-     * Méthode permettantde vérifier la disponibilité 
-     * d'une boisson dans le stock du bar
-     * @param a va permettre de stocker la boisson en question et ainsi vérifier sa quantité 
-     * @return  un boolean qui va nous renseigner sur la disponibilité ou non de la boisson 
+     * Cette méthode permet de vérifier la disponibilité d'une boisson dans le stock du bar.
+     * @param a : Stock le nom de la boisson demander et vérifie si elle est disponible.  
+     * @return : Retourne un boolean qui va nous dire si la boisson demandée est disponible.
     */
     public boolean disponible(Boisson a){
         if(a.stock > 0){
@@ -84,25 +84,30 @@ public class Barman extends Humain{
 	return false;
     }
     
+    /**
+     * Cette méthode permet au barman de boire sa boisson. 
+     * @param consommation 
+     */
     @Override
     public void boire(Boisson consommation) {
         // TODO Auto-generated method stub	
     }
         
     /**
-     * Méthode permettant d'afficher textuellement la commande du barman au fournisseur
-     * concernant la boisson en rupture de stock à commander
-     * @param a va permettre de stocker la boisson qui est en rupture de stock 
-     * @param b va permettre de stocker le fournisseur qui va réapprovisionner le stock du bar
+     * Cette méthode permet d'afficher dans la console la commande du barman au 
+     * fournisseur concernant la boisson en rupture de stock à commander
+     * @param a : Stock la boisson qui est en rupture de stock 
+     * @param b : Stock le nom du fournisseur qui va réapprovisionner le stock du bar
     */
     public void commande(Boisson a,Fournisseur b){
 	System.out.println(this.parler("Allo (fournisseur)"+b.getPrenom() +" je suis a cours de "+a.getNom()+ ", tu peux m'en livrer "));
     }
+    
     /**
-     * Méthode permettant d'afficher textuellement la commande du barman au fournisseur
-     * concernant la boisson en rupture de stock à commander
-     * @param a va permettre de stocker la boisson qui est en rupture de stock 
-     * @param b va permettre de stocker le fournisseur qui va réapprovisionner le stock du bar
+     * Cette méthode permet d'afficher la reception de la commande du barman au
+     * fournisseur concernant la boisson en rupture de stock à commander
+     * @param a : Stock la boisson en rupture de stock 
+     * @param b : Stock le fournisseur qui va réapprovisionner le stock du bar
     */
     public void recevoirCommande(Boisson a,Fournisseur b){
 	System.out.println(this.parler("Oh "+b.getPrenom() +" t'arrives pile au bon moment, oui c'est bien ça 5 verres de "+a.getNom()));

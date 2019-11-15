@@ -6,11 +6,18 @@
 package barmanagement;
 
 /**
- *
+ * Cette classe est une classe fille de Humain.
+ * Elle possède toute les méthodes et les paramètres de ce même type tel que
+ * boire, offrir un verre, parler, payer, se présenter et un toString. 
  * @author Théo
  */
 public class Serveur extends Humain {
-    float tailleBiceps,coeffCharme ;
+    float tailleBiceps,coeffCharme;
+    
+    /*
+     * Cette méthode est le constructeur du serveur. 
+     * Elle est exécutée à la création de l'objet et permet l'initialisation de l'objet. 
+    */
     public Serveur(String prenom , String nom , String sexe , String crie, float tailleBiceps, float coeffCharme){
     	super(prenom,nom,sexe,crie,100);
         this.tailleBiceps = tailleBiceps ;
@@ -18,9 +25,8 @@ public class Serveur extends Humain {
     }
     
     /**
-     * méthode permettant de renvoyer les 
-     * caractéristiques du serveur en question
-     * @return le nom, le prenom, le sexe, le cri significatif, le cri, la côte de popularité
+     * Cette méthode permet de renvoyer les caractéristiques du serveur.
+     * @return : Retourne le nom, le prenom, le sexe, le cri significatif, le cri, la côte de popularité.
      */
     @Override
     public String toString(){
@@ -28,29 +34,49 @@ public class Serveur extends Humain {
     }
     
     /**
-     * méthode permettant au serveur de s'exprimer
-     * @param phrase permet de stocker le texte dit par le serveur
-     * @return  le nom du serveur qui parle et le texte en question
+     * Cette méthode permet au serveur de s'exprimer dans la console. 
+     * @param phrase : Stock le texte du serveur
+     * @return : Retourne la phrase du serveur avec une certaine nomenclature. 
      */
+    @Override
     public String parler(String phrase) {
     	return "<Serveur> "+this.getPrenom() + " : " + phrase;
     }
+    
+    /*
+     * Cette méthode permet aux serveurs de payer.
+     * @return : Retourne un boolean qui dit faux car les serveurs ne paie pas ses consommations. 
+    */
+    @Override
     public boolean payer() {
 	return false;
     }
     
+    /*
+     * Cette méthode permet aux serveurs d'offrir un verre à un client.
+     * @param client : Stock le client auquel la patronne offre un verre
+    */
+    @Override
     public void offrir(Client client) {	
+        System.out.println(this.parler("Tu veux quoi "+client.getPrenom()));
+  	System.out.println(client.parler("un verre de  "+client.boissonFavorite));
+  	client.alcoolemie += client.boissonFavorite.tauxAlcoolemie;
     }
     
     
     /**
-     * méthode permettant au serveur de retourner son cri significatif
-     * @return 
+     * Cette méthode permet au serveur de se presenter.
+     * @return : Retourne son cri significatif.
      */
+    @Override
     public String sePresenter() {
 	return this.getCri();
     }
     
+    /*
+     * Cette méthode permet aux serveurs de boire. 
+     * @param consommation : Stock le paramètre de la boisson actuelle. 
+    */
     @Override
     public void boire(Boisson consommation) {
 	// TODO Auto-generated method stub

@@ -6,7 +6,8 @@
 package barmanagement;
 
 /**
- *
+ * Cette classee possède les methodes qui permettent d'initialiser les boissons,
+ * de l'afficher et d'obtenir le nom. 
  * @author Théo
  */
 public class Boisson{
@@ -16,6 +17,9 @@ public class Boisson{
     float prixAchat;
     float tauxAlcoolemie ;
     
+    /*
+     * Cette methode permet de sauvegarder et d'organiser les variables des boissons sans alcool.
+    */
     public Boisson(String nom, float prix,float prixAchat){
         this.stock = 5;
         this.nom = nom;
@@ -24,6 +28,9 @@ public class Boisson{
 	this.tauxAlcoolemie = 0;
     }
     
+    /*
+     * Cette méthode permet de sauvegarder et d'organiser les variables des boissons avec alcool. 
+    */
     public Boisson(String nom, float prix,float prixAchat ,float taux){
         this.stock = 5;
 	this.nom = nom;
@@ -33,9 +40,9 @@ public class Boisson{
     }
     
     /**
-     * Méthode permettant de retourner les caractéristiques de la boisson
-     * à l'aide de la fonction pré-défini toString
-     * notamment son nom, son prix, son taux d'alcoolemie
+     * Cette méthode permet de retourner les caractéristiques de la boisson
+     * avec l'aide de la fonction pré-défini toString
+     * On obtient donc son nom, son prix, son taux d'alcoolemie
      * @return 
     */
     @Override
