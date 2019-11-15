@@ -8,20 +8,19 @@ package barmanagement;
 import java.util.Arrays;
 
 /**
- *
+ * Cette classe est la classe de la carte possédant les différentes méthodes et paramètres
+ * pour censé être une carte, la valeur de la carte et une fonction toString. 
  * @author Théo
  */
-/**Classe carte possédant les différentes méthodes et paramètres pour censé être une carte
-*et  Represente donc une carte
-*/
+
 class Carte {
     String couleur;
     String valeur;
     
     /**
-     * Constructeur carte, , méthode exécutée à la création de l'objet et permettant l'initialisation de l'objet .
-     * @param c définissant la couleur
-     * @param v définissant la valeur
+     * La méthode carte est exécutée à la création de l'objet et permet l'initialisation de l'objet .
+     * @param c : Stock la couleur de la carte.
+     * @param v : Stock la valeur de la carte.
      */
         
     public Carte (String c, String v) {
@@ -30,8 +29,8 @@ class Carte {
     }
     
     /**
-     *Renvoie la force de la carte selon la couleur d'atout
-     *@param atout permet de stocker la force d'atout
+     *Cette méthode renvoie la force de la carte selon la couleur d'atout
+     *@param atout : Stock la force d'atout
      */        
     public int getValue (String atout) {
 	String [] ordreNormal = new String [] {"7", "8", "9", "Valet", "Dame", "Roi", "10", "As"};
@@ -41,7 +40,11 @@ class Carte {
             return Arrays.asList (ordreAtout).indexOf (valeur) + 10; // + 10, parce que les atouts battent toutes les cartes non-atout
         return Arrays.asList (ordreNormal).indexOf (valeur);
     }
-	
+    
+    /*
+     * Cette méthode permet d'afficher le texte dans la console. 
+    */
+    @Override
     public String toString () {
 	return valeur + " de " + couleur;
     }

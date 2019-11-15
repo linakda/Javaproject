@@ -5,16 +5,13 @@
  */
 package barmanagement;
 
-/**
- *
- * @author Théo
- */
 import java.util.*;
-import java.lang.*;
 
-
-/** Represente une partie de belote
- * 
+/**
+ * Cette classe possède toutes les méthodes et paramètres d'une partie de belotte
+ * avec l'initialisation d'une partie de belotte, distribuer les cartes, joue une partie
+ * et enfin joue une manche. 
+ * @author Théo
  */
 class PartieDeBelote {
     Equipe equipe1;
@@ -30,10 +27,9 @@ class PartieDeBelote {
     String [] valeurs;
     Carte [] cartes;
     
-    /** Constructeur PartiedeBelote, , méthode exécutée à la création de l'objet et permettant l'initialisation de l'objet .
-     * 
-     * @param E1 pour stocker la 1ere equipe du tournoi
-     * @param E2 pour stocker la 2eme equipe du tournoi
+    /** Cette méthode exécutée à la création de la partie de belote permet l'initialisation de l'objet .
+     * @param E1 : Stock la 1ere equipe du tournoi
+     * @param E2 : Stock la 2eme equipe du tournoi
      */
     public PartieDeBelote (Equipe E1, Equipe E2) {
 	equipe1 = E1;
@@ -50,9 +46,9 @@ class PartieDeBelote {
     }
 	
     /**
-     * méthode private creer Cartes qui va permettre d'instancier nos différentes cartes 
+     * Cette méthode permet de creer Cartes 
+     * ce qui va permettre d'instancier nos différentes cartes 
      * Cree les 32 cartes du jeu stocker dans un tableau 
-     * 
      */
     private void creerCartes () {
 	cartes = new Carte [32];
@@ -63,9 +59,9 @@ class PartieDeBelote {
 	}
     }
 	
-    /**méthode distribuerLesCartes 
-     * Distribue aleatoirement 8 cartes a chaque joueur
-     * les mains de chaque joueur sont stockés dans des listes de cartes propre à chacun
+    /**Cette méthode permet de distribuer les Cartes 
+     * Ainsi, 8 cartes seront distrubuer aleatoirement.
+     * De plus, les mains de chaque joueur sont stockés dans des listes de cartes propre à chacun
      */
     private void distribuerLesCartes () {
     	List <Carte> cartesADistribuer = new LinkedList <Carte> ();
@@ -90,14 +86,12 @@ class PartieDeBelote {
         }
     }
 	
-    /**méthode permettant Jouer une manche
-     * Chaque joueur dispose de 8 cartes
-     * A chaque tour, chacun va devoiler sa premiere carte 
-     * Le joueur qui devoile la carte la plus forte marque un point pour son equipe
-     * Une fois les 8 cartes jouees,
-     * L'equipe qui a marque le plus de points gagne la manche
-     * S'il y a egalite la manche est nulle
-     * Les joueurs de l'equipe perdant la manche offrent a boire aux gagnants
+    /**Cette méthode permet de jouer une manche
+     * Chaque joueur dispose ainsi de 8 cartes
+     * Chaque tour, une carte est dévoilé, le joueur qui devoile la carte la plus
+     * forte marque un point pour son equipe. Une fois les 8 cartes jouees,
+     * L'equipe qui a marque le plus de points gagne la manche. S'il y a egalite la manche est nulle.
+     * Les joueurs de l'equipe qui perdent la manche offrent a boire aux gagnants pour finir.
      * 
      */
     private void jouerUneManche () {
@@ -139,9 +133,9 @@ class PartieDeBelote {
             }
     }
 	
-    /**méthode permettant de Jouer le match
-     *  Tant qu'une equipe n'a pas gagne deux manches, on continue
-     * @return le score qu'a marqué chacune des équipes sous forme d'un tableau
+    /** Cette méthode permet de jouer un match
+     *  On cherche à faire deux points d'écart pour avoir un gagnant. 
+     * @return : Retourne le score qu'a marqué chacune des équipes sous forme d'un tableau
      */
     public int [] jouer () {	
 	while (pointsEquipe1 < 2 && pointsEquipe2 < 2) {
