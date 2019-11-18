@@ -13,12 +13,13 @@ package barmanagement;
  * @author Théo
  */
 public class Patronne extends Humain {
+    boolean nePlusServir = false;
     /*
      * Cette méthode est le constructeur de la Patronne. 
      * Elle est exécutée à la création de l'objet et permet l'initialisation de l'objet.
     */
-    public Patronne(String prenom , String nom , String sexe , String crie) {
-      super(prenom,nom,sexe,crie,1000);
+    public Patronne(String prenom , String nom , String sexe , String crie, String accessoire) {
+      super(prenom,nom,sexe,crie,"bague diamant",1000);
     }
     
     /*
@@ -44,7 +45,7 @@ public class Patronne extends Humain {
     */
     @Override
     public String sePresenter(){
-        return "Je suis la patronne";		
+        return "Je suis la patronne et c'est mon bar ici.";		
     }
     
     /**
@@ -61,6 +62,16 @@ public class Patronne extends Humain {
     */
     public void exclure(Client a) {
         a.exclu = true;
+    }
+    
+    /**
+     * Cette méthode permet à la patronne de dire que les barmans ne servent plus un client trop alcoolisé. 
+     * 
+     * @param a : Stock le nom du client a ne plus servir. 
+     */
+    public void nePlusServir(Client a){
+        System.out.println("Barman et serveurs, ne servez plus " + this.getPrenom() + " s'il vous plait");
+        nePlusServir= true;
     }
     
     /**

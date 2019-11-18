@@ -12,9 +12,10 @@ package barmanagement;
  * @author Théo
  */
 public abstract class Humain {
-    
-    private String nom, prenom, cri, sexe ;
-    private int popularite = 0 ;
+
+    String nom, accessoire;
+    private String prenom, cri, sexe ;
+    int popularite = 0 ;
     private float porteMonnaie;
     
     /**
@@ -23,14 +24,16 @@ public abstract class Humain {
      * @param nom
      * @param sexe
      * @param cri
+     * @param accessoire
      * @param porteMonnaie
      */
-    public Humain(String prenom , String nom , String sexe , String cri,float porteMonnaie) {
+    public Humain(String prenom , String nom , String sexe , String cri, String accessoire, float porteMonnaie) {
        this.nom = nom ;
        this.prenom = prenom ;
        this.cri = cri ;
        this.sexe = sexe ;
        this.porteMonnaie = porteMonnaie;
+       this.accessoire=accessoire;
    }
    
    /**
@@ -70,6 +73,10 @@ public abstract class Humain {
        return this.cri ;
     }
     
+    public String getAccessoire(){
+        return this.accessoire;
+    }
+    
     public String getSexe(){
        return this.sexe ;
     }
@@ -92,6 +99,10 @@ public abstract class Humain {
    
     public void setCrie(String cri){
        this.cri = cri ;
+    }
+    
+    public void setAccessoire(){
+        this.accessoire = accessoire;
     }
    
     public void setSexe(String sexe){

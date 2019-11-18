@@ -17,8 +17,8 @@ public class Fournisseur extends Humain{
      * Cette méthode est le constructeur du fournisseur. 
      * Elle est exécutée à la création de l'objet et permet l'initialisation de l'objet. 
     */
-    public Fournisseur(String prenom, String nom, String sexe, String cri) {
-	super(prenom, nom, sexe, cri,100);
+    public Fournisseur(String prenom, String nom, String sexe, String accessoire, String cri) {
+	super(prenom, nom, sexe, cri, accessoire,100);
     }
     
     /*

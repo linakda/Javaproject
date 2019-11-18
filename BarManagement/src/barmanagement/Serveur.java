@@ -13,15 +13,16 @@ package barmanagement;
  */
 public class Serveur extends Humain {
     float tailleBiceps,coeffCharme;
-    
+    String accessoire;
     /*
      * Cette méthode est le constructeur du serveur. 
      * Elle est exécutée à la création de l'objet et permet l'initialisation de l'objet. 
     */
-    public Serveur(String prenom , String nom , String sexe , String crie, float tailleBiceps, float coeffCharme){
-    	super(prenom,nom,sexe,crie,100);
+    public Serveur(String prenom , String nom , String sexe , String crie,String accessoire, float tailleBiceps, float coeffCharme){
+    	super(prenom,nom,sexe,crie,accessoire,100);
         this.tailleBiceps = tailleBiceps ;
         this.coeffCharme = coeffCharme ;
+        this.accessoire = accessoire;
     }
     
     /**
@@ -79,6 +80,12 @@ public class Serveur extends Humain {
     */
     @Override
     public void boire(Boisson consommation) {
-	// TODO Auto-generated method stub
+	Boisson boissonLegal = new Boisson("Eau", 0f,0f);
+        if ( consommation != boissonLegal ){
+            this.parler("Désoler je ne peux pas boire ça, je ne bois que de l'eau pendant mon service et le jus d'abricot me tourne à la tete ...");
+        }
+        else{
+            this.parler("Cette eau est trop bonne !");
+        }
     }   
 }

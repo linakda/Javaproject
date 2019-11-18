@@ -87,8 +87,8 @@ public final class Bar {
      * le sexe, la boisson fav1 et la boisson fav2.
     */
     public void creationJoueur(){
-        String name,surname,cri,sexe,num;
-        int indiceBoissonFavorite = 0,indiceBoissonSecour = 0;
+        String name,surname,cri,sexe,num, accessoire;
+        int indiceBoissonFavorite = 0,indiceBoissonSecour = 0, popularite = 0;
         float porteMonnaie = 0;
         boolean numBoissonFail = true;
 
@@ -101,6 +101,9 @@ public final class Bar {
         name = sc.nextLine();
         System.out.print("\nCri significatif : ");
         cri = sc.nextLine();
+        System.out.println("Choissiez un accessoire pour le client");
+        System.out.println("Il est d'usage que les hommes ont un t-shirt de couleur et que les femmes ont des bijoux.");
+        accessoire = sc.nextLine();
         boolean conversionFail = true;
         while(conversionFail){
             try
@@ -157,7 +160,7 @@ public final class Bar {
                     numBoissonFail = true;
                 }
             }
-            joueur = new Client(name ,surname,sexe ,cri,porteMonnaie,boissons.get(indiceBoissonFavorite),boissons.get(indiceBoissonSecour));
+            joueur = new Client(name ,surname,sexe ,cri, accessoire ,porteMonnaie, popularite, boissons.get(indiceBoissonFavorite),boissons.get(indiceBoissonSecour));
     }
     
     /**
@@ -176,7 +179,7 @@ public final class Bar {
     	prenom = sc.nextLine();
     	System.out.println("Cri de la patronne");
     	cri = sc.nextLine();
-    	patronne = new Patronne(prenom,nom,"femme",cri);
+    	patronne = new Patronne(prenom,nom,"femme",cri,"bague diamant");
     }
     
     /**
@@ -195,7 +198,7 @@ public final class Bar {
     	prenom = sc.nextLine();
     	System.out.println("Cri du fournisseur");
     	cri = sc.nextLine();
-    	fournisseur = new Fournisseur(prenom,nom,"homme",cri);
+    	fournisseur = new Fournisseur(prenom,nom,"homme",cri,"T-shirt livraison rapido");
     }
     
     /**
@@ -214,7 +217,7 @@ public final class Bar {
     	prenom = sc.nextLine();
     	System.out.println("Cri du Barman");
     	cri = sc.nextLine();
-    	barman = new Barman(prenom,nom,"homme",cri);
+    	barman = new Barman(prenom,nom,"homme",cri,"Serviette de bar");
     }
     
      /**
@@ -414,9 +417,9 @@ public final class Bar {
      * la boisson fav1 et la boisson fav2. 
     */
     public void creationClient(){
-    	String name,surname,cri,sexe,num;
+    	String name,surname,cri,sexe,num,accessoire;
     	float porteMonnaie = 0;
-    	int indiceBoissonFavorite = 0,indiceBoissonSecour = 0;
+    	int indiceBoissonFavorite = 0,indiceBoissonSecour = 0, popularite = 0;
     	boolean numBoissonFail = true;
     	System.out.print("Nom : ");
     	surname = sc.nextLine();
@@ -424,6 +427,9 @@ public final class Bar {
     	name = sc.nextLine();
     	System.out.print("\nCri significatif : ");
     	cri = sc.nextLine();
+        System.out.println("Choissiez un accessoire pour le client");
+        System.out.println("Il est d'usage que les hommes ont un t-shirt de couleur et que les femmes ont des bijoux.");
+        accessoire = sc.nextLine();
     	boolean conversionFail = true;
     	while(conversionFail){
             try
@@ -479,7 +485,7 @@ public final class Bar {
         	numBoissonFail = true;
             }
     	}
-    	clients.add(new Client(name ,surname,sexe ,cri,porteMonnaie,boissons.get(indiceBoissonFavorite),boissons.get(indiceBoissonSecour)));
+    	clients.add(new Client(name ,surname,sexe ,cri, accessoire,porteMonnaie,popularite,boissons.get(indiceBoissonFavorite),boissons.get(indiceBoissonSecour)));
     }
     /** 
      * Cette methode permet de créer les clients du bar de manière automatique en 
@@ -488,12 +494,12 @@ public final class Bar {
      * et boisson fav2. 
      */
     public void creationClientPnjDefaut(){
-        clients.add( new Client("Etienne","Durand", "homme" , "Youpiii" ,20, boissons.get(0) , boissons.get(1)) );
-        clients.add( new Client("Jeanne","Delacroix" ,"femme","Yes ,we can",20, boissons.get(1),boissons.get(0)) );
-        clients.add( new Client("Pierre","Edouard", "homme", "Un Ricard n'a jamais tuÃ© personne !",20, boissons.get(6),boissons.get(5)) );
-        clients.add( new Client("Marie","Elisabeth","femme","Jamais 2 sans 3",20,boissons.get(4),boissons.get(8)) );
-        clients.add( new Client("Paul","Romarin","homme","Jamais 3 sans 4",20, boissons.get(3), boissons.get(8)) );
-        clients.add( new Client("France", "Gall", "femme", "Poupé de cirree et de sonnn",20, boissons.get(9),boissons.get(2)) );
+        clients.add( new Client("Etienne","Durand", "homme" , "Youpiii","T-shirt bleu",20,5, boissons.get(0) , boissons.get(1)) );
+        clients.add( new Client("Jeanne","Delacroix" ,"femme","Yes ,we can","Collier",20,2, boissons.get(1),boissons.get(0)) );
+        clients.add( new Client("Pierre","Edouard", "homme", "Un Ricard n'a jamais tuÃ© personne !","T-shirt noir",20,1, boissons.get(6),boissons.get(5)) );
+        clients.add( new Client("Marie","Elisabeth","femme","Jamais 2 sans 3","Bague",20,0,boissons.get(4),boissons.get(8)) );
+        clients.add( new Client("Paul","Romarin","homme","Jamais 3 sans 4","T-shirt rouge",20,0, boissons.get(3), boissons.get(8)) );
+        clients.add( new Client("France", "Gall", "femme", "Poupé de cirree et de sonnn","Boucles d'oreilles",20,0, boissons.get(9),boissons.get(2)) );
     }
     
     /** 
@@ -538,7 +544,7 @@ public final class Bar {
      */
     public void creationServeurPersonalise(){
         float tailleBiceps = 0,charme = 0;
-    	String nom,prenom,cri,sexe;
+    	String nom,prenom,cri,sexe,accessoire;
     	boolean numFail = true;
     	System.out.print("Nom : ");
     	nom = sc.nextLine();
@@ -552,6 +558,12 @@ public final class Bar {
             System.out.print("Saisissez homme ou femme");
             sexe = sc.nextLine();
     	}
+        if (sexe.equals("homme")){
+            accessoire = "cravate noire";
+        }
+        else{
+            accessoire = "petite queue playboy";
+        }
     	while(numFail){
             try{
     		System.out.print("Entrer la taille du biceps");
@@ -583,7 +595,7 @@ public final class Bar {
     		System.out.println("Saissier un float s'il vous plait");
             }	
     	}
-    	serveurs.add( new Serveur(prenom,nom,sexe,cri,tailleBiceps,charme));
+    	serveurs.add( new Serveur(prenom,nom,sexe,cri,accessoire,tailleBiceps,charme));
     }
     
     /**
@@ -593,8 +605,8 @@ public final class Bar {
     * cri significatif, taille du biceps et charme. 
     */
     public void creationServeurParDefaut(){
-       serveurs.add( new Serveur("Iliana","delade", "femme", "ouaaahhhh" , 20 ,90) );
-       serveurs.add( new Serveur("Joseph","Staline", "homme","whhhraaaaaaooooo", 95 , 25 ) );
+       serveurs.add( new Serveur("Iliana","delade", "femme", "ouaaahhhh","petite queue de playmate", 20 ,90) );
+       serveurs.add( new Serveur("Joseph","Staline", "homme","whhhraaaaaaooooo","cravate noire", 95 , 25 ) );
    }
    
     /**
@@ -730,7 +742,7 @@ public void commanderServeur(Client payeur,Client consomateur){
     phrase = "Un verre de "+consomateur.boissonFavorite.getNom()+" ";
     if(!payeur.equals(consomateur)){
         phrase += " pour ";
-            phrase += consomateur.getPrenom();
+        phrase += consomateur.getPrenom();
     }
     if(serveurs.get(numServeur).getSexe().equals("femme") && this.joueur.alcoolemie > 3 && this.joueur.getSexe().equals("homme")){
         phrase += " poupée";
@@ -804,7 +816,7 @@ public void commanderServeur(Client payeur,Client consomateur){
  * @param consomateur : client qui va consommer la boisson
  */
 public void commanderBarman(Client payeur,Client consomateur){
-        String phrase = null;
+        String phrase;
     	
         System.out.println(this.barman.parler("Quest-ce qu'il te faut ")); // coco ??
             
@@ -877,7 +889,7 @@ public void commanderBarman(Client payeur,Client consomateur){
      */
 public void menu()
 {
-    int  choix = 0;
+    int  choix;
     boolean fail;
     Client destinataire = null;
     Scanner sc = new Scanner(System.in);
@@ -1014,6 +1026,7 @@ public void menu()
                         System.out.println(this.barman.parler("Degage d'ici et que je ne te revoie plus dans les alentours"));
                         System.out.println("Vous avez été virer du bar car vous n'aviez pas assez d'argent pour payer");
                         this.patronne.exclure(this.joueur);
+                        this.joueur.baisserCotePopularite(5);
                         return;
                     }
                     break ;

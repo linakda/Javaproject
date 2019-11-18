@@ -23,9 +23,10 @@ public class Barman extends Humain{
      * @param nom    : Stock le paramétre nom du Barman en question
      * @param sexe   : Stock le paramétre sexe du Barman en question
      * @param crie   : Stock le paramétre cri du Barman en question
+     * @param accessoire : Stock le paramètre accessoire du barman en question
      */
-    public Barman (String prenom , String nom , String sexe , String crie){
-        super(prenom,nom,sexe,crie,1000);
+    public Barman (String prenom , String nom , String sexe , String crie, String accessoire){
+        super(prenom,nom,sexe,crie,accessoire,1000);
 	this.finDePhrase = "coco";
     }
     
@@ -56,10 +57,12 @@ public class Barman extends Humain{
     */
     @Override
     public void offrir(Client client){
-	System.out.println(this.parler("Tu veux quoi "+client.getPrenom()));
-	System.out.println(client.parler("un verre de  "+client.boissonFavorite.getNom()));
-	client.alcoolemie += client.boissonFavorite.tauxAlcoolemie;
-	this.setPorteMonnaie(this.getPorteMonnaie() - client.boissonFavorite.prix );
+        if (client.getPopularite()>100){
+            System.out.println(this.parler("Je veux bien t'offrir un verre mon vieux, tu veux quoi de bon "+client.getPrenom()));
+            System.out.println(client.parler("un verre de  "+client.boissonFavorite.getNom()));
+            client.alcoolemie += client.boissonFavorite.tauxAlcoolemie;
+            this.setPorteMonnaie(this.getPorteMonnaie() - client.boissonFavorite.prix );
+        }
     }
     
     /**
@@ -90,7 +93,13 @@ public class Barman extends Humain{
      */
     @Override
     public void boire(Boisson consommation) {
-        // TODO Auto-generated method stub	
+        Boisson boissonLegal = new Boisson("Eau", 0f,0f);
+        if ( consommation != boissonLegal ){
+            parler("Désoler je ne peux pas boire ça, je ne bois que de l'eau pendant mon service et le jus d'abricot me tourne à la tete ...");
+        }
+        else{
+            this.parler("Cette eau est trop bonne !");
+        }
     }
         
     /**

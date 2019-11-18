@@ -14,7 +14,7 @@ package barmanagement;
 
 public class Client extends Humain{
     float alcoolemie, addition;
-    String qualificatif ;
+    String qualificatif,accessoire ;
     boolean exclu;
     int numTable;
     Boisson boissonFavorite ;
@@ -28,18 +28,22 @@ public class Client extends Humain{
      * @param nom    : Stock le paramétre nom du Client en question
      * @param sexe   : Stock le paramétre sexe du Client en question
      * @param crie   : Stock le paramétre cri du Client en question
+     * @param accessoire
      * @param porteMonnaie : Stock le paramétre porteMonnaie du Client en question
+     * @param popularite : Stock le parametre popularite du Client en question
      * @param boisson_favorite : Stock le paramétre boisson_favorite du Client en question
      * @param boisson_secours : Stock le paramétre boisson_secours du Client en question
     */
-    public Client(String prenom , String nom , String sexe , String crie ,float porteMonnaie, Boisson boisson_favorite , Boisson boisson_secours){
-    	super(prenom,nom,sexe,crie,porteMonnaie);
+    public Client(String prenom , String nom , String sexe , String crie, String accessoire  ,float porteMonnaie, int popularite, Boisson boisson_favorite , Boisson boisson_secours){
+    	super(prenom,nom,sexe,crie, accessoire ,porteMonnaie);
         this.boissonFavorite = boisson_favorite ;
         this.boissonSecours = boisson_secours ;
         this.alcoolemie = 0;  
     	exclu = false;
     	this.addition = 0;
     	this.numTable = -1;
+        this.popularite=0;
+        this.accessoire = accessoire; 
     }
     
     /**
@@ -49,6 +53,7 @@ public class Client extends Humain{
     @Override
     public void boire(Boisson consommation){
     	this.alcoolemie += consommation.tauxAlcoolemie;
+        monterCotePopularite(1);
     }
     
     /**
@@ -102,9 +107,16 @@ public class Client extends Humain{
     */
     @Override
     public String sePresenter() {
-    	return "Bonjour, je m'appelle "+this.getNom()+" "+this.getPrenom()+"."; 
+    	return "<Client> " + this.getPrenom() + " " + this.getAccessoire() + " : " + " Bonjour, je m'appelle "+this.getNom()+" "+this.getPrenom()+"."; 
     }
     
+    /**
+     * Cette méthode permet de renvoyer dans la console la présentation de l'utilisateur. 
+     * @return : Le texte de la présentation secondaire. 
+     */
+    public String sePresenterComplementaire(){
+        return this.getCri()+" c'est moi "+this.getPrenom();
+    }
     
     /**
      * Cette méthode permet de renvoyer les statistiques du personnage.
@@ -122,13 +134,24 @@ public class Client extends Humain{
     */
     @Override
     public String parler(String phrase) {
-	   return this.getPrenom() + " : " + phrase;
+	return this.getPrenom() + " : " + phrase;
     }
    
     /**
      * Cette méthode permet d'ajuster la côte de popularité.
+     * @param gain : Stock le gain de popularité a ajouter. 
     */
-    public void monterCotePopularite(){
-       this.setPopularite(this.getPopularite() + 10) ;
+    public void monterCotePopularite(int gain){
+       this.popularite = gain + this.popularite;
     }
+    
+    /**
+     * Cette méthode permet d'ajuster la côte de popularité.
+     * @param perte : Stock la perte de popularité a ajouter. 
+    */
+    public void baisserCotePopularite(int perte){
+        this.popularite = perte + this.popularite;
+    }
+    
+    
 }
