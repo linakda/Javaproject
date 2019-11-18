@@ -14,15 +14,17 @@ package barmanagement;
 public class Serveur extends Humain {
     float tailleBiceps,coeffCharme;
     String accessoire;
+    int experienceBelote;
     /*
      * Cette méthode est le constructeur du serveur. 
      * Elle est exécutée à la création de l'objet et permet l'initialisation de l'objet. 
     */
-    public Serveur(String prenom , String nom , String sexe , String crie,String accessoire, float tailleBiceps, float coeffCharme){
+    public Serveur(String prenom , String nom , String sexe , String crie, String accessoire, float tailleBiceps, float coeffCharme, int experienceBelote){
     	super(prenom,nom,sexe,crie,accessoire,100);
         this.tailleBiceps = tailleBiceps ;
         this.coeffCharme = coeffCharme ;
         this.accessoire = accessoire;
+        this.experienceBelote = 0;
     }
     
     /**
