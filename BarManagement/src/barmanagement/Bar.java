@@ -1075,12 +1075,16 @@ public void menu()
                         this.joueur.numTable = -1;
                     }
                     break;
+                    
                 case 8 :		
-                    TournoiBelote tournoiBelote = new TournoiBelote(10);
+                   TournoiBelote tournoiBelote = new TournoiBelote(10);
+                    
                     System.out.println("--------------------------------------");
                     System.out.println("Création de tournoi de belote");
                     System.out.println("--------------------------------------");
                     System.out.println(this.patronne.parler("Tournoi de belote !!! le coût d'inscription est de 10 e"));
+                    System.out.println(this.patronne.parler("*Placarde des affiches*"));
+                   // tournoiBelote.menuBelotte();
                     System.out.println("Voulez-vous que le tournoi se créer automatiquement ?(o/n)");
                     reponse = sc.nextLine();
                     while(!reponse.equals("o") && !reponse.equals("n")){
@@ -1088,22 +1092,42 @@ public void menu()
                         reponse = sc.nextLine();
                     }
                     if(reponse.equals("o")){
-                        TournoiBelote tournoiBeloteAuto = new TournoiBelote(10);
+                        TournoiBelote tournoiBeloteAuto = new TournoiBelote(10); //coût
                         tournoiBeloteAuto.inscrire(new Equipe("Equipe 1",this.joueur,clients.get(1)));
                         tournoiBeloteAuto.inscrire(new Equipe("Equipe 2",clients.get(2),clients.get(3)));
-                        tournoiBeloteAuto.inscrire(new Equipe("Equipe 3",clients.get(3),clients.get(4)));
+                      //  tournoiBeloteAuto.inscrire(new Equipe("Equipe 3",clients.get(3),clients.get(4)));
                         tournoiBeloteAuto.lancerTournoi();
                     }
                     else{
-                        System.out.println("Création d'équipe");
+                        TournoiBelote tournoiBeloteAuto = new TournoiBelote(10); //coût
+                        System.out.println("Création équipe 1 ");
                         boolean equipe = true;
                         int joueur1 = 0;
                         int joueur2 = 0;
                         while(equipe){
                             System.out.println("Nom de l'équipe");
-                            String nomEquipe = sc.nextLine();    	
+                            String nomEquipe = sc.nextLine();  
+/*-------------------CHOIX UTILISATEUR JOUEUR--------------------*/
+                            System.out.println("Voulez-vous être un joueur ? (o/n) ");
+                            reponse = sc.nextLine();
+                            while(!reponse.equals("o") && !reponse.equals("n")){
+                                 System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
+                                 reponse = sc.nextLine();
+                            }
+                            
+                            if(reponse.equals("o")){ //cas client 
+                               System.out.print("Ok"); //Code pour que l'utilisateur soit Joueur 1 
+                            }
+/*-------------------CHOIX J1 si utilisateur non joueur--------------------*/
+                            else {
+                            System.out.println("Premier joueur : Est-ce un client ou un serveur ? (c/s) ");
+                            reponse = sc.nextLine();
+                            while(!reponse.equals("c") && !reponse.equals("s")){
+                                 System.out.println("Entrez \"c\" pour client \"s\" pour serveur.");
+                                 reponse = sc.nextLine();
+                            }
+                            if(reponse.equals("c")){ //cas client 
                             this.joueurs();
-                            System.out.println("Choissisez le premier joueur");
                             fail = true;
                             while(fail){
                                 try{
@@ -1120,15 +1144,50 @@ public void menu()
                                 catch(NumberFormatException e){
                                     System.out.println("Entrez un entier");
                                     fail = true;
-                                }
+                                 }
+                               }
                             }
-                            System.out.println("Choissisez le deuxième joueur");
+                            //cas serveur 
+                            else { 
+                                if (serveurs.size() >= 2 ) {
+                                    this.serveurs();
+                                    fail = true;
+                                    while(fail){
+                                        try{
+                                            choix = Integer.parseInt(sc.nextLine());
+                                            try{
+                                                joueur1=choix;
+                                                fail = false;
+                                                }
+                                            catch(IndexOutOfBoundsException e){
+                                                System.out.println("Ce numero ne correspond à aucun serveur");
+                                                fail = true;
+                                            }
+                                        }
+                                        catch(NumberFormatException e){
+                                            System.out.println("Entrez un entier");
+                                            fail = true;
+                                        } 
+                                            }
+                             }
+                                else System.out.print("Pas assez de serveurs disponibles");
+                            }
+                            }
+   /*-------------------CHOIX J2--------------------*/
+                            System.out.println("Choissisez le co-equipier : est-ce un client ou un serveur ? (c/s)");
+                            reponse = sc.nextLine();
+                            while(!reponse.equals("c") && !reponse.equals("s")){
+                                 System.out.println("Entrez \"c\" pour client \"s\" pour serveur.");
+                                 reponse = sc.nextLine();
+                            }
+                            if(reponse.equals("c")){ //cas client 
+                            this.joueurs();
                             fail = true;
                             while(fail){
                                 try{
                                     choix = Integer.parseInt(sc.nextLine());
                                     try{
-                                        joueur2 = choix;
+                                        joueur2=choix;
                                         fail = false;
                                         }
                                     catch(IndexOutOfBoundsException e){
@@ -1139,21 +1198,171 @@ public void menu()
                                 catch(NumberFormatException e){
                                     System.out.println("Entrez un entier");
                                     fail = true;
-                                }
+                                 }
+                               }
                             }
-                            System.out.println("Voulez-vous créer une autre éuipe?(o/n)");
+                            //cas serveur 
+                            else { 
+                                //condition pour qu'il reste au moins 1 serveur dans le bar
+                                if (serveurs.size() >= 2 ) {
+                            this.serveurs();
+                            fail = true;
+                            while(fail){
+                                try{
+                                    choix = Integer.parseInt(sc.nextLine());
+                                    try{
+                                        joueur2=choix;
+                                        fail = false;
+                                        }
+                                    catch(IndexOutOfBoundsException e){
+                                        System.out.println("Ce numero ne correspond à aucun serveur");
+                                        fail = true;
+                                    }
+                                }
+                                catch(NumberFormatException e){
+                                    System.out.println("Entrez un entier");
+                                    fail = true;
+                                } 
+                                    }
+                             }
+                                else System.out.print("Pas assez de serveurs disponibles");
+                            }
+                            tournoiBelote.inscrire(new Equipe(nomEquipe,clients.get(joueur1),clients.get(joueur2)));
+                             
+/***************Creation equipe 2*************************/
+
+                        System.out.println("Création équipe 2 ");                     
+                        while(equipe){
+                            System.out.println("Nom de l'équipe");
+                            String nomEquipe2 = sc.nextLine();  
+
+/*-------------------CHOIX J1 si utilisateur non joueur--------------------*/       
+                            System.out.println("Premier joueur : Est-ce un client ou un serveur ? (c/s) ");
+                            reponse = sc.nextLine();
+                            while(!reponse.equals("c") && !reponse.equals("s")){
+                                 System.out.println("Entrez \"c\" pour client \"s\" pour serveur.");
+                                 reponse = sc.nextLine();
+                            }
+                            if(reponse.equals("c")){ //cas client 
+                            this.joueurs();
+                            fail = true;
+                            while(fail){
+                                try{
+                                    choix = Integer.parseInt(sc.nextLine());
+                                    try{
+                                        joueur1=choix;
+                                        fail = false;
+                                        }
+                                    catch(IndexOutOfBoundsException e){
+                                        System.out.println("Ce numero ne correspond à aucun client");
+                                        fail = true;
+                                    }
+                                }
+                                catch(NumberFormatException e){
+                                    System.out.println("Entrez un entier");
+                                    fail = true;
+                                 }
+                               }
+                            }
+                            //cas serveur 
+                            else { 
+                                if (serveurs.size() >= 2 ) {
+                                    this.serveurs();
+                                    fail = true;
+                                    while(fail){
+                                        try{
+                                            choix = Integer.parseInt(sc.nextLine());
+                                            try{
+                                                joueur1=choix;
+                                                fail = false;
+                                                }
+                                            catch(IndexOutOfBoundsException e){
+                                                System.out.println("Ce numero ne correspond à aucun serveur");
+                                                fail = true;
+                                            }
+                                        }
+                                        catch(NumberFormatException e){
+                                            System.out.println("Entrez un entier");
+                                            fail = true;
+                                        } 
+                                            }
+                             }
+                                else System.out.print("Pas assez de serveurs disponibles");
+                            }
+                            
+   /*-------------------CHOIX J2--------------------*/
+                            System.out.println("Choissisez le co-equipier : est-ce un client ou un serveur ? (c/s)");
+                            reponse = sc.nextLine();
+                            while(!reponse.equals("c") && !reponse.equals("s")){
+                                 System.out.println("Entrez \"c\" pour client \"s\" pour serveur.");
+                                 reponse = sc.nextLine();
+                            }
+                            if(reponse.equals("c")){ //cas client 
+                            this.joueurs();
+                            fail = true;
+                            while(fail){
+                                try{
+                                    choix = Integer.parseInt(sc.nextLine());
+                                    try{
+                                        joueur2=choix;
+                                        fail = false;
+                                        }
+                                    catch(IndexOutOfBoundsException e){
+                                        System.out.println("Ce numero ne correspond à aucun client");
+                                        fail = true;
+                                    }
+                                }
+                                catch(NumberFormatException e){
+                                    System.out.println("Entrez un entier");
+                                    fail = true;
+                                 }
+                               }
+                            }
+                            //cas serveur 
+                            else { 
+                                //condition pour qu'il reste au moins 1 serveur dans le bar
+                                if (serveurs.size() >= 2 ) {
+                            this.serveurs();
+                            fail = true;
+                            while(fail){
+                                try{
+                                    choix = Integer.parseInt(sc.nextLine());
+                                    try{
+                                        joueur2=choix;
+                                        fail = false;
+                                        }
+                                    catch(IndexOutOfBoundsException e){
+                                        System.out.println("Ce numero ne correspond à aucun serveur");
+                                        fail = true;
+                                    }
+                                }
+                                catch(NumberFormatException e){
+                                    System.out.println("Entrez un entier");
+                                    fail = true;
+                                } 
+                                    }
+                             }
+                                else System.out.print("Pas assez de serveurs disponibles");
+                            }
+                             tournoiBeloteAuto.inscrire(new Equipe(nomEquipe2,clients.get(joueur1),clients.get(joueur2)));
+                       
+/*********************Creation d'une nouvelle equipe**********************/                            
+                            System.out.println("Voulez-vous créer une autre équipe?(o/n)");
                             reponse = sc.nextLine();
                             while(!reponse.equals("o") && !reponse.equals("n")){
                                 System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
                                 reponse = sc.nextLine();
                             }
-                            tournoiBelote.inscrire(new Equipe(nomEquipe,clients.get(joueur1),clients.get(joueur2)));
+                            tournoiBelote.inscrire(new Equipe(nomEquipe2,clients.get(joueur1),clients.get(joueur2)));
                             if(reponse.equals("n"))
                                 equipe = false;
                         }
+                       
                         tournoiBelote.lancerTournoi();
                     }
                     break;
+                   }
+                  
                 case 9 : 
                     this.presentationComplementaire();            
                     break ;        

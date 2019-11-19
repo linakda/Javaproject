@@ -6,7 +6,7 @@
 package barmanagement;
 
 /**
- * Cette classe possède toute les méthodes et paramètres d'une équipe avec
+ * Cette classe possède toutes les méthodes et paramètres d'une équipe avec
  * l'équipe et toString. 
  * @author Théo
  */
@@ -16,7 +16,7 @@ public class Equipe {
     Client joueur2;
     String nomEquipe;
 
-    /*
+    /**
      * Cette méthode est le constructeur d'une équipe. 
      * Elle est exécutée à la création de l'objet et permet l'initialisation de l'objet. 
     */
@@ -26,7 +26,7 @@ public class Equipe {
 	joueur2 = j2;
     }
 	
-    /*
+    /**
      * Cette méthode permet de retourner le nom d'une équipe. 
     */
     @Override
