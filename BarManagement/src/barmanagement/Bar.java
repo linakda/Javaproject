@@ -10,11 +10,6 @@ import java.util.Scanner;
 import java.util.List;
 
 /**
- * @author Lina & Théophile
- */
-
-
-/**
  * Cette classe est la classe ????????.
  * Elle possède les méthodes qui permettent : 
  * - de créer : un joueur, les fournisseurs, la patronne, le barman, les boissons
@@ -172,14 +167,26 @@ public final class Bar {
     	System.out.println("--------------------------------------");
     	System.out.println("Création de la patronne");
     	System.out.println("--------------------------------------");
-    	String nom,prenom,cri;
-    	System.out.println("Nom de la patronne");
-    	nom = sc.nextLine();
-    	System.out.println("Prénom de la patronne");
-    	prenom = sc.nextLine();
-    	System.out.println("Cri de la patronne");
-    	cri = sc.nextLine();
-    	patronne = new Patronne(prenom,nom,"femme",cri,"bague diamant");
+    	String nom,prenom,cri,reponse;
+        System.out.println("Voulez-vous que la Patronne soit créée automatiquement ?(o/n)");
+        reponse = sc.nextLine();
+	System.out.println(reponse);
+        while(!reponse.equals("o") && !reponse.equals("n")){
+            System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
+            reponse = sc.nextLine();
+	}
+        if(reponse.equals("o")){
+            patronne = new Patronne("Léontine","Beirnaert","femme","Vive la belote","bague diamant");
+	}
+        else{
+            System.out.println("Nom de la patronne");
+            nom = sc.nextLine();
+            System.out.println("Prénom de la patronne");
+            prenom = sc.nextLine();
+            System.out.println("Cri de la patronne");
+            cri = sc.nextLine();
+            patronne = new Patronne(prenom,nom,"femme",cri,"bague diamant");
+        }
     }
     
     /**
@@ -191,14 +198,26 @@ public final class Bar {
     	System.out.println("--------------------------------------");
     	System.out.println("Création du fournisseur");
     	System.out.println("--------------------------------------");
-    	String nom,prenom,cri;
-    	System.out.println("Nom du fournisseur");
-    	nom = sc.nextLine();
-    	System.out.println("Prénom du fournisseur");
-    	prenom = sc.nextLine();
-    	System.out.println("Cri du fournisseur");
-    	cri = sc.nextLine();
-    	fournisseur = new Fournisseur(prenom,nom,"homme",cri,"T-shirt livraison rapido");
+    	String nom,prenom,cri,reponse;
+        System.out.println("Voulez-vous que le Fournisseur soit créé automatiquement ?(o/n)");
+        reponse = sc.nextLine();
+	System.out.println(reponse);
+        while(!reponse.equals("o") && !reponse.equals("n")){
+            System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
+            reponse = sc.nextLine();
+	}
+        if(reponse.equals("o")){
+            fournisseur = new Fournisseur("Géo","Trouvetout","homme","Ni une, ni deux, c'est livrer","T-shirt livraison rapido");
+	}
+        else{
+            System.out.println("Nom du fournisseur");
+            nom = sc.nextLine();
+            System.out.println("Prénom du fournisseur");
+            prenom = sc.nextLine();
+            System.out.println("Cri du fournisseur");
+            cri = sc.nextLine();
+            fournisseur = new Fournisseur(prenom,nom,"homme",cri,"T-shirt livraison rapido");
+        }
     }
     
     /**
@@ -210,14 +229,26 @@ public final class Bar {
     	System.out.println("--------------------------------------");
     	System.out.println("Création du barman");
     	System.out.println("--------------------------------------");
-    	String nom,prenom,cri;
-    	System.out.println("Nom du Barman");
-    	nom = sc.nextLine();
-    	System.out.println("Prénom du Barman");
-    	prenom = sc.nextLine();
-    	System.out.println("Cri du Barman");
-    	cri = sc.nextLine();
-    	barman = new Barman(prenom,nom,"homme",cri,"Serviette de bar");
+    	String nom,prenom,cri,reponse;
+    	System.out.println("Voulez-vous que le barman soit créé automatiquement ?(o/n)");
+        reponse = sc.nextLine();
+	System.out.println(reponse);
+	while(!reponse.equals("o") && !reponse.equals("n")){
+            System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
+            reponse = sc.nextLine();
+	}
+        if(reponse.equals("o")){
+            barman = new Barman("Ginot","Plantu","homme","ATTAQUE DE BAR","Serviette de bar");
+	}
+        else{
+            System.out.println("Nom du Barman");
+            nom = sc.nextLine();
+            System.out.println("Prénom du Barman");
+         	prenom = sc.nextLine();
+            System.out.println("Cri du Barman");
+            cri = sc.nextLine();
+            barman = new Barman(prenom,nom,"homme",cri,"Serviette de bar");
+        }
     }
     
      /**
