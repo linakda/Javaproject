@@ -94,16 +94,16 @@ class TournoiBelote {
                             System.out.println ("	==> Equipe " + equipes.get (i) + " bat equipe " + equipes.get (j));			
                             scores [i] [j] = 3; // 3 points pour i
                 	    scores [j] [i] = points [1]; // Aucun point pour j si 2 - 0, 1 point si 2 - 1		
-                            equipes.get (i).joueur1.monterCotePopularite (5);
-                            equipes.get (i).joueur2.monterCotePopularite (5);
+                            equipes.get (i).joueur1.monterCotePopularite ();
+                            equipes.get (i).joueur2.monterCotePopularite ();
                         }
                         else {
 			// L'equipe j gagne			
                             System.out.println ("	==> Equipe " + equipes.get (j) + " bat equipe " + equipes.get (i));			
                             scores [j] [i] = 3; // 3 points pour j
                             scores [i] [j] = points [0]; // Aucun point pour i si 2 - 0, 1 point si 2 - 1		
-                            equipes.get (j).joueur1.monterCotePopularite (5);
-                            equipes.get (j).joueur2.monterCotePopularite (5);
+                            equipes.get (j).joueur1.monterCotePopularite ();
+                            equipes.get (j).joueur2.monterCotePopularite ();
 			}		
 		actualiserScores ();
                 afficherScores ();
