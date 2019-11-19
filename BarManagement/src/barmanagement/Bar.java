@@ -10,11 +10,6 @@ import java.util.Scanner;
 import java.util.List;
 
 /**
- * @author Lina & Théophile
- */
-
-
-/**
  * Cette classe est la classe ????????.
  * Elle possède les méthodes qui permettent : 
  * - de créer : un joueur, les fournisseurs, la patronne, le barman, les boissons
@@ -88,7 +83,7 @@ public final class Bar {
     */
     public void creationJoueur(){
         String name,surname,cri,sexe,num, accessoire;
-        int indiceBoissonFavorite = 0,indiceBoissonSecour = 0, popularite = 0;
+        int indiceBoissonFavorite = 0,indiceBoissonSecour = 0, popularite = 0, experienceBelote = 0;
         float porteMonnaie = 0;
         boolean numBoissonFail = true;
 
@@ -160,7 +155,7 @@ public final class Bar {
                     numBoissonFail = true;
                 }
             }
-            joueur = new Client(name ,surname,sexe ,cri, accessoire ,porteMonnaie, popularite, boissons.get(indiceBoissonFavorite),boissons.get(indiceBoissonSecour));
+            joueur = new Client(name ,surname,sexe ,cri, accessoire ,porteMonnaie, popularite, experienceBelote, boissons.get(indiceBoissonFavorite),boissons.get(indiceBoissonSecour));
     }
     
     /**
@@ -172,14 +167,26 @@ public final class Bar {
     	System.out.println("--------------------------------------");
     	System.out.println("Création de la patronne");
     	System.out.println("--------------------------------------");
-    	String nom,prenom,cri;
-    	System.out.println("Nom de la patronne");
-    	nom = sc.nextLine();
-    	System.out.println("Prénom de la patronne");
-    	prenom = sc.nextLine();
-    	System.out.println("Cri de la patronne");
-    	cri = sc.nextLine();
-    	patronne = new Patronne(prenom,nom,"femme",cri,"bague diamant");
+    	String nom,prenom,cri,reponse;
+        System.out.println("Voulez-vous que la Patronne soit créée automatiquement ?(o/n)");
+        reponse = sc.nextLine();
+	System.out.println(reponse);
+        while(!reponse.equals("o") && !reponse.equals("n")){
+            System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
+            reponse = sc.nextLine();
+	}
+        if(reponse.equals("o")){
+            patronne = new Patronne("Léontine","Beirnaert","femme","Vive la belote","bague diamant");
+	}
+        else{
+            System.out.println("Nom de la patronne");
+            nom = sc.nextLine();
+            System.out.println("Prénom de la patronne");
+            prenom = sc.nextLine();
+            System.out.println("Cri de la patronne");
+            cri = sc.nextLine();
+            patronne = new Patronne(prenom,nom,"femme",cri,"bague diamant");
+        }
     }
     
     /**
@@ -191,14 +198,26 @@ public final class Bar {
     	System.out.println("--------------------------------------");
     	System.out.println("Création du fournisseur");
     	System.out.println("--------------------------------------");
-    	String nom,prenom,cri;
-    	System.out.println("Nom du fournisseur");
-    	nom = sc.nextLine();
-    	System.out.println("Prénom du fournisseur");
-    	prenom = sc.nextLine();
-    	System.out.println("Cri du fournisseur");
-    	cri = sc.nextLine();
-    	fournisseur = new Fournisseur(prenom,nom,"homme",cri,"T-shirt livraison rapido");
+    	String nom,prenom,cri,reponse;
+        System.out.println("Voulez-vous que le Fournisseur soit créé automatiquement ?(o/n)");
+        reponse = sc.nextLine();
+	System.out.println(reponse);
+        while(!reponse.equals("o") && !reponse.equals("n")){
+            System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
+            reponse = sc.nextLine();
+	}
+        if(reponse.equals("o")){
+            fournisseur = new Fournisseur("Géo","Trouvetout","homme","Ni une, ni deux, c'est livrer","T-shirt livraison rapido");
+	}
+        else{
+            System.out.println("Nom du fournisseur");
+            nom = sc.nextLine();
+            System.out.println("Prénom du fournisseur");
+            prenom = sc.nextLine();
+            System.out.println("Cri du fournisseur");
+            cri = sc.nextLine();
+            fournisseur = new Fournisseur(prenom,nom,"homme",cri,"T-shirt livraison rapido");
+        }
     }
     
     /**
@@ -210,14 +229,26 @@ public final class Bar {
     	System.out.println("--------------------------------------");
     	System.out.println("Création du barman");
     	System.out.println("--------------------------------------");
-    	String nom,prenom,cri;
-    	System.out.println("Nom du Barman");
-    	nom = sc.nextLine();
-    	System.out.println("Prénom du Barman");
-    	prenom = sc.nextLine();
-    	System.out.println("Cri du Barman");
-    	cri = sc.nextLine();
-    	barman = new Barman(prenom,nom,"homme",cri,"Serviette de bar");
+    	String nom,prenom,cri,reponse;
+    	System.out.println("Voulez-vous que le barman soit créé automatiquement ?(o/n)");
+        reponse = sc.nextLine();
+	System.out.println(reponse);
+	while(!reponse.equals("o") && !reponse.equals("n")){
+            System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
+            reponse = sc.nextLine();
+	}
+        if(reponse.equals("o")){
+            barman = new Barman("Ginot","Plantu","homme","ATTAQUE DE BAR","Serviette de bar");
+	}
+        else{
+            System.out.println("Nom du Barman");
+            nom = sc.nextLine();
+            System.out.println("Prénom du Barman");
+         	prenom = sc.nextLine();
+            System.out.println("Cri du Barman");
+            cri = sc.nextLine();
+            barman = new Barman(prenom,nom,"homme",cri,"Serviette de bar");
+        }
     }
     
      /**
@@ -417,10 +448,10 @@ public final class Bar {
      * la boisson fav1 et la boisson fav2. 
     */
     public void creationClient(){
-    	String name,surname,cri,sexe,num,accessoire;
+    	String name,surname,cri,sexe,num,accessoire,exp;
     	float porteMonnaie = 0;
-    	int indiceBoissonFavorite = 0,indiceBoissonSecour = 0, popularite = 0;
-    	boolean numBoissonFail = true;
+    	int indiceBoissonFavorite = 0,indiceBoissonSecour = 0, popularite = 0, experienceBelote = 0;
+    	
     	System.out.print("Nom : ");
     	surname = sc.nextLine();
     	System.out.print("\nPrénom : ");
@@ -430,6 +461,24 @@ public final class Bar {
         System.out.println("Choissiez un accessoire pour le client");
         System.out.println("Il est d'usage que les hommes ont un t-shirt de couleur et que les femmes ont des bijoux.");
         accessoire = sc.nextLine();
+        boolean numExpFail = true;
+    	while(numExpFail){
+            try{
+        	System.out.println("Niveau d'experience à la Belote : (entre 1 et 10)");
+            	exp = sc.nextLine();
+                experienceBelote = Integer.parseInt(exp);
+        	while(experienceBelote < 0 || experienceBelote > 10){
+                    System.out.println("Ce numero ne correspond pas à un niveau correct,\n veuillez saisir un numéro compris entre 0 et ");
+                    exp = sc.nextLine();
+                    experienceBelote = Integer.parseInt(exp);
+        	}
+        	numExpFail = false;
+        	}
+            catch(NumberFormatException e){
+        	System.out.println("Saissisez un entier entre 1 et 10 s'il vous plaît");
+        	numExpFail = true;
+            }
+    	}
     	boolean conversionFail = true;
     	while(conversionFail){
             try
@@ -448,6 +497,7 @@ public final class Bar {
             System.out.print("saisisser homme ou femme");
             sexe = sc.nextLine();
     	}
+        boolean numBoissonFail = true;
     	while(numBoissonFail){
             try{
         	System.out.println("Choissiez votre boisson favorite(Saisissez le numero correspondant)");
@@ -485,7 +535,7 @@ public final class Bar {
         	numBoissonFail = true;
             }
     	}
-    	clients.add(new Client(name ,surname,sexe ,cri, accessoire,porteMonnaie,popularite,boissons.get(indiceBoissonFavorite),boissons.get(indiceBoissonSecour)));
+    	clients.add(new Client(name ,surname,sexe ,cri, accessoire,porteMonnaie,popularite, experienceBelote,boissons.get(indiceBoissonFavorite),boissons.get(indiceBoissonSecour)));
     }
     /** 
      * Cette methode permet de créer les clients du bar de manière automatique en 
@@ -494,12 +544,12 @@ public final class Bar {
      * et boisson fav2. 
      */
     public void creationClientPnjDefaut(){
-        clients.add( new Client("Etienne","Durand", "homme" , "Youpiii","T-shirt bleu",20,5, boissons.get(0) , boissons.get(1)) );
-        clients.add( new Client("Jeanne","Delacroix" ,"femme","Yes ,we can","Collier",20,2, boissons.get(1),boissons.get(0)) );
-        clients.add( new Client("Pierre","Edouard", "homme", "Un Ricard n'a jamais tuÃ© personne !","T-shirt noir",20,1, boissons.get(6),boissons.get(5)) );
-        clients.add( new Client("Marie","Elisabeth","femme","Jamais 2 sans 3","Bague",20,0,boissons.get(4),boissons.get(8)) );
-        clients.add( new Client("Paul","Romarin","homme","Jamais 3 sans 4","T-shirt rouge",20,0, boissons.get(3), boissons.get(8)) );
-        clients.add( new Client("France", "Gall", "femme", "Poupé de cirree et de sonnn","Boucles d'oreilles",20,0, boissons.get(9),boissons.get(2)) );
+        clients.add( new Client("Etienne","Durand", "homme" , "Youpiii","T-shirt bleu",20,5,0, boissons.get(0) , boissons.get(1)) );
+        clients.add( new Client("Jeanne","Delacroix" ,"femme","Yes ,we can","Collier",20,2,0, boissons.get(1),boissons.get(0)) );
+        clients.add( new Client("Pierre","Edouard", "homme", "Un Ricard n'a jamais tuÃ© personne !","T-shirt noir",20,1,1, boissons.get(6),boissons.get(5)) );
+        clients.add( new Client("Marie","Elisabeth","femme","Jamais 2 sans 3","Bague",20,0,1,boissons.get(4),boissons.get(8)) );
+        clients.add( new Client("Paul","Romarin","homme","Jamais 3 sans 4","T-shirt rouge",20,0,0, boissons.get(3), boissons.get(8)) );
+        clients.add( new Client("France", "Gall", "femme", "Poupé de cirree et de sonnn","Boucles d'oreilles",20,0,1, boissons.get(9),boissons.get(2)) );
     }
     
     /** 
@@ -544,7 +594,8 @@ public final class Bar {
      */
     public void creationServeurPersonalise(){
         float tailleBiceps = 0,charme = 0;
-    	String nom,prenom,cri,sexe,accessoire;
+    	String nom,prenom,cri,sexe,accessoire, exp;
+        int experienceBelote = 0;
     	boolean numFail = true;
     	System.out.print("Nom : ");
     	nom = sc.nextLine();
@@ -595,7 +646,25 @@ public final class Bar {
     		System.out.println("Saissier un float s'il vous plait");
             }	
     	}
-    	serveurs.add( new Serveur(prenom,nom,sexe,cri,accessoire,tailleBiceps,charme));
+        boolean numExpFail = true;
+    	while(numExpFail){
+            try{
+        	System.out.println("Niveau d'experience à la Belote : (entre 1 et 10)");
+            	exp = sc.nextLine();
+                experienceBelote = Integer.parseInt(exp);
+        	while(experienceBelote < 0 || experienceBelote > 10 ){
+                    System.out.println("Ce numero ne correspond pas a un niveau correct,\n veuillez saisir un numéro compris entre 0 et 10");
+                    exp = sc.nextLine();
+                    experienceBelote = Integer.parseInt(exp);
+        	}
+        	numExpFail = false;
+        	}
+            catch(NumberFormatException e){
+        	System.out.println("Saissisez un entier entre 1 et 10 s'il vous plaît");
+        	numExpFail = true;
+            }
+    	}
+    	serveurs.add( new Serveur(prenom,nom,sexe,cri,accessoire,tailleBiceps,charme,experienceBelote));
     }
     
     /**
@@ -605,8 +674,8 @@ public final class Bar {
     * cri significatif, taille du biceps et charme. 
     */
     public void creationServeurParDefaut(){
-       serveurs.add( new Serveur("Iliana","delade", "femme", "ouaaahhhh","petite queue de playmate", 20 ,90) );
-       serveurs.add( new Serveur("Joseph","Staline", "homme","whhhraaaaaaooooo","cravate noire", 95 , 25 ) );
+       serveurs.add( new Serveur("Iliana","delade", "femme", "ouaaahhhh","petite queue de playmate", 20 ,90,0) );
+       serveurs.add( new Serveur("Joseph","Staline", "homme","whhhraaaaaaooooo","cravate noire", 95 , 25,2) );
    }
    
     /**

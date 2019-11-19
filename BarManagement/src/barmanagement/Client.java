@@ -16,7 +16,7 @@ public class Client extends Humain{
     float alcoolemie, addition;
     String qualificatif,accessoire ;
     boolean exclu;
-    int numTable;
+    int numTable, experienceBelote;
     Boisson boissonFavorite ;
     Boisson boissonSecours ;
     
@@ -34,7 +34,7 @@ public class Client extends Humain{
      * @param boisson_favorite : Stock le paramétre boisson_favorite du Client en question
      * @param boisson_secours : Stock le paramétre boisson_secours du Client en question
     */
-    public Client(String prenom , String nom , String sexe , String crie, String accessoire  ,float porteMonnaie, int popularite, Boisson boisson_favorite , Boisson boisson_secours){
+    public Client(String prenom , String nom , String sexe , String crie, String accessoire  ,float porteMonnaie, int popularite,int experienceBelote, Boisson boisson_favorite , Boisson boisson_secours){
     	super(prenom,nom,sexe,crie, accessoire ,porteMonnaie);
         this.boissonFavorite = boisson_favorite ;
         this.boissonSecours = boisson_secours ;
@@ -43,6 +43,7 @@ public class Client extends Humain{
     	this.addition = 0;
     	this.numTable = -1;
         this.popularite=0;
+        this.experienceBelote=0;
         this.accessoire = accessoire; 
     }
     
