@@ -38,13 +38,14 @@ public abstract class Humain {
    
    /**
     * Cette méthode permet de vérifier si deux humains sont identiques ou non
-    * @param  a : Stock notre type humain
+    * @param  humain1 : Stock notre type humain
     * @return un boolean permettant de voir si la condition eest vérifié ou non
     */
     @Override
-    public boolean equals(Object a){
-        Humain b  = (Humain) a;
-        if(this.nom.equals(b.nom) && this.prenom.equals(b.prenom) && this.cri.equals(b.cri))
+    public boolean equals(Object humain1){
+        Humain humain2;
+        humain2 = (Humain) humain1;
+        if(this.nom.equals(humain2.nom) && this.prenom.equals(humain2.prenom) && this.cri.equals(humain2.cri))
 	   return true;
         return false;   
    }

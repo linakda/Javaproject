@@ -72,20 +72,20 @@ public class Fournisseur extends Humain{
     
     /**
      * Cette méthode permet d'afficher la commande à livrer
-     * @param a : Stock la boisson de la commande
-     * @param b : Stock l'objet barman qui passe la commande. 
+     * @param boissonLivre : Stock la boisson de la commande
+     * @param barman : Stock l'objet barman qui passe la commande. 
      */
     
-    public void commande(Boisson a,Barman b){
-	System.out.println(this.parler("Ok "+b.getNom()+" j'arrive de suite avec des verre de "+a.getNom()+"."));
+    public void commande(Boisson boissonLivre,Barman barman){
+	System.out.println(this.parler("Ok "+barman.getNom()+" j'arrive de suite avec des verre de "+boissonLivre.getNom()+"."));
     }
     
     /**
      * Cette méthode permet d'afficher le texte suite à la livraison du fournisseur
-     * @param a : Stock la boisson à livrer
-     * @param b : Stock le nom du barman à qui la commande va être livré
+     * @param boissonLivre : Stock la boisson à livrer
+     * @param barman : Stock le nom du barman à qui la commande va être livré
      */
-    public void livrer(Boisson a,Barman b){
-	System.out.println(this.parler("Salut "+b.getNom()+" je te ramène ta commande, 5 verre de"+a.getNom() +",c'est ça ?"));
+    public void livrer(Boisson boissonLivre,Barman barman){
+	System.out.println(this.parler("Salut "+barman.getNom()+" je te ramène ta commande, 5 verre de"+boissonLivre.getNom() +",c'est ça ?"));
     }
 }

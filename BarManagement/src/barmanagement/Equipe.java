@@ -27,7 +27,8 @@ public class Equipe {
     }
 	
     /**
-     * Cette méthode permet de retourner le nom d'une équipe. 
+     * Cette méthode permet de retourner le nom d'une équipe.
+     * @return : Retourne le nom de l'équipe.
     */
     @Override
     public String toString () {

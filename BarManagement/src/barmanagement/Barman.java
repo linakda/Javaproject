@@ -76,12 +76,12 @@ public class Barman extends Humain{
     
     /**
      * Cette méthode permet de vérifier la disponibilité d'une boisson dans le stock du bar.
-     * @param a : Stock le nom de la boisson demander et vérifie si elle est disponible.  
+     * @param disponibilite : Stock le nom de la boisson demander et vérifie si elle est disponible.  
      * @return : Retourne un boolean qui va nous dire si la boisson demandée est disponible.
     */
-    public boolean disponible(Boisson a){
-        if(a.stock > 0){
-            a.stock -= 1;
+    public boolean disponible(Boisson disponibilite){
+        if(disponibilite.stock > 0){
+            disponibilite.stock -= 1;
             return true;
 	}
 	return false;

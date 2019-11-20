@@ -58,18 +58,18 @@ public class Patronne extends Humain {
     
     /**
      * Cette méthode permet la validation de l'exclusion d'un client du bar.
-     * @param a : Stock le nom de la personne a exclure. 
+     * @param clientExclu : Stock le nom de la personne a exclure. 
     */
-    public void exclure(Client a) {
-        a.exclu = true;
+    public void exclure(Client clientExclu) {
+        clientExclu.exclu = true;
     }
     
     /**
      * Cette méthode permet à la patronne de dire que les barmans ne servent plus un client trop alcoolisé. 
      * 
-     * @param a : Stock le nom du client a ne plus servir. 
+     * @param clientAlcoolise : Stock le nom du client a ne plus servir. 
      */
-    public void nePlusServir(Client a){
+    public void nePlusServir(Client clientAlcoolise){
         System.out.println("Barman et serveurs, ne servez plus " + this.getPrenom() + " s'il vous plait");
         nePlusServir= true;
     }
@@ -97,14 +97,14 @@ public class Patronne extends Humain {
     
     /**
      * Cette méthode permet de payer le fournisseur.
-     * @param a : Stock la boisson en rupture de stock qui a été réapprovisionné
-     * @param b  :Stock le fournisseur qui a livré la commande
+     * @param boissonRupture : Stock la boisson en rupture de stock qui a été réapprovisionné
+     * @param fournisseur  :Stock le fournisseur qui a livré la commande
      * @return : La somme a payer.
     */
-    public float payerFournisseur(Boisson a,Fournisseur b){
-        float total = a.prixAchat*5;
-    	System.out.println(b.parler("5 verres de "+a.getNom()+" ça fait "+total+" e s'il te plaît"));
-    	b.ajouterPorteMonaie(total);
+    public float payerFournisseur(Boisson boissonRupture,Fournisseur fournisseur){
+        float total = boissonRupture.prixAchat*5;
+    	System.out.println(fournisseur.parler("5 verres de "+boissonRupture.getNom()+" ça fait "+total+" e s'il te plaît"));
+    	fournisseur.ajouterPorteMonaie(total);
     	this.setPorteMonnaie(this.getPorteMonnaie() - total) ;
     	return total;
     }

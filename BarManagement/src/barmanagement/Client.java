@@ -28,9 +28,10 @@ public class Client extends Humain{
      * @param nom    : Stock le paramétre nom du Client en question
      * @param sexe   : Stock le paramétre sexe du Client en question
      * @param crie   : Stock le paramétre cri du Client en question
-     * @param accessoire
+     * @param accessoire : Stock le paramétre accessoire du Client en question
      * @param porteMonnaie : Stock le paramétre porteMonnaie du Client en question
      * @param popularite : Stock le parametre popularite du Client en question
+     * @param experienceBelote : Stock le paramétre experienceBelote du Client en question
      * @param boisson_favorite : Stock le paramétre boisson_favorite du Client en question
      * @param boisson_secours : Stock le paramétre boisson_secours du Client en question
     */
