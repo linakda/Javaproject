@@ -5,7 +5,6 @@
  */
 package barmanagement;
 /**
- *
  * @author Théo
  */
 public class BarManagement {
@@ -14,13 +13,11 @@ public class BarManagement {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Bonjour, bienvenue dans les Sims Bar");
-        System.out.println("Pour pouvoir jouer tu vas devoir créer ton personnage, ainsi tu pourras boire des verres, faire des nouvelles connaissances, jouer aux cartes et plein d'autres choses !");
-        System.out.println("Le Bar se compose d'une Patronne, de clients, de serveurs,d'un fournisseur, et biensûr de ton sims ");
-        System.out.println("De plus chaque Client possède une côte de popularité, un taux d'alcoolémie, et un porte-monnaie.Ces caractéristiques évolueront au fur et à mesure des actions effectués en jeu ");
+        System.out.println("Salut Cow-Boy ! Bienvenue dans notre saloon.\n Tu vas pouvoir créer ton personnage, ainsi tu pourras boire des verres avec et sans alcool, faire de nouvelles connaissances, jouer aux cartes, participer à un tournoi, et pleins d'autres choses !");
+        System.out.println("Les personnages de notre Saloon sont : une Patronne, des clients, des serveurs, un fournisseur, et biensûr toi ! ");
+        System.out.println("Amuse toi à trouver les moyens d'augmenter ta popularité mais gare à ne pas trop etre alcoolisé ! Garde un oeil sur ton porte-monnaie ;)  Et deviens le meilleur joueur de belote du Far West.");
         Bar bar = new Bar();
         System.out.println(bar.name);
         bar.menu();
     }
-    
 }
