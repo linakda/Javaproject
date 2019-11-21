@@ -21,17 +21,18 @@ class PartieDeBelote {
     int pointsEquipe1;
     int pointsEquipe2;
     List <Carte> cartesADistribuer = new LinkedList <> ();
-    List <Carte> cartesJoueur1;	// Equipe 1
-    List <Carte> cartesJoueur2;	// Equipe 2
-    List <Carte> cartesJoueur3;	// Equipe 1
-    List <Carte> cartesJoueur4;	// Equipe 2
+    List <Carte> cartesJoueur1;	// Equipe 1 J1
+    List <Carte> cartesJoueur2;	// Equipe 1 J2
+    List <Carte> cartesJoueur3;	// Equipe 2 J1
+    List <Carte> cartesJoueur4;	// Equipe 2 J2
     String atout;
     String [] couleurs;
     String [] valeurs;
-    int [] valeursforce;
+    int [] valeurcarte;
+    int [] valeuratout;
     Carte [] cartes;
     Carte [] paquettemp; 
-    int NB_ITERATIONS = 3;
+    int iteration = 3;
     
     /** Cette méthode exécutée à la création de la partie de belote permet l'initialisation de l'objet .
      * @param E1 : Stock la 1ere equipe du tournoi
@@ -43,13 +44,15 @@ class PartieDeBelote {
 	pointsEquipe1 = 0;
 	pointsEquipe2 = 0;
 	couleurs = new String [] {"Pique", "Carreau", "Trefle", "Coeur"};
-	valeurs = new String [] {"As", "10","Roi", "Dame","Valet","9","8","7"};
-        int [] valeursforce = {1,2,3,4,5,6,7,8};
+	valeurs = new String [] {"7", "8","9", "Valet","Dame","Roi","10","As"};
+        valeurcarte = new int []{0,0,0,2,3,4,10,11};
+        valeuratout = new int [] {0,0,14,20,3,4,10,11};
 		
 	// Pour simplifier, la couleur d'atout est choisie aleatoirement
 	int randomIndex = (int) (Math.random () * 4);	
 	atout = couleurs [randomIndex];
 	creerCartes ();
+        quiCommence();
     }
 	
     /**
@@ -61,10 +64,15 @@ class PartieDeBelote {
 	this.cartes = new Carte[couleurs.length*valeurs.length]; //8*4=32
         for (int i = 0; i < couleurs.length; i ++) {
             for (int j = 0; j < valeurs.length; j ++) {
-		this.cartes [i * valeurs.length + j] = new Carte (couleurs [i], valeurs [j]);
+		this.cartes [i * valeurs.length + j] = new Carte (couleurs [i], valeurs [j], valeurcarte[j], valeuratout[j]);
                 }
             } 
-        melangerPaquet();
+        /*     System.out.println("******************************"); 
+        System.out.println("1ere paquet : \n \n "); 
+        for (int i = 0; i < cartes .length; i ++) {
+            System.out.println(cartes[i]);
+        }*/
+        melangerPaquet(this.cartes);
     }
     
     public void quiCommence () {
@@ -74,129 +82,53 @@ class PartieDeBelote {
 	cartesJoueur3 = new LinkedList <> ();
 	cartesJoueur4 = new LinkedList <> ();
         
-        for (int i=0 ; i < 4 ; i ++) {
-            cartesJoueur1.add(this.cartes[i]);
-            cartesJoueur2.add(this.cartes[i]); 
-            cartesJoueur3.add(this.cartes[i]);
-            cartesJoueur4.add(this.cartes[i]);
-        }
-        compare(cartesJoueur1,cartesJoueur2,cartesJoueur3,cartesJoueur4);
+        int randomIndex = (int) (Math.random () * 32);
+        int randomIndex2 = (int) (Math.random () * 32);
+        int randomIndex3 = (int) (Math.random () * 32);
+        int randomIndex4 = (int) (Math.random () * 32);
+  
+        cartesJoueur1.add(this.cartes[randomIndex]);
+        cartesJoueur2.add(this.cartes[randomIndex2]); 
+        cartesJoueur3.add(this.cartes[randomIndex3]);
+        cartesJoueur4.add(this.cartes[randomIndex4]);
+        
+        trouvedonneur(cartesJoueur1,cartesJoueur2,cartesJoueur3,cartesJoueur4);
     }
     
-    public void compare(List<Carte> J1, List <Carte> J2,List<Carte> J3, List<Carte> J4){
-        for (int i = 0 ; i < valeursforce.length ; i++) {
-            
+    public void trouvedonneur(List<Carte> J1, List <Carte> J2,List<Carte> J3, List<Carte> J4){
+         List <Integer> comparateur = new LinkedList<>();
+         
+        // On ajoute la valeur de la carte piochée par chaque joueur à la liste comparateur
+        for (int i = 0 ; i < cartesJoueur1.size() ; i++) {
+               comparateur.add(cartesJoueur1.get(i).valeurcarte);
+               comparateur.add(cartesJoueur2.get(i).valeurcarte);
+               comparateur.add(cartesJoueur3.get(i).valeurcarte);
+               comparateur.add(cartesJoueur4.get(i).valeurcarte);
         }
-        //Cas As
-        if ( cartesJoueur1.get(0).valeur == "As" ) {
-            this.donneur= equipe1.joueur1;
-        }
-        else if (cartesJoueur2.get(0).valeur == "As") {
-             this.donneur= equipe1.joueur2;
-        }
-        else if (cartesJoueur3.get(0).valeur == "As") {
-             this.donneur= equipe2.joueur1;
-        }
-        else if (cartesJoueur4.get(0).valeur == "As") {
-             this.donneur= equipe2.joueur2;
-        }
-        
-        //Cas 10 
-        if ( cartesJoueur1.get(0).valeur == "10" ) {
-            this.donneur= equipe1.joueur1;
-        }
-        else if (cartesJoueur2.get(0).valeur == "10") {
-             this.donneur= equipe1.joueur2;
-        }
-        else if (cartesJoueur3.get(0).valeur == "10") {
-             this.donneur= equipe2.joueur1;
-        }
-        else if (cartesJoueur4.get(0).valeur == "10") {
-             this.donneur= equipe2.joueur2;
-        }
-        
-        //cas Roi 
-        if ( cartesJoueur1.get(0).valeur == "Roi" ) {
-            this.donneur= equipe1.joueur1;
-        }
-        else if (cartesJoueur2.get(0).valeur == "Roi") {
-             this.donneur= equipe1.joueur2;
-        }
-        else if (cartesJoueur3.get(0).valeur == "Roi") {
-             this.donneur= equipe2.joueur1;
-        }
-        else if (cartesJoueur4.get(0).valeur == "Roi") {
-             this.donneur= equipe2.joueur2;
-        }
-        
-        //Cas Dame
-        if ( cartesJoueur1.get(0).valeur == "Dame" ) {
-            this.donneur= equipe1.joueur1;
-        }
-        else if (cartesJoueur2.get(0).valeur == "Dame") {
-             this.donneur= equipe1.joueur2;
-        }
-        else if (cartesJoueur3.get(0).valeur == "Dame") {
-             this.donneur= equipe2.joueur1;
-        }
-        else if (cartesJoueur4.get(0).valeur == "Dame") {
-             this.donneur= equipe2.joueur2;
-        }
-        
-        //cas Valet
-        if ( cartesJoueur1.get(0).valeur == "Valet" ) {
-            this.donneur= equipe1.joueur1;
-        }
-        else if (cartesJoueur2.get(0).valeur == "Valet") {
-             this.donneur= equipe1.joueur2;
-        }
-        else if (cartesJoueur3.get(0).valeur == "Valet") {
-             this.donneur= equipe2.joueur1;
-        }
-        else if (cartesJoueur4.get(0).valeur == "Valet") {
-             this.donneur= equipe2.joueur2;
-        }
-        
-        //Cas 9
-        if ( cartesJoueur1.get(0).valeur == "9" ) {
-            this.donneur= equipe1.joueur1;
-        }
-        else if (cartesJoueur2.get(0).valeur == "9") {
-             this.donneur= equipe1.joueur2;
-        }
-        else if (cartesJoueur3.get(0).valeur == "9") {
-             this.donneur= equipe2.joueur1;
-        }
-        else if (cartesJoueur4.get(0).valeur == "9") {
-             this.donneur= equipe2.joueur2;
-        }
-        //cas 8
-        if ( cartesJoueur1.get(0).valeur == "8" ) {
-            this.donneur= equipe1.joueur1;
-        }
-        else if (cartesJoueur2.get(0).valeur == "8") {
-             this.donneur= equipe1.joueur2;
-        }
-        else if (cartesJoueur3.get(0).valeur == "8") {
-             this.donneur= equipe2.joueur1;
-        }
-        else if (cartesJoueur4.get(0).valeur == "8") {
-             this.donneur= equipe2.joueur2;
-        }
-        // cas 7 
-        if ( cartesJoueur1.get(0).valeur == "7" ) {
-            this.donneur= equipe1.joueur1;
-        }
-        else if (cartesJoueur2.get(0).valeur == "7") {
-             this.donneur= equipe1.joueur2;
-        }
-        else if (cartesJoueur3.get(0).valeur == "7") {
-             this.donneur= equipe2.joueur1;
-        }
-        else if (cartesJoueur4.get(0).valeur == "7") {
-             this.donneur= equipe2.joueur2;
-        }
-     
+        //On trie la liste par ordre croissant
+        Collections.sort(comparateur);
+
+        //On recupère le donneur lorsque sa carte est égale à la plus faible carte
+         for (int i = 0 ; i < cartesJoueur1.size() ; i++) {
+            if(cartesJoueur1.get(i).valeurcarte==comparateur.get(0))
+                this.donneur = equipe1.joueur1;
+            else if (cartesJoueur2.get(i).valeurcarte==comparateur.get(0))
+                this.donneur = equipe1.joueur2;
+            else if (cartesJoueur3.get(i).valeurcarte==comparateur.get(0))
+                 this.donneur = equipe2.joueur1;
+            else if (cartesJoueur4.get(i).valeurcarte==comparateur.get(0))
+                 this.donneur = equipe2.joueur2;
+         }
+         
+        /* for (int i = 0 ; i < cartesJoueur1.size() ; i++) {
+        System.out.println("La carte du J1 : " + cartesJoueur1.get(i).valeurcarte +" La carte du J2: " + cartesJoueur2.get(i).valeurcarte + " La carte du J3: "
+                 + cartesJoueur3.get(i).valeurcarte + " La carte du J2: " + cartesJoueur4.get(i).valeurcarte);
+         }
+         for (int i = 0 ; i < cartesJoueur1.size() ; i++) {
+            System.out.println(" La liste triée : " + comparateur.get(i));
+         }*/
+         System.out.println("Le donneur est :" + donneur.getPrenom());
+         
     }
     
     /**
@@ -241,13 +173,19 @@ class PartieDeBelote {
      * Cette methode permet de melanger le paquet.
      * Pour ce faire, elle fait appel à la methode "échanger"
      */
-    public void melangerPaquet() {  
+    public void melangerPaquet(Carte [] paquet) {  
        Random rand = new Random();
-        for(int m = 0; m < NB_ITERATIONS; m++){
-            for (int i = 0; i < this.cartes.length; i++ ) {
-            echanger(rand.nextInt(this.cartes.length), rand.nextInt(this.cartes.length));
+        for(int m = 0; m < iteration; m++){
+            for (int i = 0; i < paquet.length; i++ ) {
+            echanger(rand.nextInt(paquet.length), rand.nextInt(paquet.length));
             }        
          }
+     /*   System.out.println("******************************"); 
+         System.out.println("Paquet mélangé \n \n"); 
+         for (int i = 0; i < paquet.length; i++ ) {
+            System.out.println(paquet[i]); 
+         }*/
+        
     }
     
      /**
@@ -299,6 +237,7 @@ class PartieDeBelote {
      */
     private void distribuerLesCartes () {
     	
+	List <Carte> cartesADistribuer = new LinkedList <> ();
 	cartesJoueur1 = new LinkedList <> ();
 	cartesJoueur2 = new LinkedList <> ();
 	cartesJoueur3 = new LinkedList <> ();
@@ -306,37 +245,94 @@ class PartieDeBelote {
 	
 	for (int i = 0; i < 32; i ++) //ajoute les cartes à la liste
             cartesADistribuer.add (this.cartes[i]);
-        for (int i = 0; i < 32; i ++) {
-          //   int randomIndex = (int) (Math.random () * cartesADistribuer.size ());		
-            double j = 1 + (i % 4);
-  
-            if( j == 2.0) {
-             cartesJoueur1.add (this.cartes [i-4]); //ajoute les 5 cartes 
-             cartesJoueur1.add (this.cartes [i-3]);
-             cartesJoueur1.add (this.cartes [i-2]);
-             cartesJoueur1.add (this.cartes [i-1]);
-             cartesJoueur1.add (this.cartes [i]);}
+        
+       /*  System.out.println("******************************"); 
+        System.out.println("Cartes à distribuer initial");
+       for (int i = 0; i < 32; i ++) //ajoute les cartes à la liste
+            System.out.println(cartesADistribuer.get(i));*/
+     
+      
+       //  System.out.println("cartej1******************************"); 
+             cartesJoueur1.add (cartesADistribuer.get(0)); //ajoute les 3 cartes 
+             cartesJoueur1.add (cartesADistribuer.get(1));
+             cartesJoueur1.add (cartesADistribuer.get(2));
+          
+       /*      for (int i = 0; i < 3; i ++) {
+             System.out.println(cartesJoueur1.get(i)); } 
+             
+         System.out.println("cartej2******************************"); */
+             cartesJoueur2.add (cartesADistribuer.get(3)); //ajoute les 3 cartes 
+             cartesJoueur2.add (cartesADistribuer.get(4));
+             cartesJoueur2.add (cartesADistribuer.get(5));
+        
+            /* for (int i = 0; i < 3; i ++) {
+             System.out.println(cartesJoueur2.get(i)); } 
+         System.out.println("cartej3******************************"); */
+             cartesJoueur3.add (cartesADistribuer.get(6)); //ajoute les 3 cartes 
+             cartesJoueur3.add (cartesADistribuer.get(7));
+             cartesJoueur3.add (cartesADistribuer.get(8));
+         
+        /*     for (int i = 0; i < 3; i ++) {
+             System.out.println(cartesJoueur3.get(i)); } 
+         System.out.println("cartej4******************************"); */
+             cartesJoueur4.add (cartesADistribuer.get(9)); //ajoute les 3 cartes 
+             cartesJoueur4.add (cartesADistribuer.get(10));
+             cartesJoueur4.add (cartesADistribuer.get(11));
+         
+          
+             
+             cartesJoueur1.add (cartesADistribuer.get(12)); //ajoute les 3 cartes 
+             cartesJoueur1.add (cartesADistribuer.get(13));
             
-            else if( j == 3.25) {        
-             cartesJoueur2.add (this.cartes [i-4]);
-             cartesJoueur2.add (this.cartes [i-3]);
-             cartesJoueur2.add (this.cartes [i-2]);
-             cartesJoueur2.add (this.cartes [i-1]);
-             cartesJoueur2.add (this.cartes [i]);}
-            else if( j == 4.5) {
-             cartesJoueur3.add (this.cartes [i-4]);
-             cartesJoueur3.add (this.cartes [i-3]);
-             cartesJoueur3.add (this.cartes [i-2]);
-             cartesJoueur3.add (this.cartes [i-1]);
-             cartesJoueur3.add (this.cartes [i]);}
+  
+             cartesJoueur2.add (cartesADistribuer.get(14)); //ajoute les 3 cartes 
+             cartesJoueur2.add (cartesADistribuer.get(15));
+
+       
+
+             cartesJoueur3.add (cartesADistribuer.get(16)); //ajoute les 3 cartes 
+             cartesJoueur3.add (cartesADistribuer.get(17));
+
+    
+             cartesJoueur4.add (cartesADistribuer.get(18)); //ajoute les 3 cartes 
+             cartesJoueur4.add (cartesADistribuer.get(19));
+
+             
+             System.out.println(donneur.getPrenom() + " : La retourne est la carte " + cartesADistribuer.get(20));
+             System.out.println(donneur.getPrenom() + " :Je vous propose la couleur " + cartesADistribuer.get(20).couleur + " comme atout");
+           
+             this.atout = cartesADistribuer.get(20).couleur;
+             
+        /*        System.out.println("******************************"); 
+         System.out.println("Cartes a distri avec remove");
+       for (int i = 0; i < cartesADistribuer.size(); i ++) //ajoute les cartes à la liste
+           System.out.println(cartesADistribuer.get(i));        
                 
-             else if( j == 5.75) {
-             cartesJoueur4.add (this.cartes [i-4]);
-             cartesJoueur4.add (this.cartes [i-3]);
-             cartesJoueur4.add (this.cartes [i-2]);
-             cartesJoueur4.add (this.cartes [i-1]);
-             cartesJoueur4.add (this.cartes [i]);}
-            }
+       
+         System.out.println("J1*****************************************");
+       for (int i = 0; i < cartesJoueur1.size(); i ++) {
+        
+               System.out.println(  cartesJoueur1.get(i)); 
+           }
+         System.out.println("J2*****************************************");
+                for (int i = 0; i < cartesJoueur1.size(); i ++) {
+         
+    
+                System.out.println( cartesJoueur2.get(i));
+           }   
+                  System.out.println("J3*****************************************");
+                 for (int i = 0; i < cartesJoueur1.size(); i ++) {
+        
+              
+                 System.out.println(  cartesJoueur3.get(i));
+           }
+                   System.out.println("J4*****************************************");
+                 for (int i = 0; i < cartesJoueur1.size(); i ++) {
+           
+                  System.out.println( cartesJoueur4.get(i));  
+          
+               }*/
+               
     }
 	
     /**Cette méthode permet de jouer une manche.
@@ -348,9 +344,13 @@ class PartieDeBelote {
      * 
      */
     private void jouerUneManche () {
-	distribuerLesCartes ();
+        
+	distribuerLesCartes (); // 5 cartes en main chacun 
         int scoreEquipe1 = 0;
 	int scoreEquipe2 = 0;
+        
+        
+        
         for (int i = 0; i < 8; i ++) {
             List <Integer> forces = new LinkedList <> ();
             forces.add (cartesJoueur1.remove (0).getValue (atout));
