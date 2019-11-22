@@ -13,7 +13,7 @@ import java.util.Arrays;
  * @author Théo
  */
 
-class Carte {
+public class Carte {
     String couleur;
     String valeur;
     int valeurcarte;

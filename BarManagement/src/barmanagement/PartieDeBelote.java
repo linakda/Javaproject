@@ -18,23 +18,20 @@ class PartieDeBelote {
     Equipe equipe1;
     Equipe equipe2;
     Client donneur ; 
-    int pointsEquipe1;
-    int pointsEquipe2;
-    int sum1=0,sum2=0,sum3=0,sum4=0;
-    
-     int c = 0 ; 
+    int pointsEquipe1,pointsEquipe2;
+    int sum1,sum2,sum3,sum4;
+    int c, iteration; 
     List <Integer> points = new LinkedList <> ();
     List <Carte> cartesADistribuer = new LinkedList <> ();
     List <Carte> cartesJoueur1;	// Equipe 1 J1
     List <Carte> cartesJoueur2;	// Equipe 1 J2
     List <Carte> cartesJoueur3;	// Equipe 2 J1
     List <Carte> cartesJoueur4;	// Equipe 2 J2
-    
-        List <Integer> pli = new LinkedList <> ();
-        List <Integer> pli1 = new LinkedList <> ();
-        List <Integer> pli2 = new LinkedList <> ();
-        List <Integer> pli3 = new LinkedList <> ();
-        List <Integer> pli4 = new LinkedList <> ();
+    List <Integer> pli = new LinkedList <> ();
+    List <Integer> pli1 = new LinkedList <> ();
+    List <Integer> pli2 = new LinkedList <> ();
+    List <Integer> pli3 = new LinkedList <> ();
+    List <Integer> pli4 = new LinkedList <> ();
     String atout;
     String [] couleurs;
     String [] valeurs;
@@ -42,7 +39,7 @@ class PartieDeBelote {
     int [] valeuratout;
     Carte [] cartes;
     Carte [] paquettemp; 
-    int iteration = 3;
+    
     
     /** Cette méthode exécutée à la création de la partie de belote permet l'initialisation de l'objet .
      * @param E1 : Stock la 1ere equipe du tournoi
@@ -57,7 +54,9 @@ class PartieDeBelote {
 	valeurs = new String [] {"7", "8","9", "Valet","Dame","Roi","10","As"};
         valeurcarte = new int []{0,0,0,2,3,4,10,11};
         valeuratout = new int [] {0,0,14,20,3,4,10,11};
-		
+	int sum1=0,sum2=0,sum3=0,sum4=0;
+        int c = 0 ; 
+        int iteration = 3;
 	
 	creerCartes ();
         quiCommence();
@@ -142,11 +141,11 @@ class PartieDeBelote {
                  this.donneur = equipe2.joueur2;
          }
          
-        for (int i = 0 ; i < cartesJoueur1.size() ; i++) {
+     /*   for (int i = 0 ; i < cartesJoueur1.size() ; i++) {
         System.out.println("La carte du J1 : " + cartesJoueur1.get(i).valeurcarte +" La carte du J2: " + cartesJoueur2.get(i).valeurcarte + " La carte du J3: "
                  + cartesJoueur3.get(i).valeurcarte + " La carte du J2: " + cartesJoueur4.get(i).valeurcarte);
          }
-        /* for (int i = 0 ; i < cartesJoueur1.size() ; i++) {
+         for (int i = 0 ; i < cartesJoueur1.size() ; i++) {
             System.out.println(" La liste triée : " + comparateur.get(i));
          }*/
          System.out.println("Le donneur est :" + donneur.getPrenom());
@@ -189,7 +188,7 @@ class PartieDeBelote {
                 System.out.print(cartesJoueur4.get(i));
                 }
         }
-        
+    
     }
     
     /**
@@ -221,7 +220,8 @@ class PartieDeBelote {
       this.cartes[j] = temp;
    }
        
-    /**Cette méthode permet de coupet le paquet de carte.
+    /**
+     * Cette méthode permet de coupet le paquet de carte.
      * Le paquet est coupé en deux, et les deux moitiées sont interverties.
      */
     public void couperpaqueten2(){
@@ -246,14 +246,14 @@ class PartieDeBelote {
           for(int i = this.cartes.length/2 ; i < this.cartes.length; i++) { //2eme moitié 
                cartes[i]=paquettemp[k];            
            }
-        }
-        
+        }  
     }
     
 	
-    /**Cette méthode permet de distribuer les Cartes 
-     * Ainsi, 8 cartes seront distrubuer aleatoirement.
-     * De plus, les mains de chaque joueur sont stockés dans des listes de cartes propre à chacun
+    /**
+     * Cette méthode permet de distribuer les Cartes 
+     * Ainsi, 8 cartes seront distribuées aleatoirement.
+     * De plus, les mains de chaque joueur sont stockées dans des listes de cartes propre à chacun
      */
     private void distribuerLesCartes () {
     	
@@ -362,35 +362,34 @@ class PartieDeBelote {
         return rand ; 
     }
     
-    public List<Integer> tour1(){
+    public List<Integer> jouerManche(){
          //TOUR 1 
 
-        int scoreEquipe1 = 0;
-	int scoreEquipe2 = 0;
+        int scoreEquipe1;
+	int scoreEquipe2;
         int rand1=randomm();
         
        if(cartesJoueur4.size()>=1) {
-                    
+                  scoreEquipe1=0;
+                  scoreEquipe2=0;
                     /*  System.out.println("C4: " + cartesJoueur4.get(rand1).valeurcarte);
                         System.out.println("C3 : " + cartesJoueur3.get(rand1).valeurcarte);
                           System.out.println("C2 : " + cartesJoueur2.get(rand1).valeurcarte);
                             System.out.println("C1 : " + cartesJoueur1.get(rand1).valeurcarte);*/
-                    
-                    //Chacun joue une carte random de sa main
-                    System.out.println("Je suis rand1 " + rand1);
+                   /* System.out.println("Je suis rand1 " + rand1);
                     for (int i = 0 ; i < cartesJoueur4.size(); i++){
                     System.out.println(cartesJoueur4.get(i).valeurcarte);
-                    }
+                    }*/
+                   
+                   //Chacun joue une carte random de sa main
                     pli.add(cartesJoueur4.get(rand1).valeurcarte);
                     pli.add(cartesJoueur2.get(rand1).valeurcarte);
                     pli.add(cartesJoueur3.get(rand1).valeurcarte);
                     pli.add(cartesJoueur1.get(rand1).valeurcarte);
                     
-                    
-                  
                     //On regarde quelle est la carte la plus forte
                     int Max = Collections.max(pli);
-                 //   System.out.println("Max : " + Max);
+                    //System.out.println("Max : " + Max);
                             
                    //Le gagnant (avec la plus forte) recolte toutes les cartes
                    if (cartesJoueur4.get(rand1).valeurcarte == Max){
@@ -443,7 +442,7 @@ class PartieDeBelote {
                  
                    
                     do {
-                      tour1();
+                      jouerManche();
                       }while(cartesJoueur4.size()>=1);
                    
                     }
@@ -482,9 +481,20 @@ class PartieDeBelote {
                    scoreEquipe1 = sum1 + sum2;
                    scoreEquipe2 = sum3+sum4;
                   
-System.out.println("S1 : " +scoreEquipe1);
-System.out.println("S2 : " +scoreEquipe2);
-                  points.add(pointsEquipe1); 
+System.out.println("Pour l'instant le score de l'equipe "+ equipe1.nomEquipe + " est " +scoreEquipe1);
+System.out.println("Pour l'instant le score de l'equipe "+ equipe2.nomEquipe + " est " +scoreEquipe2);
+
+                   if (scoreEquipe1 > scoreEquipe2) {
+                       System.out.println("L'equipe "+ equipe1.nomEquipe +" remporte la manche ! ");
+                        pointsEquipe1++;
+                   }
+                   else 
+                   {
+                        System.out.println("L'equipe "+ equipe2.nomEquipe +" remporte la manche ! ");
+                        pointsEquipe2++;
+                   }
+
+                   points.add(pointsEquipe1); 
                    points.add(pointsEquipe2); 
        }
                    return this.points;
@@ -501,19 +511,15 @@ System.out.println("S2 : " +scoreEquipe2);
      * Les joueurs de l'equipe qui perdent la manche offrent a boire aux gagnants pour finir.
      * 
      */
-    private void jouerUneManche () {
+    private void deroulement () {
         
 	distribuerLesCartes (); // 5 cartes en main chacun 
-        
-        List <Integer> pli = new LinkedList <> ();
-        List <Integer> pli1 = new LinkedList <> ();
-        List <Integer> pli2 = new LinkedList <> ();
-        List <Integer> pli3 = new LinkedList <> ();
-        List <Integer> pli4 = new LinkedList <> ();
+
         List <Integer> atoutmain1 = new LinkedList <> ();
         List <Integer> atoutmain2 = new LinkedList <> ();
         List <Integer> atoutmain3 = new LinkedList <> ();
         List <Integer> atoutmain4 = new LinkedList <> ();
+        List <Integer> resultat = new LinkedList <> ();
        
         
         //Rempli la liste pour pouvoir trouver le Max quoi qu'il arrive
@@ -562,7 +568,7 @@ System.out.println("S2 : " +scoreEquipe2);
 
        
        
-          if(this.donneur == equipe1.joueur1) {      
+         if(this.donneur == equipe1.joueur1) {      
                 if(Collections.max(atoutmain4) + Collections.max(atoutmain3) >= 20) { //Si la somme des plus grands atouts de l'equipe 1 > 25
                     System.out.println(equipe2.joueur2.parler("Je ramasse l'atout ! "));
                     this.cartesJoueur4.add(this.cartesADistribuer.get(20)); // ramasse l'atout 
@@ -579,7 +585,7 @@ System.out.println("S2 : " +scoreEquipe2);
                     cartesJoueur1.add(this.cartesADistribuer.get(30));
                     cartesJoueur1.add(this.cartesADistribuer.get(31));
        
-         tour1();
+         resultat=jouerManche();
 }
 
                 
@@ -598,7 +604,7 @@ System.out.println("S2 : " +scoreEquipe2);
                     cartesJoueur1.add(cartesADistribuer.get(29)); 
                     cartesJoueur1.add(cartesADistribuer.get(30));
                     cartesJoueur1.add(cartesADistribuer.get(31));
-                    tour1();
+                    resultat=jouerManche();
                      }  
               
                 else { //Si personne ne ramasse  
@@ -615,7 +621,7 @@ System.out.println("S2 : " +scoreEquipe2);
                     cartesJoueur1.add(cartesADistribuer.get(29)); 
                     cartesJoueur1.add(cartesADistribuer.get(30));
                     cartesJoueur1.add(cartesADistribuer.get(31));
-                    tour1();
+                    resultat=jouerManche();
                     
                     
               }
@@ -637,7 +643,7 @@ System.out.println("S2 : " +scoreEquipe2);
                     cartesJoueur2.add(cartesADistribuer.get(29));  
                     cartesJoueur2.add(cartesADistribuer.get(30));
                     cartesJoueur2.add(cartesADistribuer.get(31));
-                    tour1();
+                    resultat=jouerManche();
                     }
                 else if(Collections.max(atoutmain2) + Collections.max(atoutmain1) >= 0) { //Si la somme des plus grands atouts de l'equipe 1 > 25
                     System.out.println(equipe1.joueur1.parler("Je ramasse l'atout ! "));
@@ -654,7 +660,7 @@ System.out.println("S2 : " +scoreEquipe2);
                     cartesJoueur4.add(cartesADistribuer.get(29)); 
                     cartesJoueur4.add(cartesADistribuer.get(30));
                     cartesJoueur4.add(cartesADistribuer.get(31));
-                     tour1();
+                     resultat=jouerManche();
                      }  
                 else {
                    System.out.println(donneur.parler("Apparement personne ne prend au Tour 1"));
@@ -670,7 +676,7 @@ System.out.println("S2 : " +scoreEquipe2);
                     cartesJoueur1.add(cartesADistribuer.get(29)); 
                     cartesJoueur1.add(cartesADistribuer.get(30));
                     cartesJoueur1.add(cartesADistribuer.get(31));
-                   tour1();
+                   resultat=jouerManche();
                
            }
         }
@@ -691,7 +697,7 @@ System.out.println("S2 : " +scoreEquipe2);
                     cartesJoueur3.add(cartesADistribuer.get(29));
                     cartesJoueur3.add(cartesADistribuer.get(30));
                     cartesJoueur3.add(cartesADistribuer.get(31));
-                     tour1();
+                     resultat=jouerManche();
            }
                 else if(Collections.max(atoutmain4) + Collections.max(atoutmain3) >= 14) {
                     System.out.println( equipe1.joueur2.parler("Je ramasse l'atout ! "));
@@ -708,7 +714,7 @@ System.out.println("S2 : " +scoreEquipe2);
                     cartesJoueur2.add(cartesADistribuer.get(29));
                     cartesJoueur2.add(cartesADistribuer.get(30));
                     cartesJoueur2.add(cartesADistribuer.get(31));
-                     tour1();
+                     resultat=jouerManche();
            }
            
                else {
@@ -725,7 +731,7 @@ System.out.println("S2 : " +scoreEquipe2);
                     cartesJoueur1.add(cartesADistribuer.get(29)); 
                     cartesJoueur1.add(cartesADistribuer.get(30));
                     cartesJoueur1.add(cartesADistribuer.get(31));
-                   tour1();
+                   resultat=jouerManche();
            }
         }
         
@@ -745,7 +751,7 @@ System.out.println("S2 : " +scoreEquipe2);
                     cartesJoueur4.add(cartesADistribuer.get(29));
                     cartesJoueur4.add(cartesADistribuer.get(30));
                     cartesJoueur4.add(cartesADistribuer.get(31));
-                     tour1();
+                    resultat=jouerManche();
            }
                 else if(Collections.max(atoutmain3) + Collections.max(atoutmain4) >= 14) {
                     System.out.println( equipe1.joueur2.parler("Je ramasse l'atout ! "));
@@ -762,7 +768,7 @@ System.out.println("S2 : " +scoreEquipe2);
                     cartesJoueur4.add(cartesADistribuer.get(29));
                     cartesJoueur4.add(cartesADistribuer.get(30));
                     cartesJoueur4.add(cartesADistribuer.get(31));
-                     tour1();
+                    resultat=jouerManche();
                }
                 else {
                    System.out.println(donneur.parler("Apparement personne ne prend au Tour 1"));  
@@ -778,14 +784,11 @@ System.out.println("S2 : " +scoreEquipe2);
                     cartesJoueur1.add(cartesADistribuer.get(29)); 
                     cartesJoueur1.add(cartesADistribuer.get(30));
                     cartesJoueur1.add(cartesADistribuer.get(31));
-                   tour1();
+                   resultat=jouerManche();
              }
         }
-           
-          
-           
-        /*
-        for (int i = 0; i < 4; i ++) {
+      
+  /*  for (int i = 0; i < 4; i ++) {
             pli.add (cartesJoueur1.remove (0).getValue (atout));
             pli.add (cartesJoueur2.remove (0).getValue (atout));
             pli.add (cartesJoueur3.remove (0).getValue (atout));
@@ -818,14 +821,28 @@ System.out.println("S2 : " +scoreEquipe2);
 		pointsEquipe2 ++;
 		equipe1.joueur1.offrir (equipe2.joueur1);
 		equipe1.joueur2.offrir (equipe2.joueur2);*/
+          
+                if (resultat.get(0)>resultat.get(1)){
+                    System.out.println("Wahoue, l'équipe" + equipe1.nomEquipe + " est en tête !");
                 }
+                    
+                else {
+                    
+                }
+          
+          
+         
+                }
+    
+    
+    
     /** Cette méthode permet de jouer un match.
      * On cherche à faire deux points d'écart pour avoir un gagnant. 
      * @return : Retourne le score qu'a marqué chacune des équipes sous forme d'un tableau
      */
     public int [] jouer () {	
 	while (pointsEquipe1 < 2 && pointsEquipe2 < 2) {
-            jouerUneManche ();
+            deroulement ();
 	}	
 	return new int [] {pointsEquipe1, pointsEquipe2};
     }
