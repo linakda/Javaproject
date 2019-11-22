@@ -951,6 +951,9 @@ public void menu()
     Scanner scan = new Scanner(System.in);
 
     while(true){
+        System.out.println("------------------------------------------------------------------------");
+        System.out.println("*                       "+ this.nomBar+"                                  *");
+        System.out.println("------------------------------------------------------------------------");
         System.out.println("Choississez l'action que vous voulez réaliser.");
         System.out.println("1- Présentez-vous");
         System.out.println("2- Présentez-vous d'une autre manière");
@@ -964,9 +967,9 @@ public void menu()
             System.out.println("9- Assezyez-vous à une table");
         else
             System.out.println("9- Levez vous de la table");
-        System.out.println("9- Lancez un tournoi de belote");
-        System.out.println("10- Déclarez votre flamme à quelqu'un");
-        System.out.println("11- Allez à l'ATM");
+        System.out.println("10- Lancez un tournoi de belote");
+        System.out.println("11- Déclarez votre flamme à quelqu'un");
+        System.out.println("12- Allez à l'ATM");
         System.out.println("0- Quittez le bar");
         try{
             choix = Integer.parseInt(scan.nextLine()); //On choisit le num de l'action
