@@ -1443,15 +1443,14 @@ public void menu()
                     break ;     
                 case 11 : 
                     float argent = 0;
-                    System.out.println("-----------------------------------------------------------------------------------------------------------*");
-                    System.out.println("* ATM Wells Fargo - When it comes to bankin we know that you have a lot of choice, Thanks for choosing us. *");
-                    System.out.println("*                              Combien d'argent voulez vous retirer de votre compte ?                      *");
-                    System.out.println("-----------------------------------------------------------------------------------------------------------*");
                     boolean conversionFail = true;
                     while(conversionFail){
                         try{
                         conversionFail = false;
-                        System.out.println("Combien d'argent avez-vous dans votre porte monnaie ?");
+                        System.out.println("-----------------------------------------------------------------------------------------------------------*");
+                        System.out.println("* ATM Wells Fargo - When it comes to bankin we know that you have a lot of choice, Thanks for choosing us. *");
+                        System.out.println("*                              Combien d'argent voulez vous retirer de votre compte ?                      *");
+                        System.out.println("-----------------------------------------------------------------------------------------------------------*");
                         argent = Float.parseFloat(sc.nextLine());
                         }
                         catch(NumberFormatException e){
