@@ -656,7 +656,7 @@ public final class Bar {
         	numExpFail = false;
         	}
             catch(NumberFormatException e){
-        	System.out.println("Veuillez saissir un entier entre 1 et 10 s'il vous plaît");
+        	System.out.println("Veuillez saisir un entier entre 1 et 10 s'il vous plaît");
         	numExpFail = true;
             }
     	}
@@ -670,7 +670,7 @@ public final class Bar {
     * cri significatif, taille du biceps et charme. 
     */
     public void creationServeurParDefaut(){
-       serveurs.add( new Serveur("Jessica","Day", "femme", "ouaaahhhh","cravate rose", 20 ,90,0) );
+       serveurs.add( new Serveur("Veronica","Lodge", "femme", " oh dear","bijou très cher", 20 ,90,0) );
        serveurs.add( new Serveur("Nick","Miller", "homme","whhhraaaaaaooooo","cravate noire", 95 , 25,2) );
    }
    
@@ -755,7 +755,7 @@ public final class Bar {
                 choix = Integer.parseInt(sc2.nextLine());
                 if(choix == clients.size()-1)
                 {
-                    System.out.println("Désoler, ce numéro ne correspond à aucun client.");
+                    System.out.println("Désolé, ce numéro ne correspond à aucun client.");
                     fail = true ;
                     }
                 else{
@@ -764,17 +764,17 @@ public final class Bar {
                         fail = false;
                     }
                     catch(IndexOutOfBoundsException e){
-                        System.out.println("Désoler, ce numero ne correspond à aucun client.");
+                        System.out.println("Désolé, ce numero ne correspond à aucun client.");
                         fail = true;
                         }
                 }
             }catch(NumberFormatException e){
-                System.out.println("Désoler, veuillez entrez un entier.");
+                System.out.println("Désolé, veuillez entrer un entier.");
                 fail = true;
             }
         }    
         System.out.println(joueur.parler(text));
-        System.out.println(destinataire.parler("Hey, c'est pas que je veux te blesser mais je ne suis pas intéressé par les " + joueur.getSexe() + "s ,desolé "));
+        System.out.println(destinataire.parler("Oula les " + joueur.getSexe() + "s, très peu pour moi... Dans une autre vie peut-être ! "));
     }
     
 

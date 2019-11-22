@@ -256,13 +256,13 @@ class JeuBelote {
             else if (cartesJoueur4.get(i).valeurcarte==comparateur.get(0))
                  this.donneur = equipe2.joueur2;
          }
-         System.out.println("       Le donneur de la manche est " + donneur.getPrenom());
+         System.out.println("Le donneur de la manche est " + donneur.getPrenom());
     }
     
     /**
      * Cette méthode permet de distribuer les Cartes. 
      * Les joueurs auront en leur possession 5 cartes, distribuer en 3 puis 2, dans
-     * l'ordre inverses des aiguilles d'une montre.
+     * l'ordre inverse des aiguilles d'une montre.
      * Elle permet également au donneur d'annoncer la retourne et de proposer l'atout.
      */
     private void distribuerLesCartes () {
@@ -312,7 +312,7 @@ class JeuBelote {
     }
     
     /**
-     * Cette methode permet de jouer 
+     * Cette methode permet de jouer une manche.
      * @return points : La liste contenant les points des deux equipes
      * 
      */
@@ -686,6 +686,4 @@ class JeuBelote {
 	}	
 	return new int [] {pointsEquipe1, pointsEquipe2};
     }
-
-
 }
