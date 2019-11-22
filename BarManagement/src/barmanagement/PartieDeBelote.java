@@ -20,11 +20,21 @@ class PartieDeBelote {
     Client donneur ; 
     int pointsEquipe1;
     int pointsEquipe2;
+    int sum1=0,sum2=0,sum3=0,sum4=0;
+    
+     int c = 0 ; 
+    List <Integer> points = new LinkedList <> ();
     List <Carte> cartesADistribuer = new LinkedList <> ();
     List <Carte> cartesJoueur1;	// Equipe 1 J1
     List <Carte> cartesJoueur2;	// Equipe 1 J2
     List <Carte> cartesJoueur3;	// Equipe 2 J1
     List <Carte> cartesJoueur4;	// Equipe 2 J2
+    
+        List <Integer> pli = new LinkedList <> ();
+        List <Integer> pli1 = new LinkedList <> ();
+        List <Integer> pli2 = new LinkedList <> ();
+        List <Integer> pli3 = new LinkedList <> ();
+        List <Integer> pli4 = new LinkedList <> ();
     String atout;
     String [] couleurs;
     String [] valeurs;
@@ -48,9 +58,7 @@ class PartieDeBelote {
         valeurcarte = new int []{0,0,0,2,3,4,10,11};
         valeuratout = new int [] {0,0,14,20,3,4,10,11};
 		
-	// Pour simplifier, la couleur d'atout est choisie aleatoirement
-	int randomIndex = (int) (Math.random () * 4);	
-	atout = couleurs [randomIndex];
+	
 	creerCartes ();
         quiCommence();
     }
@@ -75,6 +83,11 @@ class PartieDeBelote {
         melangerPaquet(this.cartes);
     }
     
+    /**
+     * Cette méthode permet de définir qui commence le jeu.
+     * Elle fait tirer au hasard une carte à chaque joueur puis fait appel à 
+     * la méthode qui trouve le donneur.
+     */
     public void quiCommence () {
         
         cartesJoueur1 = new LinkedList <> ();
@@ -95,20 +108,29 @@ class PartieDeBelote {
         trouvedonneur(cartesJoueur1,cartesJoueur2,cartesJoueur3,cartesJoueur4);
     }
     
+    /**
+     * Cette méthode permet de trouver qui va être le premier donneur de la partie.
+     * On ajoute la valeur de la carte piochée par chaque joueur à la liste comparateur.
+     * On trie la liste par ordre croissant et on recupère le donneur lorsque 
+     * sa carte est égale à la plus faible carte, puis on affiche son prénom.
+     * @param J1 : stocke la carte piochée par le joueur 1
+     * @param J2 : stocke la carte piochée par le joueur 2
+     * @param J3 : stocke la carte piochée par le joueur 3
+     * @param J4 : stocke la carte piochée par le joueur 4
+     */
     public void trouvedonneur(List<Carte> J1, List <Carte> J2,List<Carte> J3, List<Carte> J4){
          List <Integer> comparateur = new LinkedList<>();
          
-        // On ajoute la valeur de la carte piochée par chaque joueur à la liste comparateur
+        
         for (int i = 0 ; i < cartesJoueur1.size() ; i++) {
                comparateur.add(cartesJoueur1.get(i).valeurcarte);
                comparateur.add(cartesJoueur2.get(i).valeurcarte);
                comparateur.add(cartesJoueur3.get(i).valeurcarte);
                comparateur.add(cartesJoueur4.get(i).valeurcarte);
         }
-        //On trie la liste par ordre croissant
+        
         Collections.sort(comparateur);
 
-        //On recupère le donneur lorsque sa carte est égale à la plus faible carte
          for (int i = 0 ; i < cartesJoueur1.size() ; i++) {
             if(cartesJoueur1.get(i).valeurcarte==comparateur.get(0))
                 this.donneur = equipe1.joueur1;
@@ -120,17 +142,17 @@ class PartieDeBelote {
                  this.donneur = equipe2.joueur2;
          }
          
-        /* for (int i = 0 ; i < cartesJoueur1.size() ; i++) {
+        for (int i = 0 ; i < cartesJoueur1.size() ; i++) {
         System.out.println("La carte du J1 : " + cartesJoueur1.get(i).valeurcarte +" La carte du J2: " + cartesJoueur2.get(i).valeurcarte + " La carte du J3: "
                  + cartesJoueur3.get(i).valeurcarte + " La carte du J2: " + cartesJoueur4.get(i).valeurcarte);
          }
-         for (int i = 0 ; i < cartesJoueur1.size() ; i++) {
+        /* for (int i = 0 ; i < cartesJoueur1.size() ; i++) {
             System.out.println(" La liste triée : " + comparateur.get(i));
          }*/
          System.out.println("Le donneur est :" + donneur.getPrenom());
          
     }
-    
+     
     /**
      * Cette méthode permet d'afficher son jeu en main.
      */
@@ -144,6 +166,7 @@ class PartieDeBelote {
      * Cette méthode permet d'afficher la main de l'adversaire.
      * En fonction de l'équipe sélectionnée, un utilisateur(joueur) expert peut 
      * afficher les cartes de son adversaire.
+     * @param equipe : l'équipe donc on veut voir les mains. 
      */
     public void afficherLaMainAdversaire(Equipe equipe) {
         if (equipe == equipe1) {
@@ -188,7 +211,7 @@ class PartieDeBelote {
         
     }
     
-     /**
+    /**
      * Cette methode permet d'échanger 2 cartes.
      */
     public void echanger(int i, int j){ 
@@ -197,15 +220,11 @@ class PartieDeBelote {
       this.cartes[i] = this.cartes[j];
       this.cartes[j] = temp;
    }
-        
-    public void ordonnerpaquet(){
-        
-    }
-    
+       
     /**Cette méthode permet de coupet le paquet de carte.
      * Le paquet est coupé en deux, et les deux moitiées sont interverties.
      */
-    public void couperpaquet(){
+    public void couperpaqueten2(){
         
         this.paquettemp = new Carte[this.cartes.length/2];
 
@@ -230,6 +249,7 @@ class PartieDeBelote {
         }
         
     }
+    
 	
     /**Cette méthode permet de distribuer les Cartes 
      * Ainsi, 8 cartes seront distrubuer aleatoirement.
@@ -237,7 +257,7 @@ class PartieDeBelote {
      */
     private void distribuerLesCartes () {
     	
-	List <Carte> cartesADistribuer = new LinkedList <> ();
+	
 	cartesJoueur1 = new LinkedList <> ();
 	cartesJoueur2 = new LinkedList <> ();
 	cartesJoueur3 = new LinkedList <> ();
@@ -287,29 +307,27 @@ class PartieDeBelote {
   
              cartesJoueur2.add (cartesADistribuer.get(14)); //ajoute les 3 cartes 
              cartesJoueur2.add (cartesADistribuer.get(15));
-
        
-
              cartesJoueur3.add (cartesADistribuer.get(16)); //ajoute les 3 cartes 
              cartesJoueur3.add (cartesADistribuer.get(17));
-
-    
+   
              cartesJoueur4.add (cartesADistribuer.get(18)); //ajoute les 3 cartes 
              cartesJoueur4.add (cartesADistribuer.get(19));
 
              
-             System.out.println(donneur.getPrenom() + " : La retourne est la carte " + cartesADistribuer.get(20));
-             System.out.println(donneur.getPrenom() + " :Je vous propose la couleur " + cartesADistribuer.get(20).couleur + " comme atout");
+             System.out.println(donneur.parler(" La retourne est la carte " + cartesADistribuer.get(20)));
+             System.out.println(donneur.parler ("Je vous propose la couleur " + cartesADistribuer.get(20).couleur + " comme atout"));
            
              this.atout = cartesADistribuer.get(20).couleur;
              
         /*        System.out.println("******************************"); 
          System.out.println("Cartes a distri avec remove");
        for (int i = 0; i < cartesADistribuer.size(); i ++) //ajoute les cartes à la liste
-           System.out.println(cartesADistribuer.get(i));        
+           System.out.println(cartesADistribuer.get(i));      */  
                 
-       
-         System.out.println("J1*****************************************");
+       //2eme distribution 
+      
+        /* System.out.println("J1*****************************************");
        for (int i = 0; i < cartesJoueur1.size(); i ++) {
         
                System.out.println(  cartesJoueur1.get(i)); 
@@ -333,8 +351,148 @@ class PartieDeBelote {
           
                }*/
                
+    }	
+
+    /**
+     * Cette méthode permet de générer un nombre random entre 0 et 3
+     * @return rand : le nombre random
+     */
+    public int randomm(){
+        int rand = (int) (Math.random () * cartesJoueur4.size());
+        return rand ; 
     }
-	
+    
+    public List<Integer> tour1(){
+         //TOUR 1 
+
+        int scoreEquipe1 = 0;
+	int scoreEquipe2 = 0;
+        int rand1=randomm();
+        
+       if(cartesJoueur4.size()>=1) {
+                    
+                    /*  System.out.println("C4: " + cartesJoueur4.get(rand1).valeurcarte);
+                        System.out.println("C3 : " + cartesJoueur3.get(rand1).valeurcarte);
+                          System.out.println("C2 : " + cartesJoueur2.get(rand1).valeurcarte);
+                            System.out.println("C1 : " + cartesJoueur1.get(rand1).valeurcarte);*/
+                    
+                    //Chacun joue une carte random de sa main
+                    System.out.println("Je suis rand1 " + rand1);
+                    for (int i = 0 ; i < cartesJoueur4.size(); i++){
+                    System.out.println(cartesJoueur4.get(i).valeurcarte);
+                    }
+                    pli.add(cartesJoueur4.get(rand1).valeurcarte);
+                    pli.add(cartesJoueur2.get(rand1).valeurcarte);
+                    pli.add(cartesJoueur3.get(rand1).valeurcarte);
+                    pli.add(cartesJoueur1.get(rand1).valeurcarte);
+                    
+                    
+                  
+                    //On regarde quelle est la carte la plus forte
+                    int Max = Collections.max(pli);
+                 //   System.out.println("Max : " + Max);
+                            
+                   //Le gagnant (avec la plus forte) recolte toutes les cartes
+                   if (cartesJoueur4.get(rand1).valeurcarte == Max){
+                       pli4.add(cartesJoueur4.get(rand1).valeurcarte);
+                       pli4.add(cartesJoueur3.get(rand1).valeurcarte);
+                       pli4.add(cartesJoueur2.get(rand1).valeurcarte);
+                       pli4.add(cartesJoueur1.get(rand1).valeurcarte);                     
+                   this.cartesJoueur4.remove(rand1);          
+                       this.cartesJoueur2.remove(rand1);
+                       this.cartesJoueur3.remove(rand1);
+                       this.cartesJoueur1.remove(rand1);     
+                       pli.clear();
+                   }
+                   
+                   else if (cartesJoueur2.get(rand1).valeurcarte == Max){
+                       pli2.add(cartesJoueur4.get(rand1).valeurcarte);
+                       pli2.add(cartesJoueur3.get(rand1).valeurcarte);
+                       pli2.add(cartesJoueur2.get(rand1).valeurcarte);
+                       pli2.add(cartesJoueur1.get(rand1).valeurcarte);
+                       this.cartesJoueur4.remove(rand1);          
+                       this.cartesJoueur2.remove(rand1);
+                       this.cartesJoueur3.remove(rand1);
+                       this.cartesJoueur1.remove(rand1);
+                       pli.clear();
+                   }
+                   
+                   else if (cartesJoueur3.get(rand1).valeurcarte == Max){
+                       pli3.add(cartesJoueur4.get(rand1).valeurcarte);
+                       pli3.add(cartesJoueur3.get(rand1).valeurcarte);
+                       pli3.add(cartesJoueur2.get(rand1).valeurcarte);
+                       pli3.add(cartesJoueur1.get(rand1).valeurcarte);
+                       this.cartesJoueur4.remove(rand1);          
+                       this.cartesJoueur2.remove(rand1);
+                       this.cartesJoueur3.remove(rand1);
+                       this.cartesJoueur1.remove(rand1);
+                       pli.clear();
+                   }
+                   else if (cartesJoueur1.get(rand1).valeurcarte == Max){
+                       pli1.add(cartesJoueur4.get(rand1).valeurcarte);
+                       pli1.add(cartesJoueur3.get(rand1).valeurcarte);
+                       pli1.add(cartesJoueur2.get(rand1).valeurcarte);
+                       pli1.add(cartesJoueur1.get(rand1).valeurcarte);
+                       this.cartesJoueur4.remove(rand1);          
+                       this.cartesJoueur2.remove(rand1);
+                       this.cartesJoueur3.remove(rand1);
+                       this.cartesJoueur1.remove(rand1);  
+                       pli.clear();
+                   }    
+                   
+                 
+                   
+                    do {
+                      tour1();
+                      }while(cartesJoueur4.size()>=1);
+                   
+                    }
+                    
+         else {
+                /*     System.out.println("Je veux voir le paquet 4  diminiuer : " );
+                   for (int i = 0 ; i < pli1.size() ; i ++){
+                       System.out.println(pli1.get(i) + " ");
+                   }
+                   System.out.println("Je veux voir le paquet 3  diminiuer : " );
+                   for (int i = 0 ; i < pli2.size() ; i ++){
+                       System.out.println(pli2.get(i) + " ");
+                   }
+                   System.out.println("Je veux voir le paquet 2  diminiuer : " );
+                   for (int i = 0 ; i < pli3.size() ; i ++){
+                       System.out.println(pli3.get(i) + " ");
+                   }
+                   System.out.println("Je veux voir le paquet 1  diminiuer : " );
+                   for (int i = 0 ; i < pli4.size() ; i ++){
+                       System.out.println(pli4.get(i) + " ");
+                   }*/
+                   
+                   for(int i=0;i<pli1.size();i++){
+                   sum1+=pli1.get(i);
+                   }
+                   for(int i=0;i<pli2.size();i++){
+                   sum2+=pli2.get(i);
+                   }
+                   for(int i=0;i<pli3.size();i++){
+                   sum3+=pli3.get(i);
+                   }
+                   for(int i=0;i<pli4.size();i++){
+                   sum4+=pli4.get(i);
+                   }
+                   
+                   scoreEquipe1 = sum1 + sum2;
+                   scoreEquipe2 = sum3+sum4;
+                  
+System.out.println("S1 : " +scoreEquipe1);
+System.out.println("S2 : " +scoreEquipe2);
+                  points.add(pointsEquipe1); 
+                   points.add(pointsEquipe2); 
+       }
+                   return this.points;
+                    
+                
+    }
+                    
+    
     /**Cette méthode permet de jouer une manche.
      * Chaque joueur dispose ainsi de 8 cartes.
      * Chaque tour, une carte est dévoilée, le joueur qui dévoile la carte la plus
@@ -346,21 +504,296 @@ class PartieDeBelote {
     private void jouerUneManche () {
         
 	distribuerLesCartes (); // 5 cartes en main chacun 
-        int scoreEquipe1 = 0;
-	int scoreEquipe2 = 0;
+        
+        List <Integer> pli = new LinkedList <> ();
+        List <Integer> pli1 = new LinkedList <> ();
+        List <Integer> pli2 = new LinkedList <> ();
+        List <Integer> pli3 = new LinkedList <> ();
+        List <Integer> pli4 = new LinkedList <> ();
+        List <Integer> atoutmain1 = new LinkedList <> ();
+        List <Integer> atoutmain2 = new LinkedList <> ();
+        List <Integer> atoutmain3 = new LinkedList <> ();
+        List <Integer> atoutmain4 = new LinkedList <> ();
+       
+        
+        //Rempli la liste pour pouvoir trouver le Max quoi qu'il arrive
+        atoutmain1.add(0);
+        atoutmain2.add(0);
+        atoutmain3.add(0);
+        atoutmain4.add(0);
+
+     /*   for (int i = 0; i < cartesJoueur1.size(); i ++) {
+            if(cartesJoueur1.get(i).couleur.equals(atout)){
+                System.out.println("J1 J'ai un atout " + i + " " + cartesJoueur1.get(i)); 
+                atoutmain1.add(cartesJoueur1.get(i).valeuratout) ;    
+            }
+        }
+        for (int j = 1; j < atoutmain1.size(); j ++) {
+            System.out.println("Mes atout sont " + atoutmain1.get(j)); }
+              
         
         
+        for (int i = 0; i < 4; i ++) {
+            if(cartesJoueur2.get(i).couleur.equals(atout)){
+              System.out.println("J2 J'ai un atout" + i + " "+ cartesJoueur2.get(i)); 
+              atoutmain2.add(cartesJoueur2.get(i).valeuratout) ;
+             
+        }}
+          for (int j = 1; j < atoutmain2.size(); j ++) {
+             System.out.println("Mes atout sont " + atoutmain2.get(j)); }
         
-        for (int i = 0; i < 8; i ++) {
-            List <Integer> forces = new LinkedList <> ();
-            forces.add (cartesJoueur1.remove (0).getValue (atout));
-            forces.add (cartesJoueur2.remove (0).getValue (atout));
-            forces.add (cartesJoueur3.remove (0).getValue (atout));
-            forces.add (cartesJoueur4.remove (0).getValue (atout));
+        for (int i = 0; i < 4; i ++) {
+            if(cartesJoueur3.get(i).couleur.equals(atout)){
+                System.out.println("J3 J'ai un atout" + i + " "+ cartesJoueur3.get(i)); 
+              atoutmain3.add(cartesJoueur3.get(i).valeuratout) ;
+             
+        }}
+          for (int j = 1; j < atoutmain3.size(); j ++) {
+             System.out.println("Mes atout sont " + atoutmain3.get(j)); }
+        
+        for (int i = 0; i < 4; i ++) {
+            if(cartesJoueur4.get(i).couleur.equals(atout)){
+                System.out.println("J4 J'ai un atout" + i + " "+ cartesJoueur4.get(i)); 
+              atoutmain4.add(cartesJoueur4.get(i).valeuratout) ;
+              
+        }}
+          for (int j = 1; j < atoutmain4.size(); j ++) {
+             System.out.println("Mes atout sont " + atoutmain4.get(j)); }*/
+
+       
+       
+          if(this.donneur == equipe1.joueur1) {      
+                if(Collections.max(atoutmain4) + Collections.max(atoutmain3) >= 20) { //Si la somme des plus grands atouts de l'equipe 1 > 25
+                    System.out.println(equipe2.joueur2.parler("Je ramasse l'atout ! "));
+                    this.cartesJoueur4.add(this.cartesADistribuer.get(20)); // ramasse l'atout 
+                    System.out.println(donneur.parler(" Très bien, je distribue les cartes restantes"));
+                    this.cartesJoueur4.add(this.cartesADistribuer.get(21));
+                    this.cartesJoueur4.add(this.cartesADistribuer.get(22));
+                    cartesJoueur2.add(this.cartesADistribuer.get(23));  
+                    cartesJoueur2.add(this.cartesADistribuer.get(24));
+                    cartesJoueur2.add(this.cartesADistribuer.get(25));
+                    cartesJoueur3.add(this.cartesADistribuer.get(26));
+                    cartesJoueur3.add(this.cartesADistribuer.get(27));
+                    cartesJoueur3.add(this.cartesADistribuer.get(28));
+                    cartesJoueur1.add(this.cartesADistribuer.get(29)); 
+                    cartesJoueur1.add(this.cartesADistribuer.get(30));
+                    cartesJoueur1.add(this.cartesADistribuer.get(31));
+       
+         tour1();
+}
+
+                
+               else if(Collections.max(atoutmain2) + Collections.max(atoutmain1) >= 0) { //Si la somme des plus grands atouts de l'equipe 1 > 25
+                    System.out.println(equipe1.joueur2.parler("Je ramasse l'atout ! "));
+                    cartesJoueur2.add(cartesADistribuer.get(20)); // rammasse l'atout 
+                    System.out.println(donneur.parler(" Très bien, je distribue les cartes restantes"));
+                    cartesJoueur2.add(cartesADistribuer.get(21));
+                    cartesJoueur2.add(cartesADistribuer.get(22));
+                    cartesJoueur4.add(cartesADistribuer.get(23));  
+                    cartesJoueur4.add(cartesADistribuer.get(24));
+                    cartesJoueur4.add(cartesADistribuer.get(25));
+                    cartesJoueur3.add(cartesADistribuer.get(26));
+                    cartesJoueur3.add(cartesADistribuer.get(27));
+                    cartesJoueur3.add(cartesADistribuer.get(28));
+                    cartesJoueur1.add(cartesADistribuer.get(29)); 
+                    cartesJoueur1.add(cartesADistribuer.get(30));
+                    cartesJoueur1.add(cartesADistribuer.get(31));
+                    tour1();
+                     }  
+              
+                else { //Si personne ne ramasse  
+                    System.out.println(donneur.parler("Apparement personne ne prend au Tour 1")); 
+                    cartesJoueur2.add(cartesADistribuer.get(20));
+                    cartesJoueur2.add(cartesADistribuer.get(21));
+                    cartesJoueur2.add(cartesADistribuer.get(22));
+                    cartesJoueur4.add(cartesADistribuer.get(23));  
+                    cartesJoueur4.add(cartesADistribuer.get(24));
+                    cartesJoueur4.add(cartesADistribuer.get(25));
+                    cartesJoueur3.add(cartesADistribuer.get(26));
+                    cartesJoueur3.add(cartesADistribuer.get(27));
+                    cartesJoueur3.add(cartesADistribuer.get(28));
+                    cartesJoueur1.add(cartesADistribuer.get(29)); 
+                    cartesJoueur1.add(cartesADistribuer.get(30));
+                    cartesJoueur1.add(cartesADistribuer.get(31));
+                    tour1();
+                    
+                    
+              }
+        }
+        
+        else if (donneur == equipe1.joueur2){
+                if(Collections.max(atoutmain3) + Collections.max(atoutmain4) >= 0) {
+                    System.out.println(equipe2.joueur1.parler("Je ramasse l'atout ! "));
+                    cartesJoueur3.add(cartesADistribuer.get(20)); // rammasse l'atout 
+                    System.out.println(donneur.parler(" Très bien, je distribue les cartes restantes"));
+                    cartesJoueur3.add(cartesADistribuer.get(21));
+                    cartesJoueur3.add(cartesADistribuer.get(22));
+                    cartesJoueur1.add(cartesADistribuer.get(23)); 
+                    cartesJoueur1.add(cartesADistribuer.get(24));
+                    cartesJoueur1.add(cartesADistribuer.get(25));
+                    cartesJoueur4.add(cartesADistribuer.get(26));
+                    cartesJoueur4.add(cartesADistribuer.get(27));
+                    cartesJoueur4.add(cartesADistribuer.get(28));
+                    cartesJoueur2.add(cartesADistribuer.get(29));  
+                    cartesJoueur2.add(cartesADistribuer.get(30));
+                    cartesJoueur2.add(cartesADistribuer.get(31));
+                    tour1();
+                    }
+                else if(Collections.max(atoutmain2) + Collections.max(atoutmain1) >= 0) { //Si la somme des plus grands atouts de l'equipe 1 > 25
+                    System.out.println(equipe1.joueur1.parler("Je ramasse l'atout ! "));
+                    cartesJoueur1.add(cartesADistribuer.get(20)); // rammasse l'atout 
+                    System.out.println(donneur.parler(" Très bien, je distribue les cartes restantes"));
+                    cartesJoueur1.add(cartesADistribuer.get(21));
+                    cartesJoueur1.add(cartesADistribuer.get(22));
+                    cartesJoueur2.add(cartesADistribuer.get(23));  
+                    cartesJoueur2.add(cartesADistribuer.get(24));
+                    cartesJoueur2.add(cartesADistribuer.get(25));
+                    cartesJoueur3.add(cartesADistribuer.get(26));
+                    cartesJoueur3.add(cartesADistribuer.get(27));
+                    cartesJoueur3.add(cartesADistribuer.get(28));
+                    cartesJoueur4.add(cartesADistribuer.get(29)); 
+                    cartesJoueur4.add(cartesADistribuer.get(30));
+                    cartesJoueur4.add(cartesADistribuer.get(31));
+                     tour1();
+                     }  
+                else {
+                   System.out.println(donneur.parler("Apparement personne ne prend au Tour 1"));
+                   cartesJoueur2.add(cartesADistribuer.get(20));
+                    cartesJoueur2.add(cartesADistribuer.get(21));
+                    cartesJoueur2.add(cartesADistribuer.get(22));
+                    cartesJoueur4.add(cartesADistribuer.get(23));  
+                    cartesJoueur4.add(cartesADistribuer.get(24));
+                    cartesJoueur4.add(cartesADistribuer.get(25));
+                    cartesJoueur3.add(cartesADistribuer.get(26));
+                    cartesJoueur3.add(cartesADistribuer.get(27));
+                    cartesJoueur3.add(cartesADistribuer.get(28));
+                    cartesJoueur1.add(cartesADistribuer.get(29)); 
+                    cartesJoueur1.add(cartesADistribuer.get(30));
+                    cartesJoueur1.add(cartesADistribuer.get(31));
+                   tour1();
+               
+           }
+        }
+        
+        else if (donneur == equipe2.joueur1){
+                if(Collections.max(atoutmain1) + Collections.max(atoutmain2) >= 14) {
+                    System.out.println(equipe1.joueur1.parler("Je ramasse l'atout ! "));
+                    cartesJoueur1.add(cartesADistribuer.get(20)); // rammasse l'atout 
+                    System.out.println(donneur.parler(" Très bien, je distribue les cartes restantes"));
+                    cartesJoueur1.add(cartesADistribuer.get(21));
+                    cartesJoueur1.add(cartesADistribuer.get(22));
+                    cartesJoueur4.add(cartesADistribuer.get(23));
+                    cartesJoueur4.add(cartesADistribuer.get(24));
+                    cartesJoueur4.add(cartesADistribuer.get(25));
+                    cartesJoueur2.add(cartesADistribuer.get(26));  
+                    cartesJoueur2.add(cartesADistribuer.get(27));
+                    cartesJoueur2.add(cartesADistribuer.get(28));
+                    cartesJoueur3.add(cartesADistribuer.get(29));
+                    cartesJoueur3.add(cartesADistribuer.get(30));
+                    cartesJoueur3.add(cartesADistribuer.get(31));
+                     tour1();
+           }
+                else if(Collections.max(atoutmain4) + Collections.max(atoutmain3) >= 14) {
+                    System.out.println( equipe1.joueur2.parler("Je ramasse l'atout ! "));
+                    cartesJoueur4.add(cartesADistribuer.get(20)); // rammasse l'atout
+                    System.out.println(donneur.parler(" Très bien, je distribue les cartes restantes"));
+                    cartesJoueur4.add(cartesADistribuer.get(21));
+                    cartesJoueur4.add(cartesADistribuer.get(22));
+                    cartesJoueur3.add(cartesADistribuer.get(23));
+                    cartesJoueur3.add(cartesADistribuer.get(24));
+                    cartesJoueur3.add(cartesADistribuer.get(25));
+                    cartesJoueur1.add(cartesADistribuer.get(26));
+                    cartesJoueur1.add(cartesADistribuer.get(27));
+                    cartesJoueur1.add(cartesADistribuer.get(28));
+                    cartesJoueur2.add(cartesADistribuer.get(29));
+                    cartesJoueur2.add(cartesADistribuer.get(30));
+                    cartesJoueur2.add(cartesADistribuer.get(31));
+                     tour1();
+           }
+           
+               else {
+                   System.out.println(donneur.parler("Apparement personne ne prend au Tour 1"));
+                   cartesJoueur2.add(cartesADistribuer.get(20));
+                    cartesJoueur2.add(cartesADistribuer.get(21));
+                    cartesJoueur2.add(cartesADistribuer.get(22));
+                    cartesJoueur4.add(cartesADistribuer.get(23));  
+                    cartesJoueur4.add(cartesADistribuer.get(24));
+                    cartesJoueur4.add(cartesADistribuer.get(25));
+                    cartesJoueur3.add(cartesADistribuer.get(26));
+                    cartesJoueur3.add(cartesADistribuer.get(27));
+                    cartesJoueur3.add(cartesADistribuer.get(28));
+                    cartesJoueur1.add(cartesADistribuer.get(29)); 
+                    cartesJoueur1.add(cartesADistribuer.get(30));
+                    cartesJoueur1.add(cartesADistribuer.get(31));
+                   tour1();
+           }
+        }
+        
+        else if (donneur == equipe2.joueur2){
+                if(Collections.max(atoutmain2) + Collections.max(atoutmain1) >= 14) {
+                    System.out.println( equipe1.joueur2.parler("Je ramasse l'atout ! "));
+                    cartesJoueur2.add(cartesADistribuer.get(20)); // rammasse l'atout
+                    System.out.println(donneur.parler(" Très bien, je distribue les cartes restantes"));
+                    cartesJoueur2.add(cartesADistribuer.get(21));
+                    cartesJoueur2.add(cartesADistribuer.get(22));
+                    cartesJoueur3.add(cartesADistribuer.get(23));
+                    cartesJoueur3.add(cartesADistribuer.get(24));
+                    cartesJoueur3.add(cartesADistribuer.get(25));
+                    cartesJoueur1.add(cartesADistribuer.get(26));
+                    cartesJoueur1.add(cartesADistribuer.get(27));
+                    cartesJoueur1.add(cartesADistribuer.get(28));
+                    cartesJoueur4.add(cartesADistribuer.get(29));
+                    cartesJoueur4.add(cartesADistribuer.get(30));
+                    cartesJoueur4.add(cartesADistribuer.get(31));
+                     tour1();
+           }
+                else if(Collections.max(atoutmain3) + Collections.max(atoutmain4) >= 14) {
+                    System.out.println( equipe1.joueur2.parler("Je ramasse l'atout ! "));
+                    cartesJoueur3.add(cartesADistribuer.get(20)); // rammasse l'atout
+                    System.out.println(donneur.parler(" Très bien, je distribue les cartes restantes"));
+                    cartesJoueur3.add(cartesADistribuer.get(21));
+                    cartesJoueur3.add(cartesADistribuer.get(22));
+                    cartesJoueur2.add(cartesADistribuer.get(23));
+                    cartesJoueur2.add(cartesADistribuer.get(24));
+                    cartesJoueur2.add(cartesADistribuer.get(25));
+                    cartesJoueur1.add(cartesADistribuer.get(26));
+                    cartesJoueur1.add(cartesADistribuer.get(27));
+                    cartesJoueur1.add(cartesADistribuer.get(28));
+                    cartesJoueur4.add(cartesADistribuer.get(29));
+                    cartesJoueur4.add(cartesADistribuer.get(30));
+                    cartesJoueur4.add(cartesADistribuer.get(31));
+                     tour1();
+               }
+                else {
+                   System.out.println(donneur.parler("Apparement personne ne prend au Tour 1"));  
+                   cartesJoueur2.add(cartesADistribuer.get(20));
+                    cartesJoueur2.add(cartesADistribuer.get(21));
+                    cartesJoueur2.add(cartesADistribuer.get(22));
+                    cartesJoueur4.add(cartesADistribuer.get(23));  
+                    cartesJoueur4.add(cartesADistribuer.get(24));
+                    cartesJoueur4.add(cartesADistribuer.get(25));
+                    cartesJoueur3.add(cartesADistribuer.get(26));
+                    cartesJoueur3.add(cartesADistribuer.get(27));
+                    cartesJoueur3.add(cartesADistribuer.get(28));
+                    cartesJoueur1.add(cartesADistribuer.get(29)); 
+                    cartesJoueur1.add(cartesADistribuer.get(30));
+                    cartesJoueur1.add(cartesADistribuer.get(31));
+                   tour1();
+             }
+        }
+           
+          
+           
+        /*
+        for (int i = 0; i < 4; i ++) {
+            pli.add (cartesJoueur1.remove (0).getValue (atout));
+            pli.add (cartesJoueur2.remove (0).getValue (atout));
+            pli.add (cartesJoueur3.remove (0).getValue (atout));
+            pli.add (cartesJoueur4.remove (0).getValue (atout));
             int forceMax = -1;
             int joueurGagnant = -1;	
             for (int j = 0; j < 4; j ++) {
-		int f = forces.remove (0);
+		int f = pli.remove (0);
 		if (f > forceMax) {
                     forceMax = f;
                     joueurGagnant = j;
@@ -373,19 +806,19 @@ class PartieDeBelote {
             else 
                 // L'equipe 2 remporte la manche
 		scoreEquipe2 ++;
-            }
-            if (scoreEquipe1 > scoreEquipe2) {
+            }*/
+        
+        //attribution des scores 
+          /*  if (scoreEquipe1 > scoreEquipe2) {
 		pointsEquipe1 ++;
-                equipe2.joueur1.offrir (equipe1.joueur1);
+                 equipe2.joueur1.offrir (equipe1.joueur1);
 		equipe2.joueur2.offrir (equipe1.joueur2);
             }
             else if (scoreEquipe1 < scoreEquipe2) {
 		pointsEquipe2 ++;
 		equipe1.joueur1.offrir (equipe2.joueur1);
-		equipe1.joueur2.offrir (equipe2.joueur2);
-            }
-    }
-	
+		equipe1.joueur2.offrir (equipe2.joueur2);*/
+                }
     /** Cette méthode permet de jouer un match.
      * On cherche à faire deux points d'écart pour avoir un gagnant. 
      * @return : Retourne le score qu'a marqué chacune des équipes sous forme d'un tableau
