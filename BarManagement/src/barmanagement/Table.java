@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.LinkedList;
 
 /**
- * Cette classe possède toute les méthodes et paramètres d'une table avec
+ * Cette classe possède toutes les méthodes et paramètres d'une table avec
  * la table, ajouter une personne à une table, se lever d'une table. 
- * @author Théo
+ * @author Lina & Theophile
  */
 
 public class Table {
@@ -21,17 +21,17 @@ public class Table {
      * Cette methode permet d'initialiser une table et d'y ajouter une liste de personne. 
     */
     public Table() {
-    	personne = new LinkedList<Humain>();
+    	personne = new LinkedList<>();
     }
         
     /**
      * Cette méthode permet de verifier si une personne peut s'asseoir à une table
-     * @param a : Stock l'humain qui va être ajouter à la table
+     * @param personne : Stock l'humain qui va être ajouter à la table
      * @return : Retourne s'il reste de la place dans la table
      */
-    public boolean ajouterPersonne(Humain a) {
+    public boolean ajouterPersonne(Humain personne) {
         if( this.personne.size() < 4 ) {
-            this.personne.add(a);
+            this.personne.add(personne);
             return true;
         }
         return false;
@@ -39,10 +39,10 @@ public class Table {
         
         /**
          * Cette méthode permet à un humain de quitter la table
-         * @param a : Stock l'humain qui va se lever de la table
+         * @param personne : Stock l'humain qui va se lever de la table
          */
-	public void seLever (Humain a) {
-            if(this.personne.remove(a))
+	public void seLever (Humain personne) {
+            if(this.personne.remove(personne))
 		System.out.println("Vous n'êtes plus assis à cette table");
             else
 		System.out.println("Erreur table");

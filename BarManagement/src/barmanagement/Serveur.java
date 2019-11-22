@@ -9,15 +9,24 @@ package barmanagement;
  * Cette classe est une classe fille de Humain.
  * Elle possède toute les méthodes et les paramètres de ce même type tel que
  * boire, offrir un verre, parler, payer, se présenter et un toString. 
- * @author Théo
+ * @author Lina & Théophile
  */
 public class Serveur extends Humain {
     float tailleBiceps,coeffCharme;
     String accessoire;
     int experienceBelote;
-    /*
+    
+    /**
      * Cette méthode est le constructeur du serveur. 
-     * Elle est exécutée à la création de l'objet et permet l'initialisation de l'objet. 
+     * Elle est exécutée à la création de l'objet et permet l'initialisation de l'objet.
+     * @param prenom
+     * @param nom
+     * @param sexe
+     * @param crie
+     * @param accessoire
+     * @param tailleBiceps
+     * @param coeffCharme
+     * @param experienceBelote
     */
     public Serveur(String prenom , String nom , String sexe , String crie, String accessoire, float tailleBiceps, float coeffCharme, int experienceBelote){
     	super(prenom,nom,sexe,crie,accessoire,100);
@@ -46,7 +55,7 @@ public class Serveur extends Humain {
     	return "<Serveur> "+this.getPrenom() + " (" + this.getAccessoire()+ ") : " + phrase;
     }
     
-    /*
+    /**
      * Cette méthode permet aux serveurs de payer.
      * @return : Retourne un boolean qui dit faux car les serveurs ne paie pas ses consommations. 
     */
@@ -55,14 +64,14 @@ public class Serveur extends Humain {
 	return false;
     }
     
-    /*
+    /*µ
      * Cette méthode permet aux serveurs d'offrir un verre à un client.
      * @param client : Stock le client auquel la patronne offre un verre
     */
     @Override
     public void offrir(Client client) {	
         System.out.println(this.parler("Tu veux quoi "+client.getPrenom()));
-  	System.out.println(client.parler("un verre de  "+client.boissonFavorite));
+  	System.out.println(client.parler("un verre de "+client.boissonFavorite));
   	client.alcoolemie += client.boissonFavorite.tauxAlcoolemie;
     }
     
@@ -76,7 +85,7 @@ public class Serveur extends Humain {
 	return this.getCri();
     }
     
-    /*
+    /**
      * Cette méthode permet aux serveurs de boire. 
      * @param consommation : Stock le paramètre de la boisson actuelle. 
     */
@@ -84,7 +93,7 @@ public class Serveur extends Humain {
     public void boire(Boisson consommation) {
 	Boisson boissonLegal = new Boisson("Eau", 0f,0f);
         if ( consommation != boissonLegal ){
-            this.parler("Désoler je ne peux pas boire ça, je ne bois que de l'eau pendant mon service et le jus d'orange me tourne à la tete ...");
+            this.parler("Désolé je ne peux pas boire ça, je ne bois que de l'eau pendant mon service et le jus d'orange me tourne à la tete ...");
         }
         else{
             this.parler("Cette eau est trop bonne !");

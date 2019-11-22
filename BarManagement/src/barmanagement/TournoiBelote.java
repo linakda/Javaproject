@@ -17,15 +17,15 @@ import java.util.List;
  */
 
 class TournoiBelote {
-    int coutInscription; // Cout par personne (x2 pour l'equipe)
+    int coutInscription; 
     int totalInscription;
-    boolean enCours;
-	
+    boolean enCours;	
     List <Equipe> equipes;
     int [] [] scores;
     int [] total;
     int [] classement;
 	
+    
     /**
      * Constructeur de la classe TournoiBelote.
      * Il permet de déclarer et d'initialiser les données membres de la classe.
@@ -55,86 +55,35 @@ class TournoiBelote {
         return false;
 	}
 	
-    /**
-     * Cette methode permet d'afficher le menu du jeu de belotte.
-     * Il permet les actions suivantes : créer les équipes, voir les joueurs 
-     * disponibles. 
-     */
-    public void menuBelotte(){
-        int  choix = 0;
-        Scanner sc = new Scanner(System.in);
-
-        while(true){
-        System.out.println("Que veux-tu faire ?");
-        System.out.println("1- Créer les équipes");
-        System.out.println("2- Voir les joueurs disponibles");
-        
-         try{
-            choix = Integer.parseInt(sc.nextLine()); //On choisit le num de l'action
-        }
-        catch(NumberFormatException e){
-            System.out.println("Entrez un entier s'il vous plait ");
-            continue;
-        }
-            if(choix < 0 || choix > 9 ){
-                System.out.println("Ce choix n'existe pas");
-                continue;
-            }
-            
-        switch(choix){
-
-            case 1:
-                continue;
- 
-            case 2 : 
-               System.out.print("brain"); //afficherJoueurDispo avec leur niveau de jeu
-                break;
-    }
-    }
- }
     
-    /**
-     * Cette methode permet d'afficher la table avec les joueurs actuellement en jeu.
-     * Les joueurs sont assis en face à face de sorte que les 2 voisins d'un
-     * joueurs soient les membres de l'équipe adverse.
-     */
-    public void voirLaTable(){
-  
-            System.out.println(equipes.get(0).joueur1.getPrenom() + "\t \t"+ equipes.get(1).joueur1.getPrenom());
-            System.out.println("-------------------");
-            System.out.println("\n -------------------");
-            System.out.println(equipes.get(1).joueur2.getPrenom() + "\t \t"+ equipes.get(0).joueur2.getPrenom());
-    
-   }
      
     /**
-     * Cette méthode permet de lancer  le tournoi de Belotte. 
+     * Cette méthode permet de commencer  le tournoi de Belotte. 
      * Pour ce faire,elle va lancer les matchs avec la methode "jouerlesMatches"
      * Elle traite également la fin du tournoi, avec la paie des gagnants et
      * de la patronne, ainsi que l'annonce des gagnants par le Barman. 
      */
-    public void lancerTournoi () {
+    public void tournoiDebut () {
         enCours = true;
         scores = new int [equipes.size ()] [equipes.size ()];
         total = new int [equipes.size ()];
         classement = new int [equipes.size ()];
         jouerLesMatches ();
-        Equipe gagnante = trouverEquipeGagnante ();
+        Equipe gagnante = quiGagne ();
         // 50% du total des inscriptions va aux vainqueurs
         //gagnante.joueur1.ajouterArgent (totalInscription / 4);
        // gagnante.joueur2.ajouterArgent (totalInscription / 4);	
         // Les autres 50% vont Ã  la patronne
         // patronne.ajouterArgent (totalInscription / 2); <=== COMME CA ?
-        System.out.println ("Fin du tournoi !");
-        voirLaTable();
-        System.out.println ("L'Equipe " + gagnante + " est victorieuse.");
-        System.out.println ("Félicitations aux joueurs " + gagnante.joueur1.getPrenom() + " et " + gagnante.joueur2.getPrenom());
+        System.out.println ("Et c'est la fin du tournoi les loulous !");
+        System.out.println ("L'Equipe " + gagnante + " est la gagnante.");
+        System.out.println ("Félicitations aux joueurs " + gagnante.joueur1.getPrenom() + " et " + gagnante.joueur2.getPrenom()+ "\n");
     }
         
     /**
-     * Cette méthode permet de lancer les matchs de belotte de manière 
+     * Cette méthode permet de lancer les matchs de belote de manière 
      * successive. 
-     * Ce fait à l'aide de PartieDeBelote, et le résultat est actalisé 
+     * Se fait à l'aide de JeuBelote, et le résultat est actualisé 
      * à chaque fin de match.La méthode gère également l'affichage de l'équipe
      * qui remporte le match, ainsi que l'augmentation de la cote de popularité
      * des vainqueurs. Enfin, elle actualise et affiche les scores.
@@ -143,8 +92,8 @@ class TournoiBelote {
 	for (int i = 0; i < equipes.size (); i ++) {
             for (int j = 0; j < equipes.size (); j ++) {
 		if (i != j && i <= j) {
-                    PartieDeBelote P = new PartieDeBelote (equipes.get (i), equipes.get (j));
-                    int [] points = P.jouer ();		
+                    JeuBelote partie = new JeuBelote (equipes.get (i), equipes.get (j));
+                    int [] points = partie.jouer ();		
                         if (points [0] > points [1]) {
 			// L'equipe i gagne
                             System.out.println ("	==> Equipe " + equipes.get (i) + " bat equipe " + equipes.get (j));			
@@ -217,23 +166,13 @@ class TournoiBelote {
      *Cette méthode permet de trouver l'équipe gagnante du tournoi. 
      *@return : Renvoie l'équipe en tête du classement
      */
-    private Equipe trouverEquipeGagnante () {
+    private Equipe quiGagne () {
         for (int i = 0; i < equipes.size (); i ++)
             if (classement [i] == 1)
 		return equipes.get(i);		
 	return null; 
     }
-	
-    /**
-     * Cette méthode permet d'afficher les équipes inscrites au tournoi. 
-     * Elle affiche les élements de la liste equipes.
-     * 
-    */	
-    public void equipesInscrites () {
-        for (int i = 0; i < equipes.size (); i ++)
-            System.out.println (equipes.get(i));
-    }
-	
+
     /**
      * Cet accessor permet d'obtenir le classement du tournoi. 
      * @param tab : copie du tableau des scores trié par ordre croissant
@@ -246,4 +185,16 @@ class TournoiBelote {
 		return tab.length - i;		
                 return -1;
     }
+    
+    /**
+     * Cette méthode permet d'afficher les équipes inscrites au tournoi. 
+     * Elle affiche les élements de la liste equipes.
+     * 
+    */	
+    public void equipesInscrites () {
+        for (int i = 0; i < equipes.size (); i ++)
+            System.out.println (equipes.get(i));
+    }
+	
+    
 }

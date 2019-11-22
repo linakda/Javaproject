@@ -964,7 +964,7 @@ public void menu()
         System.out.println("7- Voir les statistiques de votre personnage");
         System.out.println("8- Voir les statistiques de tout les clients et de vous meme");
         if(joueur.numTable == -1)
-            System.out.println("9- Assezyez-vous à une table");
+            System.out.println("9- Asseyez-vous à une table");
         else
             System.out.println("9- Levez vous de la table");
         System.out.println("10- Lancez un tournoi de belote");
@@ -1101,7 +1101,7 @@ public void menu()
                         this.joueur.parler("Je crois que j'ai pas assez de monnaie...");
                         System.out.println(this.barman.parler("Degage d'ici et que tu ne remettes pas un pied dans mon bar ! "));
                         this.patronne.exclure(this.joueur);
-                        System.out.println("Vous avez été virer du bar car vous n'aviez pas assez d'argent pour payer");
+                        System.out.println("Vous avez été viré(e) du bar car vous n'aviez pas assez d'argent pour payer... ");
                         this.joueur.baisserCotePopularite(5);
                         this.joueur.sauvegarder();
                         return;
@@ -1122,16 +1122,16 @@ public void menu()
                         while(fail){	
                             try{	
                                 for(int i = 0 ; i < this.tables.size() ; i ++ ) {                        
-                                    System.out.println("Table n°" + i + "("+this.tables.get(i).personne.size() +" personne(s) sont assise(s) à cette table)");
-                                    System.out.println("Sont assis à cette table :");
+                                    System.out.println("Table n°" + i + " ( "+this.tables.get(i).personne.size() +" personne(s) sont assise(s) à cette table) ");
+                                    System.out.println("Sont assis à cette table : ");
                                     for (int j = 0 ; j < this.tables.get(i).personne.size() ; j++){
                                         System.out.println(this.tables.get(i).personne.get(j).getPrenom());
                                     }
                                 }
-                                System.out.println("A quelle table voulez-vous vous aller ?");
+                                System.out.println("A quelle table voulez-vous aller ?");
                                 int choix1 = Integer.parseInt(scan.nextLine());
                                 if(choix1 < 0 || choix1 >= this.tables.size()){
-                                    System.out.println("Désoler, ce numero ne correspond à aucune table.");
+                                    System.out.println("Désolé, ce numero ne correspond à aucune table.");
                                     fail = true;
                                 }
                                 else{
@@ -1141,13 +1141,13 @@ public void menu()
                                         fail = false;
                                     }
                                 else{
-                                    System.out.println("Désoler, la table " + choix1 + " est remplie.");
+                                    System.out.println("Désolé, la table " + choix1 + " est remplie.");
                                     fail = true;
                                 }
                                 }
                             }
                             catch(NumberFormatException e){
-                                System.out.println("Saissier un entier s'il vous plait.");
+                                System.out.println("Saisisser un entier s'il vous plait.");
                                 fail = true;
                             }
                         }
@@ -1163,10 +1163,10 @@ public void menu()
                     System.out.println("--------------------------------------");
                     System.out.println("*    Création de tournoi de belote   *");
                     System.out.println("--------------------------------------");
-                    System.out.println(this.patronne.parler("Tournoi de belote !!! le coût d'inscription est de 10 e"));
-                    System.out.println(this.patronne.parler("*Placarde des affiches*"));
-                   // tournoiBelote.menuBelotte();
-                    System.out.println("Voulez-vous que le tournoi se créer automatiquement ?(o/n)");
+                    System.out.println(this.patronne.parler("Tournoi de BELOTE !!! 10€ l'inscription !  "));
+                    System.out.println(this.patronne.parler("* Placarde des affiches *"));
+                 
+                    System.out.println("Bienvenue, voulez-vous que le tournoi se crée automatiquement ? (o/n)");
                     reponse = scan.nextLine();
                     while(!reponse.equals("o") && !reponse.equals("n")){
                         System.out.println("Veuillez entrer \"o\" pour oui \"n\" pour non.");
@@ -1176,12 +1176,15 @@ public void menu()
                         TournoiBelote tournoiBeloteAuto = new TournoiBelote(10); //coût
                         tournoiBeloteAuto.inscrire(new Equipe("Equipe 1",this.joueur,clients.get(1)));
                         tournoiBeloteAuto.inscrire(new Equipe("Equipe 2",clients.get(2),clients.get(3)));
-                      //  tournoiBeloteAuto.inscrire(new Equipe("Equipe 3",clients.get(3),clients.get(4)));
-                        tournoiBeloteAuto.lancerTournoi();
+                        tournoiBeloteAuto.inscrire(new Equipe("Equipe 3",clients.get(4),clients.get(5)));
+                     //   tournoiBeloteAuto.inscrire(new Equipe("Equipe 4",clients.get(6),clients.get(7)));
+                        tournoiBeloteAuto.tournoiDebut();
                     }
                     else{
                         TournoiBelote tournoiBeloteAuto = new TournoiBelote(10); //coût
-                        System.out.println("Création équipe 1 ");
+                        System.out.println("--------------------------------------");
+                        System.out.println("*      Création Equipe 1             *");
+                        System.out.println("--------------------------------------");
                         boolean equipe = true;
                         int joueur1 = 0;
                         int joueur2 = 0;
@@ -1189,7 +1192,7 @@ public void menu()
                             System.out.println("Nom de l'équipe");
                             String nomEquipe = scan.nextLine();  
 /*-------------------CHOIX UTILISATEUR JOUEUR--------------------*/
-                            System.out.println("Voulez-vous être un joueur ? (o/n) ");
+                           /* System.out.println("Voulez-vous être un joueur ? (o/n) ");
                             reponse = scan.nextLine();
                             while(!reponse.equals("o") && !reponse.equals("n")){
                                  System.out.println("Veuillez entrer \"o\" pour oui \"n\" pour non.");
@@ -1198,9 +1201,9 @@ public void menu()
     
                             if(reponse.equals("o")){ //cas client 
                                System.out.print("Ok"); //Code pour que l'utilisateur soit Joueur 1 
-                            }
+                            }*/
 /*-------------------CHOIX J1 si utilisateur non joueur--------------------*/
-                            else {
+                           // else {
                             System.out.println("Premier joueur : Est-ce un client ou un serveur ? (c/s) ");
                             reponse = scan.nextLine();
                             while(!reponse.equals("c") && !reponse.equals("s")){
@@ -1218,7 +1221,7 @@ public void menu()
                                         fail = false;
                                         }
                                     catch(IndexOutOfBoundsException e){
-                                        System.out.println("Désoler, ce numero ne correspond à aucun client");
+                                        System.out.println("Désolé, ce numero ne correspond à aucun client");
                                         fail = true;
                                     }
                                 }
@@ -1241,7 +1244,7 @@ public void menu()
                                                 fail = false;
                                                 }
                                             catch(IndexOutOfBoundsException e){
-                                                System.out.println("Désoler, ce numero ne correspond à aucun serveur");
+                                                System.out.println("Désolé, ce numero ne correspond à aucun serveur");
                                                 fail = true;
                                             }
                                         }
@@ -1251,11 +1254,11 @@ public void menu()
                                         } 
                                             }
                              }
-                                else System.out.print("Désoler ce serveur ne peux pas jouer, il est le seul en service !");
+                                else System.out.print("Désolé ce serveur ne peux pas jouer, il est le seul en service !");
                             }
-                            }
+                           // }
    /*-------------------CHOIX J2--------------------*/
-                            System.out.println("Veuillez choissir le co-equipier : est-ce un client ou un serveur ? (c/s)");
+                            System.out.println("Veuillez choisir le co-equipier : est-ce un client ou un serveur ? (c/s)");
                             reponse = scan.nextLine();
                             while(!reponse.equals("c") && !reponse.equals("s")){
                                  System.out.println("Veuillez entrer \"c\" pour client \"s\" pour serveur.");
@@ -1272,7 +1275,7 @@ public void menu()
                                         fail = false;
                                         }
                                     catch(IndexOutOfBoundsException e){
-                                        System.out.println("Déosler, ce numero ne correspond à aucun client");
+                                        System.out.println("Déoslé, ce numero ne correspond à aucun client");
                                         fail = true;
                                     }
                                 }
@@ -1296,7 +1299,7 @@ public void menu()
                                         fail = false;
                                         }
                                     catch(IndexOutOfBoundsException e){
-                                        System.out.println("Désoler, ce numero ne correspond à aucun serveur");
+                                        System.out.println("Désolé, ce numero ne correspond à aucun serveur");
                                         fail = true;
                                     }
                                 }
@@ -1306,15 +1309,17 @@ public void menu()
                                 } 
                                     }
                              }
-                                else System.out.print("Désoler ce serveur ne peux pas jouer, il est le seul en service !");
+                                else System.out.print("Oula ce serveur ne peux pas jouer, il est le seul en service !");
                             }
                             tournoiBelote.inscrire(new Equipe(nomEquipe,clients.get(joueur1),clients.get(joueur2)));
                              
 /***************Creation equipe 2*************************/
 
-                        System.out.println("Création équipe 2 ");                     
+                        System.out.println("--------------------------------------");
+                        System.out.println("*      Création Equipe 2             *");
+                        System.out.println("--------------------------------------");                    
                         while(equipe){
-                            System.out.println("Nom de l'équipe");
+                            System.out.println("Nom de l'équipe : ");
                             String nomEquipe2 = scan.nextLine();  
 
 /*-------------------CHOIX J1 si utilisateur non joueur--------------------*/       
@@ -1335,7 +1340,7 @@ public void menu()
                                         fail = false;
                                         }
                                     catch(IndexOutOfBoundsException e){
-                                        System.out.println("Désoler, ce numero ne correspond à aucun client.");
+                                        System.out.println("Désolé, ce numero ne correspond à aucun client.");
                                         fail = true;
                                     }
                                 }
@@ -1358,7 +1363,7 @@ public void menu()
                                                 fail = false;
                                                 }
                                             catch(IndexOutOfBoundsException e){
-                                                System.out.println("Désoler, ce numero ne correspond à aucun serveur.");
+                                                System.out.println("Désolé, ce numero ne correspond à aucun serveur.");
                                                 fail = true;
                                             }
                                         }
@@ -1368,11 +1373,11 @@ public void menu()
                                         } 
                                             }
                              }
-                                else System.out.print("Désoler ce serveur ne peux pas jouer, il est le seul en service !");
+                                else System.out.print("Oula ce serveur ne peux pas jouer, il est le seul en service !");
                             }
                             
    /*-------------------CHOIX J2--------------------*/
-                            System.out.println("Choissisez le co-equipier : est-ce un client ou un serveur ? (c/s)");
+                            System.out.println("Choisissez le co-equipier : est-ce un client ou un serveur ? (c/s)");
                             reponse = scan.nextLine();
                             while(!reponse.equals("c") && !reponse.equals("s")){
                                  System.out.println("Veuillez entrer \"c\" pour client \"s\" pour serveur.");
@@ -1389,7 +1394,7 @@ public void menu()
                                         fail = false;
                                         }
                                     catch(IndexOutOfBoundsException e){
-                                        System.out.println("Désoler, ce numero ne correspond à aucun client");
+                                        System.out.println("Désolé, ce numero ne correspond à aucun client");
                                         fail = true;
                                     }
                                 }
@@ -1413,7 +1418,7 @@ public void menu()
                                         fail = false;
                                         }
                                     catch(IndexOutOfBoundsException e){
-                                        System.out.println("Désoler, ce numero ne correspond à aucun serveur");
+                                        System.out.println("Désolé, ce numero ne correspond à aucun serveur");
                                         fail = true;
                                     }
                                 }
@@ -1423,11 +1428,14 @@ public void menu()
                                 } 
                                     }
                              }
-                                else System.out.print("Désoler ce serveur ne peux pas jouer, il est le seul en service !");
+                                else System.out.print("Désolé ce serveur ne peux pas jouer, il est le seul en service !");
                             }
                              tournoiBeloteAuto.inscrire(new Equipe(nomEquipe2,clients.get(joueur1),clients.get(joueur2)));
                        
-/*********************Creation d'une nouvelle equipe**********************/                            
+/*********************Creation d'une nouvelle equipe**********************/ 
+                        System.out.println("--------------------------------------");
+                        System.out.println("*      Création d'une autre equipe   *");
+                        System.out.println("--------------------------------------");
                             System.out.println("Voulez-vous créer une autre équipe?(o/n)");
                             reponse = scan.nextLine();
                             while(!reponse.equals("o") && !reponse.equals("n")){
@@ -1439,10 +1447,10 @@ public void menu()
                                 equipe = false;
                         }
                        
-                        tournoiBelote.lancerTournoi();
+                        tournoiBelote.tournoiDebut();
                     }
-                    break;
                    }
+                    break;
                 case 11 : 
                     this.declarerSaFlamme();     
                     this.joueur.baisserCotePopularite(1);
