@@ -60,9 +60,11 @@ class TournoiBelote {
      * Il permet les actions suivantes : créer les équipes, voir les joueurs 
      * disponibles. 
      */
-    public void menuBelotte(){
+    /*public void menuBelotte(){
     int  choix = 0;
     Scanner sc = new Scanner(System.in);
+      List<Client> clients = new LinkedList<>();
+    
 
     while(true){
         System.out.println("Que veux-tu faire ?");
@@ -87,11 +89,13 @@ class TournoiBelote {
                 continue;
  
             case 2 : 
-               System.out.print("brain"); //afficherJoueurDispo avec leur niveau de jeu
+               for (int i=0 ; i < clients.size() ; i++) {
+                   clients.cre
+               }      
                 break;
     }
     }
- }
+ }*/
     
     /**
      * Cette methode permet d'afficher la table avec les joueurs actuellement en jeu.

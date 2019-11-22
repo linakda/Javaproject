@@ -87,7 +87,7 @@ public final class Bar {
         float porteMonnaie = 0;
         boolean numBoissonFail = true;
 
-        System.out.println("--------------------------------------");
+        
         System.out.println("*         Créer votre joueur         *");
         System.out.println("--------------------------------------");
         System.out.print("Nom : ");  
@@ -165,7 +165,7 @@ public final class Bar {
      */
     public void creationPatronne(){
     	System.out.println("--------------------------------------");
-    	System.out.println("*       Création de la patronne       ");
+    	System.out.println("*       Création de la patronne      *");
     	System.out.println("--------------------------------------");
     	String nom,prenom,cri,reponse;
         System.out.println("Voulez-vous que la Patronne soit créée automatiquement ?(o/n)");
@@ -744,7 +744,7 @@ public final class Bar {
     * Elle permet également de déclarer sa flamme au client séletionné et de
     * se faire rejeter par ce dernier. 
     */
-   public void presentationComplementaire() {
+   public void declarerSaFlamme() {
         int choix ;
         Client destinataire = null ;
         Scanner sc = new Scanner(System.in);
@@ -1430,9 +1430,9 @@ public void menu()
                     }
                     break;
                    }
-                  
+                  break;
                 case 9 : 
-                    this.presentationComplementaire();            
+                    this.declarerSaFlamme();            
                     break ;        
                 default:
                     break;

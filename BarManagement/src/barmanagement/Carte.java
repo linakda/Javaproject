@@ -33,13 +33,17 @@ class Carte {
 	valeur = v;
        valeurcarte = vc ;
        valeuratout = va ;
+       String [] ordreNormal = new String [] {"7", "8", "9", "Valet", "Dame", "Roi", "10", "As"};
+       String [] ordreAtout = new String [] {"7", "8", "Dame", "Roi", "10", "As", "9", "Valet"}; 
+       int [] cartecal = new int [] {0,0,0,2,3,4,10,11};
+       int [] atoutval = new int [] {0,0,14,20,3,4,10,11};
     }
     
     /**
      *Cette méthode renvoie la force de la carte selon la couleur d'atout
      *@param atout : Stock la force d'atout
      */        
-    public int getValue (String atout) {
+   /* public int getValue (String atout) {
 	String [] ordreNormal = new String [] {"7", "8", "9", "Valet", "Dame", "Roi", "10", "As"};
 	String [] ordreAtout = new String [] {"7", "8", "Dame", "Roi", "10", "As", "9", "Valet"}; 
         int [] cartecal = new int [] {0,0,0,2,3,4,10,11};
@@ -48,6 +52,14 @@ class Carte {
 	if (couleur.equals (atout))
             return Arrays.asList (ordreAtout).indexOf (valeur) + 10; // + 10, parce que les atouts battent toutes les cartes non-atout
         return Arrays.asList (ordreNormal).indexOf (valeur);
+    }*/
+    
+    public int getValeurAtout (){
+        return this.valeuratout;
+    }
+    
+    public int getValeurCarte (){
+        return this.valeurcarte;
     }
     
     /*
