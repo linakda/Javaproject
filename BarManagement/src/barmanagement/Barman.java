@@ -27,7 +27,7 @@ public class Barman extends Humain{
      */
     public Barman (String prenom , String nom , String sexe , String crie, String accessoire){
         super(prenom,nom,sexe,crie,accessoire,1000);
-	this.finDePhrase = "coco";
+	this.finDePhrase = "coco.";
     }
     
     /**
@@ -37,7 +37,7 @@ public class Barman extends Humain{
     */
     @Override
     public String parler(String phrase){
-        return "<Barman> "+this.getPrenom() +" : "+ phrase + " " + this.finDePhrase;
+        return "<Barman> "+this.getPrenom() +" (" +this.getAccessoire()+") : "+ phrase + " " + this.finDePhrase;
     }
     
     /**

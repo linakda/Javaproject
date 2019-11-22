@@ -60,7 +60,7 @@ public class Fournisseur extends Humain{
     */
     @Override
     public String parler(String phrase) {
-	return "<Fournisseur> "+this.getPrenom()+" : "+phrase;
+	return "<Fournisseur> "+this.getPrenom()+" ("+ this.getAccessoire() + ") : "+phrase;
     }
     
     /*
@@ -86,6 +86,6 @@ public class Fournisseur extends Humain{
      * @param barman : Stock le nom du barman à qui la commande va être livré
      */
     public void livrer(Boisson boissonLivre,Barman barman){
-	System.out.println(this.parler("Salut "+barman.getNom()+" je te ramène ta commande, 5 verre de"+boissonLivre.getNom() +",c'est ça ?"));
+	System.out.println(this.parler("Salut "+barman.getNom()+" je te ramène ta commande, 5 verre de "+boissonLivre.getNom() +",c'est ça ?"));
     }
 }

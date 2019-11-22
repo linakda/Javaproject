@@ -61,10 +61,10 @@ class TournoiBelote {
      * disponibles. 
      */
     public void menuBelotte(){
-    int  choix = 0;
-    Scanner sc = new Scanner(System.in);
+        int  choix = 0;
+        Scanner sc = new Scanner(System.in);
 
-    while(true){
+        while(true){
         System.out.println("Que veux-tu faire ?");
         System.out.println("1- Créer les équipes");
         System.out.println("2- Voir les joueurs disponibles");

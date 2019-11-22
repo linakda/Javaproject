@@ -5,6 +5,8 @@
  */
 package barmanagement;
 
+import java.util.Objects;
+
 /**
  * Cette classe est la classe mère Humain. 
  * Elle possède les méthodes qui permet d'initialiser un "humain", 
@@ -15,7 +17,7 @@ public abstract class Humain {
 
     String nom, accessoire;
     private String prenom, cri, sexe ;
-    int popularite = 0 ;
+    int popularite ;
     private float porteMonnaie;
     
     /**
@@ -35,28 +37,30 @@ public abstract class Humain {
        this.porteMonnaie = porteMonnaie;
        this.accessoire=accessoire;
    }
-   
-   /**
-    * Cette méthode permet de vérifier si deux humains sont identiques ou non
-    * @param  humain1 : Stock notre type humain
-    * @return un boolean permettant de voir si la condition eest vérifié ou non
-    */
-    @Override
-    public boolean equals(Object humain1){
-        Humain humain2;
-        humain2 = (Humain) humain1;
-        if(this.nom.equals(humain2.nom) && this.prenom.equals(humain2.prenom) && this.cri.equals(humain2.cri))
-	   return true;
-        return false;   
-   }
+
+
+    /**
+     * Cette méthode permet de vérifier si deux humains sont identiques ou non
+     * @param  humain1 : Stock notre type humain
+     * @return un boolean permettant de voir si la condition eest vérifié ou non
+     */
+    //@Override
+    /**public boolean equals(Object humain1){
+    Humain humain2;
+    humain2 = (Humain) humain1;
+    if(this.nom.equals(humain2.nom) && this.prenom.equals(humain2.prenom) && this.cri.equals(humain2.cri))
+    return true;
+    return false;
+     * @return }*/
     
-   /**
-    * Ces methodes vont donner tous les accesseur et mutateurs
-    * 
-     * @return 
-    */
-    public String getNom(){
-       return this.nom ;
+
+    /**
+     * Ces methodes vont donner tous les accesseur et mutateurs
+     *
+     * @return
+     */
+    public String getNom() {
+        return this.nom ;
     }
    
     public String getPrenom(){
@@ -109,6 +113,7 @@ public abstract class Humain {
     public void setSexe(String sexe){
        this.sexe = sexe ;
     }
+    
    
    
    /**

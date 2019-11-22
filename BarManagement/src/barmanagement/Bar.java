@@ -59,7 +59,7 @@ public final class Bar {
     	creationServeur();
     	creationJoueur();
         
-    	this.name = "Chez " + this.patronne.getNom();
+    	this.name = "Chez " + this.patronne.getPrenom();
         this.clients.add(this.joueur);
     	tables = new LinkedList<>();
         for( int i = 0 ; i < nbTables ; i++ )
@@ -82,7 +82,7 @@ public final class Bar {
      * le sexe, la boisson fav1 et la boisson fav2.
     */
     public void creationJoueur(){
-        String name,surname,cri,sexe,num, accessoire;
+        String nomJoueur,surname,cri,sexe,num, accessoire;
         int indiceBoissonFavorite = 0,indiceBoissonSecour = 0, popularite = 0, experienceBelote = 0;
         float porteMonnaie = 0;
         boolean numBoissonFail = true;
@@ -93,7 +93,7 @@ public final class Bar {
         System.out.print("Nom : ");  
         surname = sc.nextLine();
         System.out.print("\nPrénom : ");
-        name = sc.nextLine();
+        nomJoueur = sc.nextLine();
         System.out.print("\nCri significatif : ");
         cri = sc.nextLine();
         System.out.println("Choissiez votre accessoire ! ");
@@ -155,7 +155,7 @@ public final class Bar {
                     numBoissonFail = true;
                 }
             }
-            joueur = new Client(name ,surname,sexe ,cri, accessoire ,porteMonnaie, popularite, experienceBelote, boissons.get(indiceBoissonFavorite),boissons.get(indiceBoissonSecour));
+            joueur = new Client(nomJoueur ,surname,sexe ,cri, accessoire ,porteMonnaie, popularite, experienceBelote, boissons.get(indiceBoissonFavorite),boissons.get(indiceBoissonSecour));
     }
     
     /**
@@ -165,12 +165,11 @@ public final class Bar {
      */
     public void creationPatronne(){
     	System.out.println("--------------------------------------");
-    	System.out.println("*       Création de la patronne       ");
+    	System.out.println("*       Création de la patronne      *");
     	System.out.println("--------------------------------------");
     	String nom,prenom,cri,reponse;
         System.out.println("Voulez-vous que la Patronne soit créée automatiquement ?(o/n)");
         reponse = sc.nextLine();
-	System.out.println(reponse);
         while(!reponse.equals("o") && !reponse.equals("n")){
             System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
             reponse = sc.nextLine();
@@ -201,7 +200,6 @@ public final class Bar {
     	String nom,prenom,cri,reponse;
         System.out.println("Voulez-vous que le Fournisseur soit créé automatiquement ?(o/n)");
         reponse = sc.nextLine();
-	System.out.println(reponse);
         while(!reponse.equals("o") && !reponse.equals("n")){
             System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
             reponse = sc.nextLine();
@@ -232,7 +230,6 @@ public final class Bar {
     	String nom,prenom,cri,reponse;
     	System.out.println("Voulez-vous que le barman soit créé automatiquement ?(o/n)");
         reponse = sc.nextLine();
-	System.out.println(reponse);
 	while(!reponse.equals("o") && !reponse.equals("n")){
             System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
             reponse = sc.nextLine();
@@ -262,7 +259,6 @@ public final class Bar {
     	System.out.println("Nous allons maintenant créé les boissons");
     	System.out.println("Voulez-vous ajouter des boissons à la carte ?(o/n)");
 	reponse = sc.nextLine();
-	System.out.println(reponse);
 	while(!reponse.equals("o") && !reponse.equals("n")){
             System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
             reponse = sc.nextLine();
@@ -305,9 +301,9 @@ public final class Bar {
      */
     public void creationBoissonSansAlcool(){
         float prix = 0,prixAchat = 0;
-    	String name;
+    	String nomBoisson;
     	System.out.println("Nom de votre boisson ?");
-    	name = sc.nextLine();
+    	nomBoisson = sc.nextLine();
     	boolean conversionFail = true;
     	while(conversionFail){
             try{
@@ -332,7 +328,7 @@ public final class Bar {
         	System.out.println("Veuillez entrer un float");
             }
     	}
-    	boissons.add(new Boisson(name,prix,prixAchat));
+    	boissons.add(new Boisson(nomBoisson,prix,prixAchat));
     }
     
      /**
@@ -344,10 +340,10 @@ public final class Bar {
      */
     public void creationBoissonAvecAlcool(){
         float prix = 0,prixAchat = 0, tauxAlcoolemie = 0;
-    	String name;
+    	String nomBoisson;
     	boolean conversionFail = true;
     	System.out.println("Nom de votre boisson ?");
-    	name = sc.nextLine();
+    	nomBoisson = sc.nextLine();
     	while(conversionFail){
             try{
                 conversionFail = false;
@@ -383,7 +379,7 @@ public final class Bar {
         	System.out.println("Veuillez entrer un float");
             }
     	}
-    	boissons.add(new Boisson(name,prix,tauxAlcoolemie));
+    	boissons.add(new Boisson(nomBoisson,prix,tauxAlcoolemie));
     }
     
     /**
@@ -392,16 +388,16 @@ public final class Bar {
      * prédéfinies comme suit : nom, prix, prix achat, et taux d'alcoolemie.
      */
     public void creationBoissonParDefaut(){
-        boissons.add( new Boisson("Eau", 0f,0f) );
-    	boissons.add( new Boisson("Virgin Mojito", 4f,2f) );
+        boissons.add( new Boisson("Eau", 1f,0f) );
+    	boissons.add( new Boisson("Virgin Mojito", 5f,2f) );
     	boissons.add( new Boisson("Chocolat chaud",  3.5f,1.f) );
-    	boissons.add( new Boisson("Jus d'orange", 3f,1.5f) );
+    	boissons.add( new Boisson("Jus d'orange", 2.5f,1.5f) );
     	boissons.add( new Boisson ("Mojito", 5f ,2f, 4.5f ));
-    	boissons.add( new Boisson ("Vodka", 7.5f ,3f, 5f ));
-    	boissons.add( new Boisson ("Bière", 2.5f ,2f, 4f) );
-    	boissons.add( new Boisson ("Monaco", 3.5f ,2f ,3.5f) );
-    	boissons.add( new Boisson ("Wisky", 2.5f, 1f, 3f) );
-    	boissons.add( new Boisson ("Ricard", 3.5f ,2f, 2.5f) );
+    	boissons.add( new Boisson ("Vodka", 8f ,3f, 5f ));
+    	boissons.add( new Boisson ("Bière", 5f ,2f, 4f) );
+    	boissons.add( new Boisson ("Monaco", 3f ,2f ,3.5f) );
+    	boissons.add( new Boisson ("Wisky", 8f, 1f, 3f) );
+    	boissons.add( new Boisson ("Ricard", 2f ,2f, 2.5f) );
     	
     }
     
@@ -448,13 +444,13 @@ public final class Bar {
      * la boisson fav1 et la boisson fav2. 
     */
     public void creationClient(){
-    	String name,surname,cri,sexe,num,accessoire,exp;
+    	String nomClient,surname,cri,sexe,num,accessoire,exp;
     	float porteMonnaie = 0;
     	int indiceBoissonFavorite = 0,indiceBoissonSecour = 0, popularite = 0, experienceBelote = 0;
     	System.out.print("Nom : ");
     	surname = sc.nextLine();
     	System.out.print("\nPrénom : ");
-    	name = sc.nextLine();
+    	nomClient = sc.nextLine();
     	System.out.print("\nCri significatif : ");
     	cri = sc.nextLine();
         System.out.println("Choissiez un accessoire pour le client");
@@ -483,7 +479,7 @@ public final class Bar {
             try
             {
         	conversionFail = false;
-    		System.out.println("Combien d'argent a " + name +" dans son porte monnaie ?");
+    		System.out.println("Combien d'argent a " + nomClient +" dans son porte monnaie ?");
         	porteMonnaie = Float.parseFloat(sc.nextLine());
             }catch(NumberFormatException e){
         	conversionFail = true;
@@ -534,7 +530,7 @@ public final class Bar {
         	numBoissonFail = true;
             }
     	}
-    	clients.add(new Client(name ,surname,sexe ,cri, accessoire,porteMonnaie,popularite, experienceBelote,boissons.get(indiceBoissonFavorite),boissons.get(indiceBoissonSecour)));
+    	clients.add(new Client(nomClient ,surname,sexe ,cri, accessoire,porteMonnaie,popularite, experienceBelote,boissons.get(indiceBoissonFavorite),boissons.get(indiceBoissonSecour)));
     }
     /** 
      * Cette methode permet de créer les clients du bar de manière automatique en 
@@ -675,7 +671,7 @@ public final class Bar {
     * cri significatif, taille du biceps et charme. 
     */
     public void creationServeurParDefaut(){
-       serveurs.add( new Serveur("Jessica","Day", "femme", "ouaaahhhh","petite queue de playmate", 20 ,90,0) );
+       serveurs.add( new Serveur("Jessica","Day", "femme", "ouaaahhhh","cravate rose", 20 ,90,0) );
        serveurs.add( new Serveur("Nick","Miller", "homme","whhhraaaaaaooooo","cravate noire", 95 , 25,2) );
    }
    
@@ -744,20 +740,20 @@ public final class Bar {
     * Elle permet également de déclarer sa flamme au client séletionné et de
     * se faire rejeter par ce dernier. 
     */
-   public void presentationComplementaire() {
+   public void declarerSaFlamme() {
         int choix ;
         Client destinataire = null ;
-        Scanner sc = new Scanner(System.in);
+        Scanner sc2 = new Scanner(System.in);
         
         System.out.println("Que voulez-vous dire a cette personne ?");
-        String text = sc.nextLine();
+        String text = sc2.nextLine();
         System.out.println("Voici les différents clients du bar !") ;
         System.out.println("A qui voulez-vous déclarer votre flamme ?");
         this.clients();
         boolean fail = true;
         while(fail){
             try{
-                choix = Integer.parseInt(sc.nextLine());
+                choix = Integer.parseInt(sc2.nextLine());
                 if(choix == clients.size()-1)
                 {
                     System.out.println("Désoler, ce numéro ne correspond à aucun client.");
@@ -794,7 +790,6 @@ public final class Bar {
  * @param consomateur : client qui va consommer la boisson
  */
 public void commanderServeur(Client payeur,Client consomateur){
-    
     String phrase = null ;
     System.out.println("Veuillez choisir un serveur avec le numéro.");
     this.serveurs();
@@ -887,23 +882,17 @@ public void commanderServeur(Client payeur,Client consomateur){
  */
 public void commanderBarman(Client payeur,Client consomateur){
         String phrase;
-    	
-        System.out.println(this.barman.parler("Qu'est-ce qu'il te faut ? ")); 
-            
+        System.out.println(this.barman.parler("Qu'est-ce qu'il te faut ? "));
         if(!payeur.equals(consomateur)){
             System.out.println(payeur.parler("Qu'est-ce que je peux t'offrir "+consomateur.getPrenom()+" ?"));
             System.out.println(consomateur.parler("Alors un bon verre de "+consomateur.boissonFavorite.getNom() +" s'il te plaît."));
         }
-        
         phrase = "Barman ,un verre de "+consomateur.boissonFavorite.getNom()+" ! ";
-        
         if(!payeur.equals(consomateur)){
             phrase += " pour ";
             phrase += consomateur.getPrenom();
         }
-        
         System.out.println(payeur.parler(phrase));
-        
         if(this.barman.disponible(consomateur.boissonFavorite)){
             System.out.println(this.barman.parler("Voici votre verre, bonne dégustation"));
             consomateur.boire(consomateur.boissonFavorite);
@@ -948,66 +937,75 @@ public void commanderBarman(Client payeur,Client consomateur){
     }
     
     /**
-     * 
      * Cette methode constitue le "menu du jeu", elle permet de gérer l'interface 
      * utilisateur et d'appeler les différentes méthodes du menu.
      * Ce dernier réalise les actions suivantes :  se présenter, offrir un verre, boire un verre
      * payer la tournée, payer l'addition, voir ses statistiques, déclarer sa flamme,
      * participer au tournoi de belotte, s'assoir à une table, se lever de la table
      * et enfin quitter le jeu. 
-     * 
      */
 public void menu()
 {
     int  choix;
     boolean fail;
     Client destinataire = null;
-    Scanner sc = new Scanner(System.in);
+    Scanner scan = new Scanner(System.in);
 
     while(true){
-        System.out.println("Que voulez-vous faire ?");
-        System.out.println("1- Se présenter");
-        System.out.println("2- Offrir un verre");
-        System.out.println("3- Boire un verre");
-        System.out.println("4- Payer la tournée");
-        System.out.println("5- Payer l'addition");
-        System.out.println("6- Voir les statistiques de mon personnage");
-        
+        System.out.println("Choississez l'action que vous voulez réaliser.");
+        System.out.println("1- Présentez-vous");
+        System.out.println("2- Présentez-vous d'une autre manière");
+        System.out.println("3- Offrez un verre");
+        System.out.println("4- Buvez un verre");
+        System.out.println("5- Payez la tournée");
+        System.out.println("6- Payez l'addition");
+        System.out.println("7- Voir les statistiques de votre personnage");
         if(joueur.numTable == -1)
-            System.out.println("7- S'asseoir à une table");
+            System.out.println("8- Assezyez-vous à une table");
         else
-            System.out.println("7- Se lever de la table");
-        
-        System.out.println("8- Tournoi de belote");
-        System.out.println("9- Déclarer sa flamme à quelqu'un");
-        System.out.println("0- Exit");
-
+            System.out.println("8- Levez vous de la table");
+        System.out.println("9- Lancez un tournoi de belote");
+        System.out.println("10- Déclarez votre flamme à quelqu'un");
+        System.out.println("11- Allez à l'ATM");
+        System.out.println("0- Quittez le bar");
         try{
-            choix = Integer.parseInt(sc.nextLine()); //On choisit le num de l'action
+            choix = Integer.parseInt(scan.nextLine()); //On choisit le num de l'action
         }
         catch(NumberFormatException e){
             System.out.println("Entrez un entier s'il vous plait ");
             continue;
         }
-            if(choix < 0 || choix > 9 ){
-                System.out.println("Ce choix n'existe pas");
-                continue;
-            }
+        if(choix < 0 || choix > 11 ){
+            System.out.println("Ce choix n'existe pas");
+            continue;
+        }
             
-           
         switch(choix){
             case 0:
-                System.out.println("Oh tu nous quittes déjà ! A bientôt !");
+                float additionJoueur = this.joueur.addition;
+                if (additionJoueur != 0 ){
+                    System.out.println(this.patronne.parler("Eh tu va où comme ça, il faut payer ton addition avant de quitter le bar !"));
+                }
+                else{
+                this.joueur.sauvegarder();
+                System.out.println("Ta partie a été sauvegardé, n'hésite pas à consulter le fichier afin de voir tes statistiques lors de cette partie et essaie de les améliorer la prochaine fois !");
                 return;
+                }
+                break;
             case 1:
                 System.out.println(joueur.sePresenter());
+                this.joueur.monterCotePopularite(1);
                 break;
-            case 2:					
+            case 2: 
+                System.out.println(joueur.sePresenterComplementaire());
+                this.joueur.monterCotePopularite(1);
+                break;
+            case 3:					
                 this.clients();
                 fail = true;
                 while(fail){
                     try{
-                        choix = Integer.parseInt(sc.nextLine());
+                        choix = Integer.parseInt(scan.nextLine());
                         if(choix == clients.size()-1){
                             System.out.println("Désoler, ce numéro ne correspond à aucun client");
                             fail = true ;
@@ -1028,34 +1026,35 @@ public void menu()
                         fail = true;
                     }                     
                     }
-                    System.out.println("Voulez-vous commander au barman ou a un serveur ?(barman/serveur)");
-                    String reponse = sc.nextLine();	
-                    while(!reponse.equals("barman") && !reponse.equals("serveur")){
+                    System.out.println("Voulez-vous commander au barman ou a un serveur ?(b/s)");
+                    String reponse = scan.nextLine();	
+                    while(!reponse.equals("b") && !reponse.equals("s")){
                         System.out.println("Veuillez entrez serveur ou barman.");
-                        reponse = sc.nextLine();
+                        reponse = scan.nextLine();
                     }
-                    if(reponse.equals("serveur")){
+                    if(reponse.equals("s")){
                         this.commanderServeur(this.joueur,destinataire);
                     }
                     else{
                         this.commanderBarman(this.joueur,destinataire);
                     }
+                    this.joueur.monterCotePopularite(2);
                     break;
-                case 3:
-                    System.out.println("Voulez-vous commander au barman ou a un serveur ?(barman/serveur)");
-                    reponse = sc.nextLine();	
-                    while(!reponse.equals("barman") && !reponse.equals("serveur")){
+                case 4:
+                    System.out.println("Voulez-vous commander au barman ou a un serveur ?(b/s)");
+                    reponse = scan.nextLine();	
+                    while(!reponse.equals("b") && !reponse.equals("s")){
                         System.out.println("Veuillez entrer serveur ou barman.");
-                        reponse = sc.nextLine();
+                        reponse = scan.nextLine();
                     }
-                    if(reponse.equals("serveur")){
+                    if(reponse.equals("s")){
                         this.commanderServeur(this.joueur,this.joueur);
                     }
                     else{
                         this.commanderBarman(this.joueur,this.joueur);
                     }
                     break;
-                case 4:
+                case 5:
                     System.out.println(this.barman.parler("TOURNEE GENERAL "));
                     System.out.println(this.patronne.parler("Tout va bien, les affaires reprennent"));
                     for(int i = 0 ;i < clients.size() ; i++){
@@ -1064,46 +1063,54 @@ public void menu()
                     for(int i = 0 ;i < clients.size() ; i++){
                         this.commanderBarman(this.joueur,clients.get(i));
                     }
+                    this.joueur.monterCotePopularite(5);
                     break;
-                case 5:
-                    System.out.println("Voulez-vous payer l'addition au barman ou a un serveur ?(barman/serveur)");
-                    String reponse1 = sc.nextLine();	
+                case 6:
+                    System.out.println("Voulez-vous payer l'addition au barman ou a un serveur ?(b/s)");
+                    String reponse1 = scan.nextLine();	
                     float addition = this.joueur.addition;
-                    while(!reponse1.equals("barman") && !reponse1.equals("serveur")){
-                        System.out.println("Veuillez entrer serveur ou barman.");
-                        reponse1 = sc.nextLine();
+                    while(!reponse1.equals("b") && !reponse1.equals("s")){
+                        System.out.println("Veuillez entrer b/s");
+                        reponse1 = scan.nextLine();
                     }
-                    if(reponse1.equals("serveur")){
+                    if(reponse1.equals("s")){
                         System.out.println("Veuillez choissir un seveur( avec le numero)");
                         this.serveurs();
-                        int numServeur = Integer.parseInt(sc.nextLine());
+                        int numServeur = Integer.parseInt(scan.nextLine());
                         while(numServeur < 0 || numServeur >= serveurs.size()){
                             System.out.println("Numero de serveur invalide \nEntrer un numéro valide");
-                            numServeur = Integer.parseInt(sc.nextLine());
+                            numServeur = Integer.parseInt(scan.nextLine());
                         }
                         System.out.println(this.joueur.parler("L'addition s'il vous plaît"));
                         System.out.println(this.serveurs.get(numServeur).parler("ça vous fera " + this.joueur.addition + " s'il vous plaît"));
+                        System.out.println(this.joueur.parler("Et voila !"));
                     }
                     else{
                         System.out.println(this.joueur.parler("L'addition s'il vous plaît"));
                         System.out.println(this.barman.parler("ça vous fera " + this.joueur.addition));
+                        System.out.println(this.joueur.parler("Et voila ! "));
                     }
                     if(this.joueur.payer()){
                         this.caisse += addition;
                         System.out.println(this.barman.parler("Les bons comptes font les bons amis."));
                     }
                     else{
+                        this.joueur.parler("Je crois que j'ai pas assez de monnaie...");
                         System.out.println(this.barman.parler("Degage d'ici et que tu ne remettes pas un pied dans mon bar ! "));
-                        System.out.println("Vous avez été virer du bar car vous n'aviez pas assez d'argent pour payer");
                         this.patronne.exclure(this.joueur);
+                        System.out.println("Vous avez été virer du bar car vous n'aviez pas assez d'argent pour payer");
                         this.joueur.baisserCotePopularite(5);
+                        this.joueur.sauvegarder();
                         return;
                     }
+                    if (this.caisse > 100){
+                        this.patronne.recuperCaisse(this.caisse);
+                    }
                     break ;
-                case 6:
+                case 7:
                     System.out.println(this.joueur);
                     break ;
-                case 7 :
+                case 8:
                     fail = true;
                     if(joueur.numTable == -1){
                         while(fail){	
@@ -1116,7 +1123,7 @@ public void menu()
                                     }
                                 }
                                 System.out.println("A quelle table voulez-vous vous aller ?");
-                                int choix1 = Integer.parseInt(sc.nextLine());
+                                int choix1 = Integer.parseInt(scan.nextLine());
                                 if(choix1 < 0 || choix1 >= this.tables.size()){
                                     System.out.println("Désoler, ce numero ne correspond à aucune table.");
                                     fail = true;
@@ -1145,7 +1152,7 @@ public void menu()
                         this.joueur.numTable = -1;
                     }
                     break; 
-                case 8 :		
+                case 9:		
                     TournoiBelote tournoiBelote = new TournoiBelote(10);
                     System.out.println("--------------------------------------");
                     System.out.println("*    Création de tournoi de belote   *");
@@ -1154,10 +1161,10 @@ public void menu()
                     System.out.println(this.patronne.parler("*Placarde des affiches*"));
                    // tournoiBelote.menuBelotte();
                     System.out.println("Voulez-vous que le tournoi se créer automatiquement ?(o/n)");
-                    reponse = sc.nextLine();
+                    reponse = scan.nextLine();
                     while(!reponse.equals("o") && !reponse.equals("n")){
                         System.out.println("Veuillez entrer \"o\" pour oui \"n\" pour non.");
-                        reponse = sc.nextLine();
+                        reponse = scan.nextLine();
                     }
                     if(reponse.equals("o")){
                         TournoiBelote tournoiBeloteAuto = new TournoiBelote(10); //coût
@@ -1174,32 +1181,32 @@ public void menu()
                         int joueur2 = 0;
                         while(equipe){
                             System.out.println("Nom de l'équipe");
-                            String nomEquipe = sc.nextLine();  
+                            String nomEquipe = scan.nextLine();  
 /*-------------------CHOIX UTILISATEUR JOUEUR--------------------*/
                             System.out.println("Voulez-vous être un joueur ? (o/n) ");
-                            reponse = sc.nextLine();
+                            reponse = scan.nextLine();
                             while(!reponse.equals("o") && !reponse.equals("n")){
                                  System.out.println("Veuillez entrer \"o\" pour oui \"n\" pour non.");
-                                 reponse = sc.nextLine();
+                                 reponse = scan.nextLine();
                             }
-                            
+    
                             if(reponse.equals("o")){ //cas client 
                                System.out.print("Ok"); //Code pour que l'utilisateur soit Joueur 1 
                             }
 /*-------------------CHOIX J1 si utilisateur non joueur--------------------*/
                             else {
                             System.out.println("Premier joueur : Est-ce un client ou un serveur ? (c/s) ");
-                            reponse = sc.nextLine();
+                            reponse = scan.nextLine();
                             while(!reponse.equals("c") && !reponse.equals("s")){
                                  System.out.println("Veuillez entrer \"c\" pour client \"s\" pour serveur.");
-                                 reponse = sc.nextLine();
+                                 reponse = scan.nextLine();
                             }
                             if(reponse.equals("c")){ //cas client 
                             this.joueurs();
                             fail = true;
                             while(fail){
                                 try{
-                                    choix = Integer.parseInt(sc.nextLine());
+                                    choix = Integer.parseInt(scan.nextLine());
                                     try{
                                         joueur1=choix;
                                         fail = false;
@@ -1222,7 +1229,7 @@ public void menu()
                                     fail = true;
                                     while(fail){
                                         try{
-                                            choix = Integer.parseInt(sc.nextLine());
+                                            choix = Integer.parseInt(scan.nextLine());
                                             try{
                                                 joueur1=choix;
                                                 fail = false;
@@ -1243,17 +1250,17 @@ public void menu()
                             }
    /*-------------------CHOIX J2--------------------*/
                             System.out.println("Veuillez choissir le co-equipier : est-ce un client ou un serveur ? (c/s)");
-                            reponse = sc.nextLine();
+                            reponse = scan.nextLine();
                             while(!reponse.equals("c") && !reponse.equals("s")){
                                  System.out.println("Veuillez entrer \"c\" pour client \"s\" pour serveur.");
-                                 reponse = sc.nextLine();
+                                 reponse = scan.nextLine();
                             }
                             if(reponse.equals("c")){ //cas client 
                             this.joueurs();
                             fail = true;
                             while(fail){
                                 try{
-                                    choix = Integer.parseInt(sc.nextLine());
+                                    choix = Integer.parseInt(scan.nextLine());
                                     try{
                                         joueur2=choix;
                                         fail = false;
@@ -1277,7 +1284,7 @@ public void menu()
                             fail = true;
                             while(fail){
                                 try{
-                                    choix = Integer.parseInt(sc.nextLine());
+                                    choix = Integer.parseInt(scan.nextLine());
                                     try{
                                         joueur2=choix;
                                         fail = false;
@@ -1302,21 +1309,21 @@ public void menu()
                         System.out.println("Création équipe 2 ");                     
                         while(equipe){
                             System.out.println("Nom de l'équipe");
-                            String nomEquipe2 = sc.nextLine();  
+                            String nomEquipe2 = scan.nextLine();  
 
 /*-------------------CHOIX J1 si utilisateur non joueur--------------------*/       
                             System.out.println("Premier joueur : Est-ce un client ou un serveur ? (c/s). ");
-                            reponse = sc.nextLine();
+                            reponse = scan.nextLine();
                             while(!reponse.equals("c") && !reponse.equals("s")){
                                  System.out.println("Veuillez entrer \"c\" pour client \"s\" pour serveur.");
-                                 reponse = sc.nextLine();
+                                 reponse = scan.nextLine();
                             }
                             if(reponse.equals("c")){ //cas client 
                             this.joueurs();
                             fail = true;
                             while(fail){
                                 try{
-                                    choix = Integer.parseInt(sc.nextLine());
+                                    choix = Integer.parseInt(scan.nextLine());
                                     try{
                                         joueur1=choix;
                                         fail = false;
@@ -1339,7 +1346,7 @@ public void menu()
                                     fail = true;
                                     while(fail){
                                         try{
-                                            choix = Integer.parseInt(sc.nextLine());
+                                            choix = Integer.parseInt(scan.nextLine());
                                             try{
                                                 joueur1=choix;
                                                 fail = false;
@@ -1360,17 +1367,17 @@ public void menu()
                             
    /*-------------------CHOIX J2--------------------*/
                             System.out.println("Choissisez le co-equipier : est-ce un client ou un serveur ? (c/s)");
-                            reponse = sc.nextLine();
+                            reponse = scan.nextLine();
                             while(!reponse.equals("c") && !reponse.equals("s")){
                                  System.out.println("Veuillez entrer \"c\" pour client \"s\" pour serveur.");
-                                 reponse = sc.nextLine();
+                                 reponse = scan.nextLine();
                             }
                             if(reponse.equals("c")){ //cas client 
                             this.joueurs();
                             fail = true;
                             while(fail){
                                 try{
-                                    choix = Integer.parseInt(sc.nextLine());
+                                    choix = Integer.parseInt(scan.nextLine());
                                     try{
                                         joueur2=choix;
                                         fail = false;
@@ -1394,7 +1401,7 @@ public void menu()
                             fail = true;
                             while(fail){
                                 try{
-                                    choix = Integer.parseInt(sc.nextLine());
+                                    choix = Integer.parseInt(scan.nextLine());
                                     try{
                                         joueur2=choix;
                                         fail = false;
@@ -1416,10 +1423,10 @@ public void menu()
                        
 /*********************Creation d'une nouvelle equipe**********************/                            
                             System.out.println("Voulez-vous créer une autre équipe?(o/n)");
-                            reponse = sc.nextLine();
+                            reponse = scan.nextLine();
                             while(!reponse.equals("o") && !reponse.equals("n")){
                                 System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
-                                reponse = sc.nextLine();
+                                reponse = scan.nextLine();
                             }
                             tournoiBelote.inscrire(new Equipe(nomEquipe2,clients.get(joueur1),clients.get(joueur2)));
                             if(reponse.equals("n"))
@@ -1430,14 +1437,34 @@ public void menu()
                     }
                     break;
                    }
-                  
-                case 9 : 
-                    this.presentationComplementaire();            
-                    break ;        
+                case 10 : 
+                    this.declarerSaFlamme();     
+                    this.joueur.baisserCotePopularite(1);
+                    break ;     
+                case 11 : 
+                    float argent = 0;
+                    System.out.println("-----------------------------------------------------------------------------------------------------------*");
+                    System.out.println("* ATM Wells Fargo - When it comes to bankin we know that you have a lot of choice, Thanks for choosing us. *");
+                    System.out.println("*                              Combien d'argent voulez vous retirer de votre compte ?                      *");
+                    System.out.println("-----------------------------------------------------------------------------------------------------------*");
+                    boolean conversionFail = true;
+                    while(conversionFail){
+                        try{
+                        conversionFail = false;
+                        System.out.println("Combien d'argent avez-vous dans votre porte monnaie ?");
+                        argent = Float.parseFloat(sc.nextLine());
+                        }
+                        catch(NumberFormatException e){
+                        conversionFail = true;
+                        System.out.println("Veuillez entrer un float");
+                        }
+                        }
+                    this.joueur.ajouterArgent(argent);
+                    //this.joueur.changerSexe();
+                    break;
                 default:
                     break;
                 }
-            this.patronne.recuperCaisse(this.caisse);
     }
  }
 }

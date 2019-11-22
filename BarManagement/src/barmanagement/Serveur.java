@@ -43,7 +43,7 @@ public class Serveur extends Humain {
      */
     @Override
     public String parler(String phrase) {
-    	return "<Serveur> "+this.getPrenom() + " : " + phrase;
+    	return "<Serveur> "+this.getPrenom() + " (" + this.getAccessoire()+ ") : " + phrase;
     }
     
     /*
@@ -84,7 +84,7 @@ public class Serveur extends Humain {
     public void boire(Boisson consommation) {
 	Boisson boissonLegal = new Boisson("Eau", 0f,0f);
         if ( consommation != boissonLegal ){
-            this.parler("Désoler je ne peux pas boire ça, je ne bois que de l'eau pendant mon service et le jus d'abricot me tourne à la tete ...");
+            this.parler("Désoler je ne peux pas boire ça, je ne bois que de l'eau pendant mon service et le jus d'orange me tourne à la tete ...");
         }
         else{
             this.parler("Cette eau est trop bonne !");

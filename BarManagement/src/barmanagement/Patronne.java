@@ -53,6 +53,7 @@ public class Patronne extends Humain {
      * @param total : Stock la valeur a récupéré. 
     */
     public void recuperCaisse(float total) {
+        System.out.println(this.parler("Barman ! Vide la caisse dans mon porte-monnaie s'il te plait  ! "));
         this.setPorteMonnaie(this.getPorteMonnaie() + total) ;
     }
     
@@ -61,6 +62,7 @@ public class Patronne extends Humain {
      * @param clientExclu : Stock le nom de la personne a exclure. 
     */
     public void exclure(Client clientExclu) {
+        System.out.println(this.parler("Toi le serveur avec tes gros biscoteaux, met cet homme dehors !"));
         clientExclu.exclu = true;
     }
     
@@ -81,7 +83,7 @@ public class Patronne extends Humain {
      */
     @Override
     public String parler(String phrase) {
-        return "<Patronne> "+this.getPrenom() + " : " + phrase;
+        return "<Patronne> "+this.getPrenom() + " (" + this.getAccessoire()+ ") : " + phrase;
     }
     
     /**

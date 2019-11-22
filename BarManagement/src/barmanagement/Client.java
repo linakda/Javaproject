@@ -5,6 +5,11 @@
  */
 package barmanagement;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  * Cette classe est une classe fille de Humain.
  * Elle possède toute les méthodes et les paramètres de ce même type tel que
@@ -17,8 +22,7 @@ public class Client extends Humain{
     String qualificatif,accessoire ;
     boolean exclu;
     int numTable, experienceBelote;
-    Boisson boissonFavorite ;
-    Boisson boissonSecours ;
+    Boisson boissonFavorite, boissonSecours ;
     
     
     /**
@@ -136,9 +140,18 @@ public class Client extends Humain{
     */
     @Override
     public String parler(String phrase) {
-	return this.getPrenom() + " : " + phrase;
+	return "<Client> " + this.getPrenom() +" ("+ this.getAccessoire() + ") : " + phrase;
     }
    
+    public void changerSexe(){
+        String perso = this.getSexe();
+        if ("homme".equals(perso)){
+            this.setSexe("femme");
+        } else {
+            this.setSexe("homme");
+        } 
+    }
+    
     /**
      * Cette méthode permet d'ajuster la côte de popularité.
      * @param gain : Stock le gain de popularité a ajouter. 
@@ -155,5 +168,29 @@ public class Client extends Humain{
         this.popularite = perte + this.popularite;
     }
     
+    /*
+     *Cette méthode permet de monter le niveau de belotee d'un joueur. 
+    */
+    public void monterNiveauBelote(int gain){
+        this.experienceBelote = gain + this.experienceBelote;
+    }
     
+    /*
+     * Cette méthode permet de sauvegarder la progression du joueur.
+    */
+    public void sauvegarder(){
+    File file = new File("Sauvegarde_de_votre_dernière_partie.txt");
+    FileWriter fw;
+    try {
+        fw = new FileWriter(file);
+        String str ;
+        str = "Prenom : "+this.getPrenom() +"\n"+ "Nom : "+this.getNom()+"\n"+ "Sexe : "+this.getSexe() +"\n" +"Portemonnaie : "+this.getPorteMonnaie() +" euros \n"+"Crie significatif : "+ this.getCri() + "\n"+ "côte de popularitié : "+this.getPopularite() + "\n"+"taux d'alcoolemie : "+this.alcoolemie+" gramme" + "\n" + "Accessoire : "+ this.accessoire + "\n" + "Niveau d'experience en belote : " + this.experienceBelote + "\n \n"+"boisson favorite - "+ this.boissonFavorite+ "\n"+ "Boisson de secours - "+ this.boissonSecours +"\n";
+        fw.write(str);
+        fw.close();
+        } catch (FileNotFoundException e) {
+        e.printStackTrace();
+        } catch (IOException e) {
+        e.printStackTrace();
+        }
+    }
 }
