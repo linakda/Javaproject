@@ -96,17 +96,17 @@ class TournoiBelote {
                     int [] points = partie.jouer ();		
                         if (points [0] > points [1]) {
 			// L'equipe i gagne
-                            System.out.println ("	==> Equipe " + equipes.get (i) + " bat equipe " + equipes.get (j));			
-                            scores [i] [j] = 3; // 3 points pour i
-                	    scores [j] [i] = points [1]; // Aucun point pour j si 2 - 0, 1 point si 2 - 1		
+                            System.out.println (" ****** *   * Equipe " + equipes.get (i) + " bat equipe " + equipes.get (j)+ "*   * ****** ");			
+                            scores [i] [j] = 3; 
+                	    scores [j] [i] = points [1]; 		
                             equipes.get (i).joueur1.monterCotePopularite(5);
                             equipes.get (i).joueur2.monterCotePopularite(5);
                         }
                         else {
 			// L'equipe j gagne			
-                            System.out.println ("	==> Equipe " + equipes.get (j) + " bat equipe " + equipes.get (i));			
-                            scores [j] [i] = 3; // 3 points pour j
-                            scores [i] [j] = points [0]; // Aucun point pour i si 2 - 0, 1 point si 2 - 1		
+                            System.out.println (" ****** *   * Equipe " + equipes.get (j) + " bat equipe " + equipes.get (i)+ "*   * ****** ");				
+                            scores [j] [i] = 3; 
+                            scores [i] [j] = points [0];		
                             equipes.get (j).joueur1.monterCotePopularite (5);
                             equipes.get (j).joueur2.monterCotePopularite (5);
 			}		
@@ -141,21 +141,21 @@ class TournoiBelote {
      * Conforme à l'énoncé. 
      */
     private void afficherScores () {
-        System.out.print ("Equipes" + "\t");
+        System.out.print ("Equipes" + "   ");
         for (int i = 0; i < equipes.size (); i ++)
-            System.out.print ( equipes.get (i).toString () + "\t");
-        System.out.print ("Total" + "\t");
-        System.out.print ("Classement" + "\t");
+            System.out.print ( equipes.get (i).toString () + "   ");
+        System.out.print ("Total" + " \t");
+        System.out.print ("Classement");
         System.out.println ();	
         for (int i = 0; i < equipes.size (); i ++) {
             System.out.print (equipes.get (i).toString () + "\t");
                 for (int j = 0; j < equipes.size (); j ++) {
                     if (i == j)
-                     System.out.print ("#" + "\t");
+                     System.out.print ("#" + "  \t");
                     else 
-                     System.out.print (scores [i] [j] + "" + "\t");
+                     System.out.print (scores [i] [j] + "" + "  \t");
                 }
-            System.out.print (total [i] + "" + "\t");
+            System.out.print ("    \t"+total [i] + "" + "\t");
             System.out.print (classement [i] + "" + "\t"); 
             System.out.println ();
 	}
