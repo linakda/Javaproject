@@ -29,7 +29,7 @@ public final class Bar {
     List<Table> tables;
     List<Client> clients;
     List<Boisson> boissons;
-    String name ;
+    String nomBar ;
     Client joueur;
     Patronne patronne ;
     Barman barman;
@@ -42,7 +42,6 @@ public final class Bar {
     * Il permet de déclarer et d'initialiser les données membres de la classe.
     */
     public Bar(){
-    	
         int j = -1;
     	sc = new Scanner(System.in);
     	boissons = new LinkedList<>();
@@ -59,7 +58,7 @@ public final class Bar {
     	creationServeur();
     	creationJoueur();
         
-    	this.name = "Chez " + this.patronne.getPrenom();
+    	this.nomBar = "Chez " + this.patronne.getPrenom();
         this.clients.add(this.joueur);
     	tables = new LinkedList<>();
         for( int i = 0 ; i < nbTables ; i++ )
@@ -90,11 +89,11 @@ public final class Bar {
         System.out.println("--------------------------------------");
         System.out.println("*         Créer votre joueur         *");
         System.out.println("--------------------------------------");
-        System.out.print("Nom : ");  
+        System.out.println("Nom : ");  
         surname = sc.nextLine();
-        System.out.print("\nPrénom : ");
+        System.out.println("Prénom : ");
         nomJoueur = sc.nextLine();
-        System.out.print("\nCri significatif : ");
+        System.out.println("Cri significatif : ");
         cri = sc.nextLine();
         System.out.println("Choissiez votre accessoire ! ");
         System.out.println("Il est d'usage que les hommes ont un t-shirt de couleur et que les femmes ont des bijoux.");
@@ -112,7 +111,7 @@ public final class Bar {
                 System.out.println("Veuillez entrer un float");
                     }
             }
-            System.out.print("\nSexe(homme/femme) : ");
+            System.out.println("Sexe(homme/femme) : ");
             sexe = sc.nextLine();
             while(!sexe.equals("homme") && !sexe.equals("femme")){
                 System.out.print("Veuillez saisir homme ou femme");
@@ -263,7 +262,7 @@ public final class Bar {
             System.out.println("Entrez \"o\" pour oui \"n\" pour non.");
             reponse = sc.nextLine();
 	}
-	if(reponse.equals("o")){
+	if(reponse.equals("n")){
             creationBoissonParDefaut();
 	}
         else{
@@ -453,7 +452,7 @@ public final class Bar {
     	nomClient = sc.nextLine();
     	System.out.print("\nCri significatif : ");
     	cri = sc.nextLine();
-        System.out.println("Choissiez un accessoire pour le client");
+        System.out.println("Choisissez un accessoire pour le client");
         System.out.println("Il est d'usage que les hommes ont un t-shirt de couleur et que les femmes ont des bijoux.");
         accessoire = sc.nextLine();
         boolean numExpFail = true;
@@ -960,10 +959,11 @@ public void menu()
         System.out.println("5- Payez la tournée");
         System.out.println("6- Payez l'addition");
         System.out.println("7- Voir les statistiques de votre personnage");
+        System.out.println("8- Voir les statistiques de tout les clients et de vous meme");
         if(joueur.numTable == -1)
-            System.out.println("8- Assezyez-vous à une table");
+            System.out.println("9- Assezyez-vous à une table");
         else
-            System.out.println("8- Levez vous de la table");
+            System.out.println("9- Levez vous de la table");
         System.out.println("9- Lancez un tournoi de belote");
         System.out.println("10- Déclarez votre flamme à quelqu'un");
         System.out.println("11- Allez à l'ATM");
@@ -975,7 +975,7 @@ public void menu()
             System.out.println("Entrez un entier s'il vous plait ");
             continue;
         }
-        if(choix < 0 || choix > 11 ){
+        if(choix < 0 || choix > 12 ){
             System.out.println("Ce choix n'existe pas");
             continue;
         }
@@ -1111,6 +1111,9 @@ public void menu()
                     System.out.println(this.joueur);
                     break ;
                 case 8:
+                    System.out.println(this.clients);
+                    break ;
+                case 9:
                     fail = true;
                     if(joueur.numTable == -1){
                         while(fail){	
@@ -1152,7 +1155,7 @@ public void menu()
                         this.joueur.numTable = -1;
                     }
                     break; 
-                case 9:		
+                case 10:		
                     TournoiBelote tournoiBelote = new TournoiBelote(10);
                     System.out.println("--------------------------------------");
                     System.out.println("*    Création de tournoi de belote   *");
@@ -1437,11 +1440,11 @@ public void menu()
                     }
                     break;
                    }
-                case 10 : 
+                case 11 : 
                     this.declarerSaFlamme();     
                     this.joueur.baisserCotePopularite(1);
                     break ;     
-                case 11 : 
+                case 12 : 
                     float argent = 0;
                     boolean conversionFail = true;
                     while(conversionFail){

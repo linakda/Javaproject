@@ -22,7 +22,7 @@ public class BarManagement {
                 + "* sur ton porte-monnaie ;)  Et deviens le meilleur joueur de belote du Far West. ");
         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
         Bar bar = new Bar();
-        System.out.println(bar.name);
+        System.out.println(bar.nomBar);
         bar.menu();
     }
 }
