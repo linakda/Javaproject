@@ -255,7 +255,9 @@ public final class Bar {
     public void creationBoisson(){
         boolean continu = true;
     	String reponse;
-    	System.out.println("Nous allons maintenant créé les boissons");
+        System.out.println("--------------------------------------");
+    	System.out.println("*       Création des boissons        *");
+    	System.out.println("--------------------------------------");
     	System.out.println("Voulez-vous ajouter des boissons à la carte ?(o/n)");
 	reponse = sc.nextLine();
 	while(!reponse.equals("o") && !reponse.equals("n")){
@@ -408,7 +410,9 @@ public final class Bar {
     public void creationClientPnj() {
         String reponse;
         boolean continu = true;
-    	System.out.println("Nous allons créer les clients");
+    	System.out.println("--------------------------------------");
+    	System.out.println("*        Création des Clients        *");
+    	System.out.println("--------------------------------------");
     	System.out.println("Voulez-vous que les clients se crééent automatiquement?(o/n)");
         reponse = sc.nextLine();
     	while(!reponse.equals("o") && !reponse.equals("n")){
@@ -556,7 +560,9 @@ public final class Bar {
     public void creationServeur(){
     	String reponse;
     	boolean continu = true;
-    	System.out.println("Nous allons créér les serveurs");
+    	System.out.println("--------------------------------------");
+    	System.out.println("*        Création des serveurs       *");
+    	System.out.println("--------------------------------------");
     	System.out.println("Voulez-vous que les serveurs se crééent automatiquement?(o/n)");
         reponse = sc.nextLine();
             while(!reponse.equals("o") && !reponse.equals("n")){
@@ -952,25 +958,26 @@ public void menu()
 
     while(true){
         System.out.println("------------------------------------------------------------------------");
-        System.out.println("*                       "+ this.nomBar+"                                  *");
+        System.out.println("*                              "+ this.nomBar+"                           *");
         System.out.println("------------------------------------------------------------------------");
-        System.out.println("Choississez l'action que vous voulez réaliser.");
-        System.out.println("1- Présentez-vous");
-        System.out.println("2- Présentez-vous d'une autre manière");
-        System.out.println("3- Offrez un verre");
-        System.out.println("4- Buvez un verre");
-        System.out.println("5- Payez la tournée");
-        System.out.println("6- Payez l'addition");
-        System.out.println("7- Voir les statistiques de votre personnage");
-        System.out.println("8- Voir les statistiques de tout les clients et de vous meme");
+        System.out.println("|            Choississez l'action que vous voulez réaliser.            |");
+        System.out.println("|                          1- Présentez-vous                           |");
+        System.out.println("|                2- Présentez-vous d'une autre manière                 |");
+        System.out.println("|                           3- Offrez un verre                         |");
+        System.out.println("|                           4- Buvez un verre                          |");
+        System.out.println("|                          5- Payez la tournée                         |");
+        System.out.println("|                          6- Payez l'addition                         |");
+        System.out.println("|               7- Voir les statistiques de votre personnage           |");
+        System.out.println("|      8- Voir les statistiques de tout les clients et de vous meme    |");
         if(joueur.numTable == -1)
-            System.out.println("9- Asseyez-vous à une table");
+            System.out.println("|                      9- Asseyez-vous à une table                     |");
         else
-            System.out.println("9- Levez vous de la table");
-        System.out.println("10- Lancez un tournoi de belote");
-        System.out.println("11- Déclarez votre flamme à quelqu'un");
-        System.out.println("12- Allez à l'ATM");
-        System.out.println("0- Quittez le bar");
+            System.out.println("|                      9- Levez vous de la table                       |");
+        System.out.println("|                    10- Lancez un tournoi de belote                   |");
+        System.out.println("|                  11- Déclarez votre flamme à quelqu'un               |");
+        System.out.println("|                           12- Allez à l'ATM                          |");
+        System.out.println("|                           0- Quittez le bar                          |");
+        System.out.println("------------------------------------------------------------------------");
         try{
             choix = Integer.parseInt(scan.nextLine()); //On choisit le num de l'action
         }
