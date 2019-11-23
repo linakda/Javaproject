@@ -5,8 +5,6 @@
  */
 package barmanagement;
 
-import java.util.Arrays;
-
 /**
  * Cette classe est la classe de la carte possédant les différentes méthodes et paramètres
  * pour censé être une carte, la valeur de la carte et une fonction toString. 

@@ -17,7 +17,7 @@ public class Fournisseur extends Humain{
      * Cette méthode est le constructeur du fournisseur. 
      * Elle est exécutée à la création de l'objet et permet l'initialisation de l'objet. 
     */
-    public Fournisseur(String prenom, String nom, String sexe, String accessoire, String cri) {
+    public Fournisseur(String prenom, String nom, String sexe, String cri, String accessoire) {
 	super(prenom, nom, sexe, cri, accessoire,100);
     }
     
@@ -49,13 +49,6 @@ public class Fournisseur extends Humain{
     }
     
     /*
-     * Cette méthode permet d'ajouter au porte-monnaie le paiement de la patronne. 
-    */
-    public void ajouterPorteMonaie(float total){
-    	this.setPorteMonnaie(this.getPopularite()+total) ;
-    }
-    
-    /*
      * Cette méthode permet au fournisseur de parler 
      * @return : Retourne la phrase du fournisseur avec une certaine nomenclature. 
     */
@@ -69,6 +62,13 @@ public class Fournisseur extends Humain{
     */
     @Override
     public void offrir(Client client) {
+    }
+    
+    /*
+     * Cette méthode permet d'ajouter au porte-monnaie le paiement de la patronne. 
+    */
+    public void ajouterPorteMonnaie(float total){
+    	this.setPorteMonnaie(this.getPopularite()+total) ;
     }
     
     /**

@@ -61,7 +61,7 @@ public class Patronne extends Humain {
      * Cette méthode permet de recuperer l'argent de la caisse.
      * @param total : Stock la valeur a récupéré. 
     */
-    public void recuperCaisse(float total) {
+    public void recupererCaisse(float total) {
         System.out.println(this.parler("Barman ! Vide la caisse dans mon porte-monnaie s'il te plait  ! "));
         this.setPorteMonnaie(this.getPorteMonnaie() + total) ;
     }
@@ -115,7 +115,7 @@ public class Patronne extends Humain {
     public float payerFournisseur(Boisson boissonRupture,Fournisseur fournisseur){
         float total = boissonRupture.prixAchat*5;
     	System.out.println(fournisseur.parler("5 verres de "+boissonRupture.getNom()+" ça fait "+total+"€ s'il te plaît"));
-    	fournisseur.ajouterPorteMonaie(total);
+    	fournisseur.ajouterPorteMonnaie(total);
     	this.setPorteMonnaie(this.getPorteMonnaie() - total) ;
     	return total;
     }

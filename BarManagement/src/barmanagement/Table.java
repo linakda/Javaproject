@@ -37,14 +37,14 @@ public class Table {
         return false;
 	}
         
-        /**
-         * Cette méthode permet à un humain de quitter la table
-         * @param personne : Stock l'humain qui va se lever de la table
-         */
-	public void seLever (Humain personne) {
-            if(this.personne.remove(personne))
-		System.out.println("Vous n'êtes plus assis à cette table");
-            else
-		System.out.println("Erreur table");
+    /**
+     * Cette méthode permet à un humain de quitter la table
+     * @param personne : Stock l'humain qui va se lever de la table
+     */
+    public void seLever (Humain personne) {
+        if(this.personne.remove(personne))
+            System.out.println("Vous n'êtes plus assis à cette table");
+        else
+            System.out.println("Erreur table");
 	}
 }

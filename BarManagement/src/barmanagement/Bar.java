@@ -251,7 +251,7 @@ public final class Bar {
     
      /**
      * Cette methode permet de créer le(s) boisson(s) alcoolisées soi-même, en
-     * l'ajoutantà la liste des boissons. 
+     * l'ajoutant à la liste des boissons. 
      * L'utilisateur peut ajouter les caractéristiques qu'il souhaite à savoir :
      * le nom, le prix, le prix d'achat et le taux d'alcoolémie.
      * 
@@ -343,7 +343,7 @@ public final class Bar {
         else{
             creationClientPnjDefaut();
 	while(continu){
-            creationClient();
+            creationClientPersonalise();
 	    System.out.println("Voulez-vous créer un autre client ?(o/n)");
 	    reponse = sc.nextLine();
 	    while(!reponse.equals("o") && !reponse.equals("n")){
@@ -363,7 +363,7 @@ public final class Bar {
      * le nom, le prenom, le cri significatif, le sexe, l'argent du porte-monnaie
      * la boisson fav1 et la boisson fav2. 
     */
-    public void creationClient(){
+    public void creationClientPersonalise(){
     	String nomClient,surname,cri,sexe,num,accessoire,exp;
     	float porteMonnaie = 0;
     	int indiceBoissonFavorite = 0,indiceBoissonSecour = 0, popularite = 0, experienceBelote = 0;
@@ -744,7 +744,7 @@ public final class Bar {
     * Elle permet également de déclarer sa flamme au client séletionné et de
     * se faire rejeter par ce dernier. 
     */
-   public void declarerSaFlamme() {
+   public void declarerSaFlamme(){
         int choix ;
         Client destinataire = null ;
         Scanner sc2 = new Scanner(System.in);
@@ -1108,7 +1108,7 @@ public void menu(){
                         return;
                     }
                     if (this.caisse > 100){
-                        this.patronne.recuperCaisse(this.caisse);
+                        this.patronne.recupererCaisse(this.caisse);
                     }
                     break ;
                 case 7:
