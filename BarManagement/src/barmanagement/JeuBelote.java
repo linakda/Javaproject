@@ -211,17 +211,16 @@ class JeuBelote {
         int randomIndex2 = (int) (Math.random () * 32);
         int randomIndex3 = (int) (Math.random () * 32);
         int randomIndex4 = (int) (Math.random () * 32);
-        System.out.println("test1/2");
-        this.equipe1.joueur1.parler("J'ai pioché la carte " + this.cartes[randomIndex]) ;
-        this.equipe1.joueur2.parler("Et moi la carte "+this.cartes[randomIndex2] );
-        this.equipe2.joueur1.parler("J'ai pioché la carte " + this.cartes[randomIndex3] );
-        this.equipe2.joueur2.parler("Et moi la carte "+this.cartes[randomIndex4] );
+        //this.equipe1.joueur1.parler("J'ai pioché la carte " + this.cartes[randomIndex]) ;
+       // this.equipe1.joueur2.parler("Et moi la carte "+this.cartes[randomIndex2] );
+       // this.equipe2.joueur1.parler("J'ai pioché la carte " + this.cartes[randomIndex3] );
+       // this.equipe2.joueur2.parler("Et moi la carte "+this.cartes[randomIndex4] );
         this.cartesJoueur1.add(this.cartes[randomIndex]);
         this.cartesJoueur2.add(this.cartes[randomIndex2]); 
         this.cartesJoueur3.add(this.cartes[randomIndex3]);
         this.cartesJoueur4.add(this.cartes[randomIndex4]);
         
-        trouvedonneur(cartesJoueur1,cartesJoueur2,cartesJoueur3,cartesJoueur4);
+        trouveDonneur(cartesJoueur1,cartesJoueur2,cartesJoueur3,cartesJoueur4);
     }
     
     /**
@@ -234,7 +233,7 @@ class JeuBelote {
      * @param J3 : stocke la carte piochée par le joueur 3
      * @param J4 : stocke la carte piochée par le joueur 4
      */
-    public void trouvedonneur(List<Carte> J1, List <Carte> J2,List<Carte> J3, List<Carte> J4){
+    public void trouveDonneur(List<Carte> J1, List <Carte> J2,List<Carte> J3, List<Carte> J4){
          List <Integer> comparateur = new LinkedList<>();
  
         for (int i = 0 ; i < cartesJoueur1.size() ; i++) {
@@ -313,6 +312,11 @@ class JeuBelote {
     
     /**
      * Cette methode permet de jouer une manche.
+     * Chaque joueur commence par joueuer une carte de sa main, on va voir celle
+     * dont la valeur est la plus forte. Cemui dont la carte est la plus forte récolte 
+     * toutes les autres cartes. On repète l'action jusqu'à ce que les joueurs n'ont
+     * plus de cartes en main. Ensuite, un calcul des scores est fait et les perdants
+     * offrent à boire aux gagnants de la manche.
      * @return points : La liste contenant les points des deux equipes
      * 
      */
@@ -412,16 +416,16 @@ class JeuBelote {
         pointsEquipe1++;
         System.out.println("********************************************");
         System.out.println("Les perdants de la manche offrent un verre !");
-        equipe2.joueur1.offrir (equipe1.joueur1);
-        equipe2.joueur2.offrir (equipe1.joueur2);
+        equipe2.joueur1.offrir(equipe1.joueur1);
+        equipe2.joueur2.offrir(equipe1.joueur2);
       }
    else {
         System.out.println("L'equipe "+ equipe2.nomEquipe +" remporte la manche ! ");
         pointsEquipe2++;
         System.out.println("********************************************");
         System.out.println("Les perdants de la manche offrent un verre !");
-        equipe1.joueur1.offrir (equipe2.joueur1);
-        equipe1.joueur2.offrir (equipe2.joueur2);
+        equipe1.joueur1.offrir(equipe2.joueur1);
+        equipe1.joueur2.offrir(equipe2.joueur2);
       }
 
    points.add(pointsEquipe1); 
@@ -430,7 +434,7 @@ class JeuBelote {
    return this.points;          
     }            
     
-    /**Cette méthode permet d'organiser le deroulement d'une partie de belote
+    /**Cette méthode permet d'organiser le deroulement d'une partie de belote.
      * 
      */
     private void deroulement () {
@@ -451,6 +455,7 @@ class JeuBelote {
         quiCommence();
 	distribuerLesCartes (); // 5 cartes en main chacun 
        
+        //En fonction de qui est le donneur, les cartes sont distribuées 
         if(this.donneur == equipe1.joueur1) {      
             if(Collections.max(atoutmain4) + Collections.max(atoutmain3) >= 20) { //Si la somme des plus grands atouts de l'equipe 1 > 25
                     System.out.println(equipe2.joueur2.parler("Je ramasse l'atout ! "));
@@ -477,26 +482,26 @@ class JeuBelote {
                     System.out.println(donneur.parler(" Très bien, je distribue les cartes restantes"));
                     cartesJoueur2.add(cartesADistribuer.get(21));
                     cartesJoueur2.add(cartesADistribuer.get(22));
-                    cartesJoueur4.add(cartesADistribuer.get(23));  
-                    cartesJoueur4.add(cartesADistribuer.get(24));
-                    cartesJoueur4.add(cartesADistribuer.get(25));
-                    cartesJoueur3.add(cartesADistribuer.get(26));
-                    cartesJoueur3.add(cartesADistribuer.get(27));
-                    cartesJoueur3.add(cartesADistribuer.get(28));
-                    cartesJoueur1.add(cartesADistribuer.get(29)); 
-                    cartesJoueur1.add(cartesADistribuer.get(30));
-                    cartesJoueur1.add(cartesADistribuer.get(31));
+                    cartesJoueur3.add(cartesADistribuer.get(23));  
+                    cartesJoueur3.add(cartesADistribuer.get(24));
+                    cartesJoueur3.add(cartesADistribuer.get(25));
+                    cartesJoueur1.add(cartesADistribuer.get(26));
+                    cartesJoueur1.add(cartesADistribuer.get(27));
+                    cartesJoueur1.add(cartesADistribuer.get(28));
+                    cartesJoueur4.add(cartesADistribuer.get(29)); 
+                    cartesJoueur4.add(cartesADistribuer.get(30));
+                    cartesJoueur4.add(cartesADistribuer.get(31));
                     resultat=jouerManche();
                 }  
               
-            else { //Si personne ne ramasse  
+            else { //Si personne ne ramasse 
                     System.out.println(donneur.parler("Apparement personne ne prend au Tour 1")); 
-                    cartesJoueur2.add(cartesADistribuer.get(20));
-                    cartesJoueur2.add(cartesADistribuer.get(21));
-                    cartesJoueur2.add(cartesADistribuer.get(22));
-                    cartesJoueur4.add(cartesADistribuer.get(23));  
-                    cartesJoueur4.add(cartesADistribuer.get(24));
-                    cartesJoueur4.add(cartesADistribuer.get(25));
+                    cartesJoueur4.add(cartesADistribuer.get(20));
+                    cartesJoueur4.add(cartesADistribuer.get(21));
+                    cartesJoueur4.add(cartesADistribuer.get(22));
+                    cartesJoueur2.add(cartesADistribuer.get(23));  
+                    cartesJoueur2.add(cartesADistribuer.get(24));
+                    cartesJoueur2.add(cartesADistribuer.get(25));
                     cartesJoueur3.add(cartesADistribuer.get(26));
                     cartesJoueur3.add(cartesADistribuer.get(27));
                     cartesJoueur3.add(cartesADistribuer.get(28));
@@ -531,31 +536,31 @@ class JeuBelote {
                     System.out.println(donneur.parler(" Très bien, je distribue les cartes restantes"));
                     cartesJoueur1.add(cartesADistribuer.get(21));
                     cartesJoueur1.add(cartesADistribuer.get(22));
-                    cartesJoueur2.add(cartesADistribuer.get(23));  
-                    cartesJoueur2.add(cartesADistribuer.get(24));
-                    cartesJoueur2.add(cartesADistribuer.get(25));
-                    cartesJoueur3.add(cartesADistribuer.get(26));
-                    cartesJoueur3.add(cartesADistribuer.get(27));
-                    cartesJoueur3.add(cartesADistribuer.get(28));
-                    cartesJoueur4.add(cartesADistribuer.get(29)); 
-                    cartesJoueur4.add(cartesADistribuer.get(30));
-                    cartesJoueur4.add(cartesADistribuer.get(31));
+                    cartesJoueur4.add(cartesADistribuer.get(23));  
+                    cartesJoueur4.add(cartesADistribuer.get(24));
+                    cartesJoueur4.add(cartesADistribuer.get(25));
+                    cartesJoueur2.add(cartesADistribuer.get(26));
+                    cartesJoueur2.add(cartesADistribuer.get(27));
+                    cartesJoueur2.add(cartesADistribuer.get(28));
+                    cartesJoueur3.add(cartesADistribuer.get(29)); 
+                    cartesJoueur3.add(cartesADistribuer.get(30));
+                    cartesJoueur3.add(cartesADistribuer.get(31));
                      resultat=jouerManche();
                      }  
             else {
                    System.out.println(donneur.parler("Apparement personne ne prend au Tour 1"));
-                   cartesJoueur2.add(cartesADistribuer.get(20));
-                    cartesJoueur2.add(cartesADistribuer.get(21));
-                    cartesJoueur2.add(cartesADistribuer.get(22));
-                    cartesJoueur4.add(cartesADistribuer.get(23));  
-                    cartesJoueur4.add(cartesADistribuer.get(24));
-                    cartesJoueur4.add(cartesADistribuer.get(25));
-                    cartesJoueur3.add(cartesADistribuer.get(26));
-                    cartesJoueur3.add(cartesADistribuer.get(27));
-                    cartesJoueur3.add(cartesADistribuer.get(28));
-                    cartesJoueur1.add(cartesADistribuer.get(29)); 
-                    cartesJoueur1.add(cartesADistribuer.get(30));
-                    cartesJoueur1.add(cartesADistribuer.get(31));
+                    cartesJoueur3.add(cartesADistribuer.get(20));
+                    cartesJoueur3.add(cartesADistribuer.get(21));
+                    cartesJoueur3.add(cartesADistribuer.get(22));
+                    cartesJoueur1.add(cartesADistribuer.get(23));  
+                    cartesJoueur1.add(cartesADistribuer.get(24));
+                    cartesJoueur1.add(cartesADistribuer.get(25));
+                    cartesJoueur4.add(cartesADistribuer.get(26));
+                    cartesJoueur4.add(cartesADistribuer.get(27));
+                    cartesJoueur4.add(cartesADistribuer.get(28));
+                    cartesJoueur2.add(cartesADistribuer.get(29)); 
+                    cartesJoueur2.add(cartesADistribuer.get(30));
+                    cartesJoueur2.add(cartesADistribuer.get(31));
                    resultat=jouerManche();
                
            }
@@ -585,32 +590,32 @@ class JeuBelote {
                     System.out.println(donneur.parler(" Très bien, je distribue les cartes restantes"));
                     cartesJoueur4.add(cartesADistribuer.get(21));
                     cartesJoueur4.add(cartesADistribuer.get(22));
-                    cartesJoueur3.add(cartesADistribuer.get(23));
-                    cartesJoueur3.add(cartesADistribuer.get(24));
-                    cartesJoueur3.add(cartesADistribuer.get(25));
-                    cartesJoueur1.add(cartesADistribuer.get(26));
-                    cartesJoueur1.add(cartesADistribuer.get(27));
-                    cartesJoueur1.add(cartesADistribuer.get(28));
-                    cartesJoueur2.add(cartesADistribuer.get(29));
-                    cartesJoueur2.add(cartesADistribuer.get(30));
-                    cartesJoueur2.add(cartesADistribuer.get(31));
+                    cartesJoueur2.add(cartesADistribuer.get(23));
+                    cartesJoueur2.add(cartesADistribuer.get(24));
+                    cartesJoueur2.add(cartesADistribuer.get(25));
+                    cartesJoueur3.add(cartesADistribuer.get(26));
+                    cartesJoueur3.add(cartesADistribuer.get(27));
+                    cartesJoueur3.add(cartesADistribuer.get(28));
+                    cartesJoueur1.add(cartesADistribuer.get(29));
+                    cartesJoueur1.add(cartesADistribuer.get(30));
+                    cartesJoueur1.add(cartesADistribuer.get(31));
                      resultat=jouerManche();
            }
            
             else {
                    System.out.println(donneur.parler("Apparement personne ne prend au Tour 1"));
-                    cartesJoueur2.add(cartesADistribuer.get(20));
-                    cartesJoueur2.add(cartesADistribuer.get(21));
-                    cartesJoueur2.add(cartesADistribuer.get(22));
+                    cartesJoueur1.add(cartesADistribuer.get(20));
+                    cartesJoueur1.add(cartesADistribuer.get(21));
+                    cartesJoueur1.add(cartesADistribuer.get(22));
                     cartesJoueur4.add(cartesADistribuer.get(23));  
                     cartesJoueur4.add(cartesADistribuer.get(24));
                     cartesJoueur4.add(cartesADistribuer.get(25));
-                    cartesJoueur3.add(cartesADistribuer.get(26));
-                    cartesJoueur3.add(cartesADistribuer.get(27));
-                    cartesJoueur3.add(cartesADistribuer.get(28));
-                    cartesJoueur1.add(cartesADistribuer.get(29)); 
-                    cartesJoueur1.add(cartesADistribuer.get(30));
-                    cartesJoueur1.add(cartesADistribuer.get(31));
+                    cartesJoueur2.add(cartesADistribuer.get(26));
+                    cartesJoueur2.add(cartesADistribuer.get(27));
+                    cartesJoueur2.add(cartesADistribuer.get(28));
+                    cartesJoueur3.add(cartesADistribuer.get(29)); 
+                    cartesJoueur3.add(cartesADistribuer.get(30));
+                    cartesJoueur3.add(cartesADistribuer.get(31));
                    resultat=jouerManche();
            }
         }
@@ -639,31 +644,31 @@ class JeuBelote {
                     System.out.println(donneur.parler(" Très bien, je distribue les cartes restantes"));
                     cartesJoueur3.add(cartesADistribuer.get(21));
                     cartesJoueur3.add(cartesADistribuer.get(22));
-                    cartesJoueur2.add(cartesADistribuer.get(23));
-                    cartesJoueur2.add(cartesADistribuer.get(24));
-                    cartesJoueur2.add(cartesADistribuer.get(25));
-                    cartesJoueur1.add(cartesADistribuer.get(26));
-                    cartesJoueur1.add(cartesADistribuer.get(27));
-                    cartesJoueur1.add(cartesADistribuer.get(28));
-                    cartesJoueur4.add(cartesADistribuer.get(29));
-                    cartesJoueur4.add(cartesADistribuer.get(30));
-                    cartesJoueur4.add(cartesADistribuer.get(31));
+                    cartesJoueur1.add(cartesADistribuer.get(23));
+                    cartesJoueur1.add(cartesADistribuer.get(24));
+                    cartesJoueur1.add(cartesADistribuer.get(25));
+                    cartesJoueur4.add(cartesADistribuer.get(26));
+                    cartesJoueur4.add(cartesADistribuer.get(27));
+                    cartesJoueur4.add(cartesADistribuer.get(28));
+                    cartesJoueur2.add(cartesADistribuer.get(29));
+                    cartesJoueur2.add(cartesADistribuer.get(30));
+                    cartesJoueur2.add(cartesADistribuer.get(31));
                     resultat=jouerManche();
                }
             else {
                    System.out.println(donneur.parler("Apparement personne ne prend au Tour 1"));  
-                   cartesJoueur2.add(cartesADistribuer.get(20));
+                    cartesJoueur2.add(cartesADistribuer.get(20));
                     cartesJoueur2.add(cartesADistribuer.get(21));
                     cartesJoueur2.add(cartesADistribuer.get(22));
-                    cartesJoueur4.add(cartesADistribuer.get(23));  
-                    cartesJoueur4.add(cartesADistribuer.get(24));
-                    cartesJoueur4.add(cartesADistribuer.get(25));
-                    cartesJoueur3.add(cartesADistribuer.get(26));
-                    cartesJoueur3.add(cartesADistribuer.get(27));
-                    cartesJoueur3.add(cartesADistribuer.get(28));
-                    cartesJoueur1.add(cartesADistribuer.get(29)); 
-                    cartesJoueur1.add(cartesADistribuer.get(30));
-                    cartesJoueur1.add(cartesADistribuer.get(31));
+                    cartesJoueur3.add(cartesADistribuer.get(23));  
+                    cartesJoueur3.add(cartesADistribuer.get(24));
+                    cartesJoueur3.add(cartesADistribuer.get(25));
+                    cartesJoueur1.add(cartesADistribuer.get(26));
+                    cartesJoueur1.add(cartesADistribuer.get(27));
+                    cartesJoueur1.add(cartesADistribuer.get(28));
+                    cartesJoueur4.add(cartesADistribuer.get(29)); 
+                    cartesJoueur4.add(cartesADistribuer.get(30));
+                    cartesJoueur4.add(cartesADistribuer.get(31));
                    resultat=jouerManche();
              }
         }

@@ -11,8 +11,8 @@ import java.util.List;
 /**
  * Il s'agit de la classe qui permet d'organiser un tournoi de Belotte.
  * Elle comprend les méthodes  d'inscription, de lancer du tournoi, de jeu des matchs, 
- * d'actualisation et d'affichage des scores, une methode qui donne l'équipe 
- * gagnante (et son accessor) et une methode d'affichage des equipes inscrites.
+ d'actualisation et d'affichage des scores, une methode qui donne l'équipe 
+ winner (et son accessor) et une methode d'affichage des equipes inscrites.
  * @author Lina & Théophile
  */
 
@@ -24,7 +24,8 @@ class TournoiBelote {
     int [] [] scores;
     int [] total;
     int [] classement;
-	
+    Patronne patronne;
+    
     
     /**
      * Constructeur de la classe TournoiBelote.
@@ -41,10 +42,10 @@ class TournoiBelote {
      * Cette methode permet d'inscrire une equipe au tournoi.
      * Verifier que les 2 inscrits ont suffisament d'argent
      * Faire payer les deux inscrits séparement
-     * Ajout de l'argent Ã  la cagnote
-     * Uniquement si les deux personnes ont assez d'argent. Sinon, renvoyer false
+     * Ajout de l'argent a  la cagnote
+     * Uniquement si les deux personnes ont assez d'argent. 
      * Bloquer les inscriptions et creer les équipes
-     *@param equipe va permettre de stocker l'équipe composé de deux joueurs 
+     *@param equipe va permettre de stocker l'équipe composée de deux joueurs 
      */
     public boolean inscrire (Equipe equipe) {
 	if (! enCours) {
@@ -55,13 +56,21 @@ class TournoiBelote {
         return false;
 	}
 	
-    
+     /**
+     * Cette méthode permet d'afficher les équipes inscrites au tournoi. 
+     * Elle affiche les élements de la liste equipes.
+     * 
+    */	
+    public void equipesInscrites () {
+        for (int i = 0; i < equipes.size (); i ++)
+            System.out.println (equipes.get(i));
+    }
      
     /**
      * Cette méthode permet de commencer  le tournoi de Belotte. 
      * Pour ce faire,elle va lancer les matchs avec la methode "jouerlesMatches"
      * Elle traite également la fin du tournoi, avec la paie des gagnants et
-     * de la patronne, ainsi que l'annonce des gagnants par le Barman. 
+     * de la patronne, ainsi que l'annonce des gagnants. 
      */
     public void tournoiDebut () {
         enCours = true;
@@ -69,15 +78,13 @@ class TournoiBelote {
         total = new int [equipes.size ()];
         classement = new int [equipes.size ()];
         jouerLesMatches ();
-        Equipe gagnante = quiGagne ();
-        // 50% du total des inscriptions va aux vainqueurs
-        //gagnante.joueur1.ajouterArgent (totalInscription / 4);
-       // gagnante.joueur2.ajouterArgent (totalInscription / 4);	
-        // Les autres 50% vont Ã  la patronne
-        // patronne.ajouterArgent (totalInscription / 2); <=== COMME CA ?
+        Equipe winner = quiGagne ();
+        winner.joueur1.ajouterArgent (totalInscription / 4);
+        winner.joueur2.ajouterArgent (totalInscription / 4);	
+        //patronne.recuperCaisse(totalInscription);
         System.out.println ("Et c'est la fin du tournoi les loulous !");
-        System.out.println ("L'Equipe " + gagnante + " est la gagnante.");
-        System.out.println ("Félicitations aux joueurs " + gagnante.joueur1.getPrenom() + " et " + gagnante.joueur2.getPrenom()+ "\n");
+        System.out.println ("L'Equipe " + winner + " est la gagnante.");
+        System.out.println ("Félicitations aux joueurs " + winner.joueur1.getPrenom() + " et " + winner.joueur2.getPrenom()+ "\n");
     }
         
     /**
@@ -110,8 +117,8 @@ class TournoiBelote {
                             equipes.get (j).joueur1.monterCotePopularite (5);
                             equipes.get (j).joueur2.monterCotePopularite (5);
 			}		
-		actualiserScores ();
-                afficherScores ();
+		actuScores ();
+                printScores ();
 		}
             }
 	}
@@ -122,7 +129,7 @@ class TournoiBelote {
      * Les scores sont stockés dans un tableau, qui sera alors trié. 
      * Enfin, on obtient le classement final. 
      */
-    private void actualiserScores () {
+    private void actuScores () {
         for (int i = 0; i < equipes.size (); i ++) {
             int s = 0;		
             for (int j = 0; j < equipes.size (); j ++) {
@@ -140,7 +147,7 @@ class TournoiBelote {
      * Cette méthode permet d'afficher un tableau avec les scores.
      * Conforme à l'énoncé. 
      */
-    private void afficherScores () {
+    private void printScores () {
         System.out.print ("Equipes" + "   ");
         for (int i = 0; i < equipes.size (); i ++)
             System.out.print ( equipes.get (i).toString () + "   ");
@@ -151,7 +158,7 @@ class TournoiBelote {
             System.out.print (equipes.get (i).toString () + "\t");
                 for (int j = 0; j < equipes.size (); j ++) {
                     if (i == j)
-                     System.out.print ("#" + "  \t");
+                     System.out.print ("*" + "  \t");
                     else 
                      System.out.print (scores [i] [j] + "" + "  \t");
                 }
@@ -163,7 +170,7 @@ class TournoiBelote {
     }
       
     /**
-     *Cette méthode permet de trouver l'équipe gagnante du tournoi. 
+     *Cette méthode permet de trouver l'équipe winner du tournoi. 
      *@return : Renvoie l'équipe en tête du classement
      */
     private Equipe quiGagne () {
@@ -186,15 +193,6 @@ class TournoiBelote {
                 return -1;
     }
     
-    /**
-     * Cette méthode permet d'afficher les équipes inscrites au tournoi. 
-     * Elle affiche les élements de la liste equipes.
-     * 
-    */	
-    public void equipesInscrites () {
-        for (int i = 0; i < equipes.size (); i ++)
-            System.out.println (equipes.get(i));
-    }
 	
     
 }

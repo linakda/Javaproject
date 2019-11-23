@@ -94,8 +94,7 @@ public class Client extends Humain{
     @Override
     public void offrir(Client client) {
 	System.out.println(this.parler("Tu veux quoi "+client.getPrenom()));
-	System.out.println(client.parler("un verre de  "+client.boissonFavorite));
-	client.alcoolemie += client.boissonFavorite.tauxAlcoolemie;
+	System.out.println(client.parler("un verre de  "+client.boissonFavorite.getNom()));
 	this.addition += client.boissonFavorite.prix;
     }
     
