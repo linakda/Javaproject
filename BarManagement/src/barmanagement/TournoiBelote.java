@@ -40,11 +40,8 @@ class TournoiBelote {
 	
     /** 
      * Cette methode permet d'inscrire une equipe au tournoi.
-     * Verifier que les 2 inscrits ont suffisament d'argent
-     * Faire payer les deux inscrits séparement
-     * Ajout de l'argent a  la cagnote
-     * Uniquement si les deux personnes ont assez d'argent. 
-     * Bloquer les inscriptions et creer les équipes
+     * Ensuite on fait payer les deux inscrits, cet argent s'ajoute à la cagnotte.
+     * Enfin, on ajoute l'équipe céer aux equipes participantes.
      *@param equipe va permettre de stocker l'équipe composée de deux joueurs 
      */
     public boolean inscrire (Equipe equipe) {

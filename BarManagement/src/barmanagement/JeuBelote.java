@@ -80,15 +80,6 @@ class JeuBelote {
        
     }
     
-     /**
-     * Cette méthode permet d'afficher son jeu en main.
-     */
-    public void afficherLaMain() {
-         for (int i = 0; i < couleurs.length; i ++) { 
-            System.out.print(this.cartes[i]);
-        } //Il faut voir quel joueur est l'utilisateur
-    }
-    
     /**
      * Cette méthode permet d'afficher la main de l'adversaire.
      * En fonction de l'équipe sélectionnée, un utilisateur(joueur) expert peut 
@@ -312,8 +303,8 @@ class JeuBelote {
     
     /**
      * Cette methode permet de jouer une manche.
-     * Chaque joueur commence par joueuer une carte de sa main, on va voir celle
-     * dont la valeur est la plus forte. Cemui dont la carte est la plus forte récolte 
+     * Chaque joueur commence par jouer une carte de sa main, on va voir celle
+     * dont la valeur est la plus forte. Celui dont la carte est la plus forte récolte 
      * toutes les autres cartes. On repète l'action jusqu'à ce que les joueurs n'ont
      * plus de cartes en main. Ensuite, un calcul des scores est fait et les perdants
      * offrent à boire aux gagnants de la manche.
