@@ -4,12 +4,15 @@
  * and open the template in the editor.
  */
 package barmanagement;
+/**
+ * @author Lina & Théophile
+ */
 
 /**
  * Cette classe est une classe fille de Humain.
  * Elle possède toute les méthodes et les paramètres de ce même type tel que
  * boire, offrir un verre, parler, payer, se présenter et un toString. 
- * @author Lina & Théophile
+ * 
  */
 public class Serveur extends Humain {
     float tailleBiceps,coeffCharme;

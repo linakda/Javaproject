@@ -216,9 +216,9 @@ class JeuBelote {
     
     /**
      * Cette méthode permet de trouver qui va être le premier donneur de la partie.
-     * On ajoute la valeur de la carte piochée par chaque joueur à la liste comparateur.
-     * On trie la liste par ordre croissant et on recupère le donneur lorsque 
-     * sa carte est égale à la plus faible carte, puis on affiche son prénom.
+     * On ajoute la figure de la carte piochée par chaque joueur à la liste comparateur.
+ On trie la liste par ordre croissant et on recupère le donneur lorsque 
+ sa carte est égale à la plus faible carte, puis on affiche son prénom.
      * @param J1 : stocke la carte piochée par le joueur 1
      * @param J2 : stocke la carte piochée par le joueur 2
      * @param J3 : stocke la carte piochée par le joueur 3
@@ -304,10 +304,10 @@ class JeuBelote {
     /**
      * Cette methode permet de jouer une manche.
      * Chaque joueur commence par jouer une carte de sa main, on va voir celle
-     * dont la valeur est la plus forte. Celui dont la carte est la plus forte récolte 
-     * toutes les autres cartes. On repète l'action jusqu'à ce que les joueurs n'ont
-     * plus de cartes en main. Ensuite, un calcul des scores est fait et les perdants
-     * offrent à boire aux gagnants de la manche.
+ dont la figure est la plus forte. Celui dont la carte est la plus forte récolte 
+ toutes les autres cartes. On repète l'action jusqu'à ce que les joueurs n'ont
+ plus de cartes en main. Ensuite, un calcul des scores est fait et les perdants
+ offrent à boire aux gagnants de la manche.
      * @return points : La liste contenant les points des deux equipes
      * 
      */

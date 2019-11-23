@@ -7,11 +7,14 @@ package barmanagement;
 
 import java.util.List;
 import java.util.LinkedList;
+/**
+ * @author Lina & Théophile
+ */
 
 /**
  * Cette classe possède toutes les méthodes et paramètres d'une table avec
  * la table, ajouter une personne à une table, se lever d'une table. 
- * @author Lina & Theophile
+ * 
  */
 
 public class Table {

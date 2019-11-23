@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package barmanagement;
-
+/**
+ * @author Lina & Théophile
+ */
 import java.util.*;
 import java.util.List;
 
@@ -13,7 +15,7 @@ import java.util.List;
  * Elle comprend les méthodes  d'inscription, de lancer du tournoi, de jeu des matchs, 
  d'actualisation et d'affichage des scores, une methode qui donne l'équipe 
  winner (et son accessor) et une methode d'affichage des equipes inscrites.
- * @author Lina & Théophile
+ * 
  */
 
 class TournoiBelote {

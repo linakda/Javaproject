@@ -6,11 +6,15 @@
 package barmanagement;
 
 /**
+ * @author Lina & Théophile
+ */
+
+/**
  * Cette classe est une classe fille de Humain.
  * Elle possède les methodes qui permettent d'initialiser le Barman, parler avec
  * le coco à la fin, payer un verre, offrir un verre, se présenter, la disponibilité des boissons,
  * boire un verre, boire une boisson, commander du stock et recevoir une commande. 
- * @author Théo
+ *
  */
 public class Barman extends Humain{
     String finDePhrase;
