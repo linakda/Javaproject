@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package barmanagement;
-
+/**
+ * @author Lina & Théophile
+ */
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.List;

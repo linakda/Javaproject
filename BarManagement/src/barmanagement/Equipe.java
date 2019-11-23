@@ -4,12 +4,15 @@
  * and open the template in the editor.
  */
 package barmanagement;
+/**
+ * @author Lina & Théophile
+ */
 
 /**
  * Cette classe possède toutes les méthodes et paramètres d'une équipe avec
  * l'équipe et toString. 
- * @author Théo
- */
+ * 
+ **/
 public class Equipe {
     
     Client joueur1;
@@ -19,6 +22,10 @@ public class Equipe {
     /**
      * Cette méthode est le constructeur d'une équipe. 
      * Elle est exécutée à la création de l'objet et permet l'initialisation de l'objet. 
+     * 
+     * @param nom : stocke le nom de l'équipe
+     * @param j1 : stocke le joueur 1 
+     * @param j2 : sotkce le joueur 2 
     */
     public Equipe (String nom, Client j1, Client j2){
 	nomEquipe = nom;

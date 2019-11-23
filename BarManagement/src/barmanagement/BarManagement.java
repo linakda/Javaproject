@@ -5,8 +5,10 @@
  */
 package barmanagement;
 /**
- * @author Théo
+ * @author Lina & Théophile
  */
+
+
 public class BarManagement {
 
     /**

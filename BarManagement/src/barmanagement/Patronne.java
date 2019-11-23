@@ -4,13 +4,17 @@
  * and open the template in the editor.
  */
 package barmanagement;
+/**
+ * @author Lina & Théophile
+ */
+
 
 /**
  * Cette classe est une classe fille de Humain.
  * Elle possède toute les méthodes et les paramètres de ce même type tel que
  * boire, exclure un client, offrir un verre, parler, payer son verre, payer le fournisseur,
  * recuperer la caisse et enfin se présenter. 
- * @author Lina & Théophile
+ *
  */
 public class Patronne extends Humain {
     boolean nePlusServir = false;
