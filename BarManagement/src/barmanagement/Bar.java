@@ -1475,7 +1475,6 @@ public void menu(){
                         }
                         }
                     this.joueur.ajouterArgent(argent);
-                    //this.joueur.changerSexe();
                     break;
                 default:
                     break;
