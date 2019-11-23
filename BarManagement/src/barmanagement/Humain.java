@@ -5,8 +5,6 @@
  */
 package barmanagement;
 
-import java.util.Objects;
-
 /**
  * Cette classe est la classe mère Humain. 
  * Elle possède les méthodes qui permet d'initialiser un "humain", 
@@ -14,7 +12,6 @@ import java.util.Objects;
  * @author Théo
  */
 public abstract class Humain {
-
     String nom, accessoire;
     private String prenom, cri, sexe ;
     int popularite ;
@@ -36,23 +33,7 @@ public abstract class Humain {
        this.sexe = sexe ;
        this.porteMonnaie = porteMonnaie;
        this.accessoire=accessoire;
-   }
-
-
-    /**
-     * Cette méthode permet de vérifier si deux humains sont identiques ou non
-     * @param  humain1 : Stock notre type humain
-     * @return un boolean permettant de voir si la condition eest vérifié ou non
-     */
-    //@Override
-    /**public boolean equals(Object humain1){
-    Humain humain2;
-    humain2 = (Humain) humain1;
-    if(this.nom.equals(humain2.nom) && this.prenom.equals(humain2.prenom) && this.cri.equals(humain2.cri))
-    return true;
-    return false;
-     * @return }*/
-    
+   }    
 
     /**
      * Ces methodes vont donner tous les accesseur et mutateurs
@@ -67,9 +48,14 @@ public abstract class Humain {
        return this.prenom ;
     }
     
+    public String getSexe(){
+       return this.sexe ;
+    }
+    
     public float getPorteMonnaie(){
        return this.porteMonnaie ;
     }
+    
     public int getPopularite(){
        return this.popularite ;
     }
@@ -82,16 +68,16 @@ public abstract class Humain {
         return this.accessoire;
     }
     
-    public String getSexe(){
-       return this.sexe ;
-    }
-   
     public void setNom(String nom){
        this.nom = nom ;
     }
    
     public void setPrenom(String prenom){
        this.prenom = prenom ;
+    }
+    
+    public void setSexe(String sexe){
+       this.sexe = sexe ;
     }
    
     public void setPorteMonnaie(float porteMonnaie){
@@ -106,15 +92,9 @@ public abstract class Humain {
        this.cri = cri ;
     }
     
-    public void setAccessoire(){
+    public void setAccessoire(String accessoire){
         this.accessoire = accessoire;
     }
-   
-    public void setSexe(String sexe){
-       this.sexe = sexe ;
-    }
-    
-   
    
    /**
      * Ces méthodes abstraites définissant les méthodes nécessaire à avoir pour être

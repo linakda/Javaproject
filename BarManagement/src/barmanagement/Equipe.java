@@ -18,7 +18,10 @@ public class Equipe {
 
     /**
      * Cette méthode est le constructeur d'une équipe. 
-     * Elle est exécutée à la création de l'objet et permet l'initialisation de l'objet. 
+     * Elle est exécutée à la création de l'objet et permet l'initialisation de l'objet.
+     * @param nom : Stock le nom de l'équipe. 
+     * @param j1 : Stock le nom du joueur 1.
+     * @param j2 : Stock le nom du joueur 2. 
     */
     public Equipe (String nom, Client j1, Client j2){
 	nomEquipe = nom;

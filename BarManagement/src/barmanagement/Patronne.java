@@ -30,6 +30,15 @@ public class Patronne extends Humain {
     }
     
     /**
+     * Cette méthode permet à la patronne de se pésenter
+     * @return : Retourne la phrase que la patronne dit pour se présenter dans la console. 
+    */
+    @Override
+    public String sePresenter(){
+        return "Je suis la patronne et c'est mon bar ici.";		
+    }    
+   
+    /**
      * Cette méthode permet à la patronne de boire. 
      * @param consommation : Stock le paramètre de la boisson actuelle. 
     */
@@ -46,14 +55,7 @@ public class Patronne extends Humain {
         return false;
     }
     
-    /**
-     * Cette méthode permet à la patronne de se pésenter
-     * @return : Retourne la phrase que la patronne dit pour se présenter dans la console. 
-    */
-    @Override
-    public String sePresenter(){
-        return "Je suis la patronne et c'est mon bar ici.";		
-    }
+
     
     /**
      * Cette méthode permet de recuperer l'argent de la caisse.

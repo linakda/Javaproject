@@ -37,6 +37,15 @@ public class Serveur extends Humain {
     }
     
     /**
+     * Cette méthode permet au serveur de se presenter.
+     * @return : Retourne son cri significatif.
+     */
+    @Override
+    public String sePresenter() {
+	return this.getCri();
+    }
+    
+    /**
      * Cette méthode permet de renvoyer les caractéristiques du serveur.
      * @return : Retourne le nom, le prenom, le sexe, le cri significatif, le cri, la côte de popularité.
      */
@@ -75,15 +84,6 @@ public class Serveur extends Humain {
   	client.alcoolemie += client.boissonFavorite.tauxAlcoolemie;
     }
     
-    
-    /**
-     * Cette méthode permet au serveur de se presenter.
-     * @return : Retourne son cri significatif.
-     */
-    @Override
-    public String sePresenter() {
-	return this.getCri();
-    }
     
     /**
      * Cette méthode permet aux serveurs de boire. 

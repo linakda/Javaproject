@@ -153,7 +153,7 @@ public class Client extends Humain{
     
     /**
      * Cette méthode permet d'ajuster la côte de popularité.
-     * @param gain : Stock le gain de popularité a ajouter. 
+     * @param gain : Stock le gain de popularité à ajouter. 
     */
     public void monterCotePopularite(int gain){
        this.popularite = gain + this.popularite;
@@ -161,7 +161,7 @@ public class Client extends Humain{
     
     /**
      * Cette méthode permet d'ajuster la côte de popularité.
-     * @param perte : Stock la perte de popularité a ajouter. 
+     * @param perte : Stock la perte de popularité à ajouter. 
     */
     public void baisserCotePopularite(int perte){
         this.popularite = perte + this.popularite;
@@ -169,6 +169,7 @@ public class Client extends Humain{
     
     /*
      *Cette méthode permet de monter le niveau de belotee d'un joueur. 
+     * @param gain : Stock le gain de popularité à ajouter
     */
     public void monterNiveauBelote(int gain){
         this.experienceBelote = gain + this.experienceBelote;
