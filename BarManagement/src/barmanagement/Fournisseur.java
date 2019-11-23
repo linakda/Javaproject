@@ -24,6 +24,16 @@ public class Fournisseur extends Humain{
 	super(prenom, nom, sexe, cri, accessoire,100);
     }
     
+    /**
+     * Cette méthode permet de se présenter au fournisseur.
+     * @return : Retourne son cri
+     */
+    @Override
+    public String sePresenter() {
+	return getCri();
+    }
+    
+    
     /*
      * Cette méthode permet aux fournisseurs de boire. 
      * @param consommation : Stock le paramètre de la boisson actuelle. 
@@ -48,15 +58,6 @@ public class Fournisseur extends Humain{
     	this.setPorteMonnaie(this.getPopularite()+total) ;
     }
     
-    /**
-     * Cette méthode permet de se présenter au fournisseur.
-     * @return : Retourne son cri
-     */
-    @Override
-    public String sePresenter() {
-	return getCri();
-    }
-    
     /*
      * Cette méthode permet au fournisseur de parler 
      * @return : Retourne la phrase du fournisseur avec une certaine nomenclature. 
@@ -67,7 +68,7 @@ public class Fournisseur extends Humain{
     }
     
     /*
-     * Cette méthode permet d'offrir un verre a un client. 
+     * Cette méthode permet d'offrir un verre à un client. 
     */
     @Override
     public void offrir(Client client) {

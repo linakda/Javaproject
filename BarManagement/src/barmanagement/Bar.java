@@ -55,9 +55,9 @@ public final class Bar {
     	creationPatronne();
         creationFournisseur();
         creationBarman();
+        creationServeur();
     	creationBoisson();  
         creationClientPnj();
-    	creationServeur();
     	creationJoueur();
         
     	this.nomBar = "Chez " + this.patronne.getPrenom();
@@ -76,91 +76,8 @@ public final class Bar {
         }
     }
 
-     /**
-     * Cette methode permet de créer son propre joueur.
-     * L'utilisateur peut ajouter les caractéristiques qu'il souhaite à savoir :
-     * le nom, le prenpm, le cri significatif, l'argent dans le porte monnaie,
-     * le sexe, la boisson fav1 et la boisson fav2.
-    */
-    public void creationJoueur(){
-        String nomJoueur,surname,cri,sexe,num, accessoire;
-        int indiceBoissonFavorite = 0,indiceBoissonSecour = 0, popularite = 0, experienceBelote = 0;
-        float porteMonnaie = 0;
-        boolean numBoissonFail = true;
-
-        System.out.println("--------------------------------------");
-        System.out.println("*         Créer votre joueur         *");
-        System.out.println("--------------------------------------");
-        System.out.println("Nom : ");  
-        surname = sc.nextLine();
-        System.out.println("Prénom : ");
-        nomJoueur = sc.nextLine();
-        System.out.println("Cri significatif : ");
-        cri = sc.nextLine();
-        System.out.println("Choissiez votre accessoire ! ");
-        System.out.println("Il est d'usage que les hommes ont un t-shirt de couleur et que les femmes ont des bijoux.");
-        accessoire = sc.nextLine();
-        boolean conversionFail = true;
-        while(conversionFail){
-            try
-            {
-                conversionFail = false;
-                System.out.println("Combien d'argent avez-vous dans votre porte monnaie ?");
-                porteMonnaie = Float.parseFloat(sc.nextLine());
-            }
-            catch(NumberFormatException e){
-                conversionFail = true;
-                System.out.println("Veuillez entrer un float");
-                    }
-            }
-            System.out.println("Sexe(homme/femme) : ");
-            sexe = sc.nextLine();
-            while(!sexe.equals("homme") && !sexe.equals("femme")){
-                System.out.print("Veuillez saisir homme ou femme");
-                sexe = sc.nextLine();
-            }
-            while(numBoissonFail){
-                    try{
-                        System.out.println("Choississez votre boisson favorite (Veuillez le numero correspondant)");
-                        carte ();
-                        num = sc.nextLine();
-                        indiceBoissonFavorite = Integer.parseInt(num);
-                        while(indiceBoissonFavorite < 0 || indiceBoissonFavorite >= boissons.size() ){
-                            System.out.println("Ce numero ne correspond pas à une boisson disponible dans le bar,\n Veuillez saisir un numéro compris entre 0 et " + (boissons.size()-1));
-                            num = sc.nextLine();
-                            indiceBoissonFavorite = Integer.parseInt(num);
-                        }
-                        numBoissonFail = false;
-                    }
-                    catch(NumberFormatException e){
-                        System.out.println("Veuillez saisir un entier s'il vous plaît.");
-                        numBoissonFail = true;
-                    }
-            }
-            numBoissonFail = true;
-            while(numBoissonFail){
-                try{
-                    System.out.println("Veuillez choisir votre boisson de secours (Veuillez saisir le numero correspondant)");
-                    carte ();
-                    num = sc.nextLine();
-                    indiceBoissonSecour = Integer.parseInt(num);
-                    while(indiceBoissonSecour < 0 || indiceBoissonSecour >= boissons.size() ){
-                        System.out.println("Ce numero ne correspond a aucune boisson disponible dans le bar.\n Veuillez saisir un numéro compris entre 0 et " + (boissons.size()-1));
-                        num = sc.nextLine();
-                        indiceBoissonSecour = Integer.parseInt(num);
-                    }
-                    numBoissonFail = false;
-                }
-                catch(NumberFormatException e){
-                    System.out.println("Veuillez saisir un entier s'il vous plaît.");
-                    numBoissonFail = true;
-                }
-            }
-            joueur = new Client(nomJoueur ,surname,sexe ,cri, accessoire ,porteMonnaie, popularite, experienceBelote, boissons.get(indiceBoissonFavorite),boissons.get(indiceBoissonSecour));
-    }
-    
     /**
-     * Cette methode permet de créer la Patronne sois-même.
+     * Cette methode permet de créer la Patronne soi-même.
      * L'utilisateur peut ajouter les caractéristiques qu'il souhaite à savoir :
      * le nom, le prenom, et son cri significatif.
      */
@@ -190,7 +107,7 @@ public final class Bar {
     }
     
     /**
-     * Cette methode permet de créer le fournisseur sois-même.
+     * Cette methode permet de créer le fournisseur soi-même.
      * L'utilisateur peut ajouter les caractéristiques qu'il souhaite à savoir :
      * le nom, le prenom, et son cri significatif.
      */
@@ -220,7 +137,7 @@ public final class Bar {
     }
     
     /**
-     * Cette methode permet de créer le Barman sois-même.
+     * Cette methode permet de créer le Barman soi-même.
      * L'utilisateur peut ajouter les caractéristiques qu'il souhaite à savoir :
      * le nom, le prenom, et son cri significatif.
      */
@@ -242,7 +159,7 @@ public final class Bar {
             System.out.println("Nom du Barman");
             nom = sc.nextLine();
             System.out.println("Prénom du Barman");
-         	prenom = sc.nextLine();
+            prenom = sc.nextLine();
             System.out.println("Cri du Barman");
             cri = sc.nextLine();
             barman = new Barman(prenom,nom,"homme",cri,"Serviette de bar");
@@ -297,8 +214,8 @@ public final class Bar {
     }
     
     /**
-     * Cette methode permet de créer le(s) boisson(s) sans alcool sois-même, en
-     * l'ajoutantà la liste des boissons. 
+     * Cette methode permet de créer le(s) boisson(s) sans alcool soi-même, en
+     * l'ajoutant à la liste des boissons. 
      * L'utilisateur peut ajouter les caractéristiques qu'il souhaite à savoir :
      * le nom, le prix, et le prix d'achat.
      */
@@ -307,27 +224,27 @@ public final class Bar {
     	String nomBoisson;
     	System.out.println("Nom de votre boisson ?");
     	nomBoisson = sc.nextLine();
-    	boolean conversionFail = true;
-    	while(conversionFail){
+    	boolean conversionError = true;
+    	while(conversionError){
             try{
-        	conversionFail = false;
+        	conversionError = false;
     		System.out.println("Prix de votre boisson pour les clients ?");
         	prix = Float.parseFloat(sc.nextLine());
         	}
             catch(NumberFormatException e){
-        	conversionFail = true;
+        	conversionError = true;
         	System.out.println("Veuillez entrer un float ");
             }
     	}
-    	conversionFail = true;
-    	while(conversionFail){
+    	conversionError = true;
+    	while(conversionError){
             try{
-        	conversionFail = false;
+        	conversionError = false;
     		System.out.println("Prix d'achat de votre boisson auprés du fournisseur?");
         	prixAchat = Float.parseFloat(sc.nextLine());
         	}
             catch(NumberFormatException e){
-        	conversionFail = true;
+        	conversionError = true;
         	System.out.println("Veuillez entrer un float");
             }
     	}
@@ -335,7 +252,7 @@ public final class Bar {
     }
     
      /**
-     * Cette methode permet de créer le(s) boisson(s) alcoolisées sois-même, en
+     * Cette methode permet de créer le(s) boisson(s) alcoolisées soi-même, en
      * l'ajoutantà la liste des boissons. 
      * L'utilisateur peut ajouter les caractéristiques qu'il souhaite à savoir :
      * le nom, le prix, le prix d'achat et le taux d'alcoolémie.
@@ -442,7 +359,7 @@ public final class Bar {
     }
     
     /**
-     * Cette methode permet de créer le(s) client(s) sois-même, en l'ajoutant
+     * Cette methode permet de créer le(s) client(s) soi-même, en l'ajoutant
      * à la liste des clients. 
      * L'utilisateur peut ajouter les caractéristiques qu'il souhaite à savoir :
      * le nom, le prenom, le cri significatif, le sexe, l'argent du porte-monnaie
@@ -461,33 +378,32 @@ public final class Bar {
         System.out.println("Choisissez un accessoire pour le client");
         System.out.println("Il est d'usage que les hommes ont un t-shirt de couleur et que les femmes ont des bijoux.");
         accessoire = sc.nextLine();
-        boolean numExpFail = true;
-    	while(numExpFail){
+        boolean Error = true;
+    	while(Error){
             try{
         	System.out.println("Niveau d'experience à la Belote : (entre 1 et 10)");
             	exp = sc.nextLine();
                 experienceBelote = Integer.parseInt(exp);
         	while(experienceBelote < 0 || experienceBelote > 10){
-                    System.out.println("Ce numero ne correspond pas à un niveau correct,\n veuillez saisir un numéro compris entre 0 et ");
+                    System.out.println("Ce numero ne correspond pas à un niveau correct,\n veuillez saisir un numéro compris entre 0 et 10");
                     exp = sc.nextLine();
                     experienceBelote = Integer.parseInt(exp);
         	}
-        	numExpFail = false;
+        	Error = false;
         	}
             catch(NumberFormatException e){
-        	System.out.println("Veuillez saisire un entier entre 1 et 10.");
-        	numExpFail = true;
+        	System.out.println("Veuillez saisir un entier entre 1 et 10.");
+        	Error = true;
             }
     	}
-    	boolean conversionFail = true;
-    	while(conversionFail){
-            try
-            {
-        	conversionFail = false;
+    	boolean conversionError = true;
+    	while(conversionError){
+            try{
+        	conversionError = false;
     		System.out.println("Combien d'argent a " + nomClient +" dans son porte monnaie ?");
         	porteMonnaie = Float.parseFloat(sc.nextLine());
             }catch(NumberFormatException e){
-        	conversionFail = true;
+        	conversionError = true;
         	System.out.println("Veuillez un float s'il vous plaît ");
             }
     	}
@@ -497,8 +413,8 @@ public final class Bar {
             System.out.print("Veuillez saisir homme ou femme");
             sexe = sc.nextLine();
     	}
-        boolean numBoissonFail = true;
-    	while(numBoissonFail){
+        boolean numBoissonError = true;
+    	while(numBoissonError){
             try{
         	System.out.println("Veuillez choisir votre boisson favorite (Veuillez saisir le numero correspondant).");
                 carte ();
@@ -509,15 +425,15 @@ public final class Bar {
                     num = sc.nextLine();
                     indiceBoissonFavorite = Integer.parseInt(num);
         	}
-        	numBoissonFail = false;
+        	numBoissonError = false;
         	}
             catch(NumberFormatException e){
         	System.out.println("Veuillez saisir un entier.");
-        	numBoissonFail = true;
+        	numBoissonError = true;
             }
     	}
-    	numBoissonFail = true;
-    	while(numBoissonFail){
+    	numBoissonError = true;
+    	while(numBoissonError){
             try{
                 System.out.println("Veuillez choisir votre boisson de secours (Veuillez choisir le numero correspondant)");
         	carte ();
@@ -528,11 +444,11 @@ public final class Bar {
                     num = sc.nextLine();
                     indiceBoissonSecour = Integer.parseInt(num);
         	}
-        	numBoissonFail = false;
+        	numBoissonError = false;
         	}
             catch(NumberFormatException e){
         	System.out.println("Veuillez saisir un entier s'il vous plaît.");
-        	numBoissonFail = true;
+        	numBoissonError = true;
             }
     	}
     	clients.add(new Client(nomClient ,surname,sexe ,cri, accessoire,porteMonnaie,popularite, experienceBelote,boissons.get(indiceBoissonFavorite),boissons.get(indiceBoissonSecour)));
@@ -591,16 +507,16 @@ public final class Bar {
     }
     
     /** 
-     * Cette methode permet de créer le(s) serveur(s) sois-même, en l'ajoutant
+     * Cette methode permet de créer le(s) serveur(s) soi-même, en l'ajoutant
      * à la liste des serveurs. 
      * L'utilisateur peut ajouter les caractéristiques qu'il souhaite à savoir :
      * le nom, le prenom, le cri, le sexe, la taille du biceps ou le charme
      */
     public void creationServeurPersonalise(){
         float tailleBiceps = 0,charme = 0;
-    	String nom,prenom,cri,sexe,accessoire, exp;
+    	String nom,prenom,cri,sexe,accessoire;
         int experienceBelote = 0;
-    	boolean numFail = true;
+    	boolean numError = true;
     	System.out.print("Nom : ");
     	nom = sc.nextLine();
     	System.out.print("\nPrénom : ");
@@ -619,53 +535,51 @@ public final class Bar {
         else{
             accessoire = "cravate rose";
         }
-    	while(numFail){
+    	while(numError){
             try{
     		System.out.print("Veuillez entrer la taille du biceps.");
     		tailleBiceps = Float.parseFloat(sc.nextLine());
     		if(tailleBiceps < 0 ){
-                    numFail = true;
+                    numError = true;
                     System.out.println("Veuillez entrer une taille positive.");
     		}
     		else
-                    numFail = false; 
+                    numError = false; 
             }catch(NumberFormatException e){
-    		numFail = true;
+    		numError = true;
     		System.out.println("Veuillez saisir un float.");
             }	
     	}
-    	numFail = true;
-    	while(numFail){
+    	numError = true;
+    	while(numError){
             try{
     		System.out.print("Veuillez entrer le coefficent de charme.");
     		charme = Float.parseFloat(sc.nextLine());
     		if(charme < 0 ){
-                    numFail = true;
+                    numError = true;
                     System.out.println("Veuillez entrer une nombre positif.");
     		}
     		else
-                    numFail = false; 
+                    numError = false; 
             }catch(NumberFormatException e){
-    		numFail = true;
+    		numError = true;
     		System.out.println("Veuillez saisir un float.");
             }	
     	}
-        boolean numExpFail = true;
-    	while(numExpFail){
+        boolean numExpError = true;
+    	while(numExpError){
             try{
         	System.out.println("Veuillez saisir le niveau d'experience à la Belote : (entre 1 et 10)");
-            	exp = sc.nextLine();
-                experienceBelote = Integer.parseInt(exp);
+                experienceBelote = Integer.parseInt(sc.nextLine());
         	while(experienceBelote < 0 || experienceBelote > 10 ){
                     System.out.println("Ce numero ne correspond pas a un niveau correct,\n veuillez saisir un numéro compris entre 0 et 10");
-                    exp = sc.nextLine();
-                    experienceBelote = Integer.parseInt(exp);
+                    experienceBelote = Integer.parseInt(sc.nextLine());
         	}
-        	numExpFail = false;
+        	numExpError = false;
         	}
             catch(NumberFormatException e){
         	System.out.println("Veuillez saisir un entier entre 1 et 10 s'il vous plaît");
-        	numExpFail = true;
+        	numExpError = true;
             }
     	}
     	serveurs.add( new Serveur(prenom,nom,sexe,cri,accessoire,tailleBiceps,charme,experienceBelote));
@@ -675,13 +589,98 @@ public final class Bar {
     * Cette methode permet de créer le(s) serveur(s) de manière automatique en l'ajoutant
     * à la liste des serveurs. 
     * Leurs caractéristiques sont donc prédéfinies comme suit : prenom, nom, sexe, 
-    * cri significatif, taille du biceps et charme. 
+    * cri significatif, taille du biceps, charme et experience belote. 
     */
     public void creationServeurParDefaut(){
-       serveurs.add( new Serveur("Veronica","Lodge", "femme", " oh dear","bijou très cher", 20 ,90,0) );
+       serveurs.add( new Serveur("Veronica","Lodge", "femme", " oh dear","cravate rose", 20 ,90,0) );
        serveurs.add( new Serveur("Nick","Miller", "homme","whhhraaaaaaooooo","cravate noire", 95 , 25,2) );
-   }
+    }
    
+    
+    /**
+     * Cette methode permet de créer son propre joueur.
+     * L'utilisateur peut ajouter les caractéristiques qu'il souhaite à savoir :
+     * le nom, le prenpm, le cri significatif, l'argent dans le porte monnaie,
+     * le sexe, la boisson fav1 et la boisson fav2.
+    */
+    public void creationJoueur(){
+        String nomJoueur,surname,cri,sexe,num, accessoire;
+        int indiceBoissonFavorite = 0,indiceBoissonSecour = 0, popularite = 0, experienceBelote = 0;
+        float porteMonnaie = 0;
+        boolean numBoissonError = true;
+
+        System.out.println("--------------------------------------");
+        System.out.println("*         Créer votre joueur         *");
+        System.out.println("--------------------------------------");
+        System.out.println("Nom : ");  
+        surname = sc.nextLine();
+        System.out.println("Prénom : ");
+        nomJoueur = sc.nextLine();
+        System.out.println("Cri significatif : ");
+        cri = sc.nextLine();
+        System.out.println("Choisissez votre accessoire ! ");
+        System.out.println("Il est d'usage que les hommes ont un t-shirt de couleur et que les femmes ont des bijoux.");
+        accessoire = sc.nextLine();
+        boolean conversionFail = true;
+        while(conversionFail){
+            try
+            {
+                conversionFail = false;
+                System.out.println("Combien d'argent avez-vous dans votre porte monnaie ?");
+                porteMonnaie = Float.parseFloat(sc.nextLine());
+            }
+            catch(NumberFormatException e){
+                conversionFail = true;
+                System.out.println("Veuillez entrer un float");
+                    }
+            }
+            System.out.println("Sexe(homme/femme) : ");
+            sexe = sc.nextLine();
+            while(!sexe.equals("homme") && !sexe.equals("femme")){
+                System.out.print("Veuillez saisir homme ou femme");
+                sexe = sc.nextLine();
+            }
+            while(numBoissonError){
+                    try{
+                        System.out.println("Choisissez votre boisson favorite (Veuillez saisir le numero correspondant)");
+                        carte ();
+                        num = sc.nextLine();
+                        indiceBoissonFavorite = Integer.parseInt(num);
+                        while(indiceBoissonFavorite < 0 || indiceBoissonFavorite >= boissons.size() ){
+                            System.out.println("Ce numero ne correspond pas à une boisson disponible dans le bar,\n Veuillez saisir un numéro compris entre 0 et " + (boissons.size()-1));
+                            num = sc.nextLine();
+                            indiceBoissonFavorite = Integer.parseInt(num);
+                        }
+                        numBoissonError = false;
+                    }
+                    catch(NumberFormatException e){
+                        System.out.println("Veuillez saisir un entier s'il vous plaît.");
+                        numBoissonError = true;
+                    }
+            }
+            numBoissonError = true;
+            while(numBoissonError){
+                try{
+                    System.out.println("Veuillez choisir votre boisson de secours (Veuillez saisir le numero correspondant)");
+                    carte ();
+                    num = sc.nextLine();
+                    indiceBoissonSecour = Integer.parseInt(num);
+                    while(indiceBoissonSecour < 0 || indiceBoissonSecour >= boissons.size() ){
+                        System.out.println("Ce numero ne correspond a aucune boisson disponible dans le bar.\n Veuillez saisir un numéro compris entre 0 et " + (boissons.size()-1));
+                        num = sc.nextLine();
+                        indiceBoissonSecour = Integer.parseInt(num);
+                    }
+                    numBoissonError = false;
+                }
+                catch(NumberFormatException e){
+                    System.out.println("Veuillez saisir un entier s'il vous plaît.");
+                    numBoissonError = true;
+                }
+            }
+            joueur = new Client(nomJoueur ,surname,sexe ,cri, accessoire ,porteMonnaie, popularite, experienceBelote, boissons.get(indiceBoissonFavorite),boissons.get(indiceBoissonSecour));
+    }
+    
+    
     /**
     * Cette methode permet de retourner les boissons du bar.
     * @return : Retourne une chaîne de caractère qui contient le nom de la boisson
@@ -751,34 +750,33 @@ public final class Bar {
         int choix ;
         Client destinataire = null ;
         Scanner sc2 = new Scanner(System.in);
-        
-        System.out.println("Que voulez-vous dire a cette personne ?");
+        System.out.println("Que voulez-vous dire à cette personne ?");
         String text = sc2.nextLine();
         System.out.println("Voici les différents clients du bar !") ;
         System.out.println("A qui voulez-vous déclarer votre flamme ?");
         this.clients();
-        boolean fail = true;
-        while(fail){
+        boolean Error = true;
+        while(Error){
             try{
                 choix = Integer.parseInt(sc2.nextLine());
                 if(choix == clients.size()-1)
                 {
                     System.out.println("Désolé, ce numéro ne correspond à aucun client.");
-                    fail = true ;
+                    Error = true ;
                     }
                 else{
                     try{
                         destinataire = this.clients.get(choix);
-                        fail = false;
+                        Error = false;
                     }
                     catch(IndexOutOfBoundsException e){
                         System.out.println("Désolé, ce numero ne correspond à aucun client.");
-                        fail = true;
+                        Error = true;
                         }
                 }
             }catch(NumberFormatException e){
                 System.out.println("Désolé, veuillez entrer un entier.");
-                fail = true;
+                Error = true;
             }
         }    
         System.out.println(joueur.parler(text));
@@ -831,7 +829,7 @@ public void commanderServeur(Client payeur,Client consomateur){
         consomateur.boire(consomateur.boissonFavorite);
         payeur.ajouterAddition(consomateur.boissonFavorite);
     }else{
-        System.out.println(this.barman.parler("Ah ... Désoler, j'en ai plus, je passe la commande tout de suite. "));
+        System.out.println(this.barman.parler("Ah ... Désolé, j'en ai plus, je passe la commande tout de suite. "));
         this.barman.commande(consomateur.boissonFavorite,this.fournisseur);
         System.out.println(serveurs.get(numServeur).parler("Désolé mais nous n'avons plus de "+ consomateur.boissonFavorite.getNom()));
     if(!payeur.equals(consomateur)){
@@ -906,7 +904,7 @@ public void commanderBarman(Client payeur,Client consomateur){
             payeur.ajouterAddition(consomateur.boissonFavorite);
         }
         else{
-            System.out.println(this.barman.parler("Désoler, J'en ai plus"));
+            System.out.println(this.barman.parler("Désolé, J'en ai plus"));
             if(!payeur.equals(consomateur)){
                 System.out.println(payeur.parler("Tu veux pas autre chose à boire "+consomateur.getPrenom()+" ?"));
                 System.out.println(consomateur.parler("Alors un bon verre de  "+consomateur.boissonSecours.getNom() +" s'il te plaît."));
@@ -916,9 +914,7 @@ public void commanderBarman(Client payeur,Client consomateur){
                 phrase += " pour ";
                 phrase += consomateur.getPrenom();
             }
-            
             phrase += " s'il t'en reste ";
-            
             System.out.println(payeur.parler(phrase));
             if(this.barman.disponible(consomateur.boissonSecours)){
                 System.out.println(this.barman.parler("Voici votre verre, bonne dégustation"));
@@ -951,18 +947,16 @@ public void commanderBarman(Client payeur,Client consomateur){
      * participer au tournoi de belotte, s'assoir à une table, se lever de la table
      * et enfin quitter le jeu. 
      */
-public void menu()
-{
+public void menu(){
     int  choix;
-    boolean fail;
+    boolean Error;
     Client destinataire = null;
     Scanner scan = new Scanner(System.in);
-
     while(true){
         System.out.println("------------------------------------------------------------------------");
         System.out.println("*                              "+ this.nomBar+"                           *");
         System.out.println("------------------------------------------------------------------------");
-        System.out.println("|            Choississez l'action que vous voulez réaliser.            |");
+        System.out.println("|            Choisissez l'action que vous voulez réaliser.            |");
         System.out.println("|                          1- Présentez-vous                           |");
         System.out.println("|                2- Présentez-vous d'une autre manière                 |");
         System.out.println("|                           3- Offrez un verre                         |");
@@ -1014,34 +1008,34 @@ public void menu()
                 break;
             case 3:					
                 this.clients();
-                fail = true;
-                while(fail){
+                Error = true;
+                while(Error){
                     try{
                         choix = Integer.parseInt(scan.nextLine());
                         if(choix == clients.size()-1){
-                            System.out.println("Désoler, ce numéro ne correspond à aucun client");
-                            fail = true ;
+                            System.out.println("Désolé, ce numéro ne correspond à aucun client");
+                            Error = true ;
                         }
                         else{
                             try{
                                     destinataire = this.clients.get(choix);
-                                    fail = false;
+                                    Error = false;
                                 }
                                 catch(IndexOutOfBoundsException e){
-                                    System.out.println("Désoler, ce numero ne correspond à aucun client");
-                                    fail = true;
+                                    System.out.println("Désolé, ce numero ne correspond à aucun client");
+                                    Error = true;
                                 }
                             }
                     }
                     catch(NumberFormatException e){
                         System.out.println("Veuillez entrez un entier");
-                        fail = true;
+                        Error = true;
                     }                     
                     }
                     System.out.println("Voulez-vous commander au barman ou a un serveur ?(b/s)");
                     String reponse = scan.nextLine();	
                     while(!reponse.equals("b") && !reponse.equals("s")){
-                        System.out.println("Veuillez entrez serveur ou barman.");
+                        System.out.println("Veuillez entrer serveur ou barman.");
                         reponse = scan.nextLine();
                     }
                     if(reponse.equals("s")){
@@ -1086,7 +1080,7 @@ public void menu()
                         reponse1 = scan.nextLine();
                     }
                     if(reponse1.equals("s")){
-                        System.out.println("Veuillez choissir un seveur( avec le numero)");
+                        System.out.println("Veuillez choisir un seveur( avec le numero)");
                         this.serveurs();
                         int numServeur = Integer.parseInt(scan.nextLine());
                         while(numServeur < 0 || numServeur >= serveurs.size()){
@@ -1126,9 +1120,9 @@ public void menu()
                     System.out.println(this.clients);
                     break ;
                 case 9:
-                    fail = true;
+                    Error = true;
                     if(joueur.numTable == -1){
-                        while(fail){	
+                        while(Error){	
                             try{	
                                 for(int i = 0 ; i < this.tables.size() ; i ++ ) {                        
                                     System.out.println("Table n°" + i + " ( "+this.tables.get(i).personne.size() +" personne(s) sont assise(s) à cette table) ");
@@ -1141,29 +1135,28 @@ public void menu()
                                 int choix1 = Integer.parseInt(scan.nextLine());
                                 if(choix1 < 0 || choix1 >= this.tables.size()){
                                     System.out.println("Désolé, ce numero ne correspond à aucune table.");
-                                    fail = true;
+                                    Error = true;
                                 }
                                 else{
                                     if(this.tables.get(choix1).ajouterPersonne(this.joueur)){
                                         this.joueur.numTable = choix1;
                                         System.out.println("Vous êtes assis à la table " + choix1 + ".");
-                                        fail = false;
+                                        Error = false;
                                     }
                                 else{
                                     System.out.println("Désolé, la table " + choix1 + " est remplie.");
-                                    fail = true;
+                                    Error = true;
                                 }
                                 }
                             }
                             catch(NumberFormatException e){
-                                System.out.println("Saisisser un entier s'il vous plait.");
-                                fail = true;
+                                System.out.println("Veuillez saisir un entier s'il vous plait.");
+                                Error = true;
                             }
                         }
                     }
                     else{
                         this.tables.get(this.joueur.numTable).seLever(this.joueur);
-                        System.out.println("Vous n'êtes plus assis à une table.");
                         this.joueur.numTable = -1;
                     }
                     break; 
@@ -1221,22 +1214,22 @@ public void menu()
                             }
                             if(reponse.equals("c")){ //cas client 
                             this.joueurs();
-                            fail = true;
-                            while(fail){
+                            Error = true;
+                            while(Error){
                                 try{
                                     choix = Integer.parseInt(scan.nextLine());
                                     try{
                                         joueur1=choix;
-                                        fail = false;
+                                        Error = false;
                                         }
                                     catch(IndexOutOfBoundsException e){
                                         System.out.println("Désolé, ce numero ne correspond à aucun client");
-                                        fail = true;
+                                        Error = true;
                                     }
                                 }
                                 catch(NumberFormatException e){
                                     System.out.println("Veuillez entrer un entier");
-                                    fail = true;
+                                    Error = true;
                                  }
                                }
                             }
@@ -1244,22 +1237,22 @@ public void menu()
                             else { 
                                 if (serveurs.size() >= 2 ) {
                                     this.serveurs();
-                                    fail = true;
-                                    while(fail){
+                                    Error = true;
+                                    while(Error){
                                         try{
                                             choix = Integer.parseInt(scan.nextLine());
                                             try{
                                                 joueur1=choix;
-                                                fail = false;
+                                                Error = false;
                                                 }
                                             catch(IndexOutOfBoundsException e){
                                                 System.out.println("Désolé, ce numero ne correspond à aucun serveur");
-                                                fail = true;
+                                                Error = true;
                                             }
                                         }
                                         catch(NumberFormatException e){
                                             System.out.println("Veuillez entrer un entier");
-                                            fail = true;
+                                            Error = true;
                                         } 
                                             }
                              }
@@ -1275,22 +1268,22 @@ public void menu()
                             }
                             if(reponse.equals("c")){ //cas client 
                             this.joueurs();
-                            fail = true;
-                            while(fail){
+                            Error = true;
+                            while(Error){
                                 try{
                                     choix = Integer.parseInt(scan.nextLine());
                                     try{
                                         joueur2=choix;
-                                        fail = false;
+                                        Error = false;
                                         }
                                     catch(IndexOutOfBoundsException e){
                                         System.out.println("Déoslé, ce numero ne correspond à aucun client");
-                                        fail = true;
+                                        Error = true;
                                     }
                                 }
                                 catch(NumberFormatException e){
                                     System.out.println("Veuillez entrer un entier");
-                                    fail = true;
+                                    Error = true;
                                  }
                                }
                             }
@@ -1299,22 +1292,22 @@ public void menu()
                                 //condition pour qu'il reste au moins 1 serveur dans le bar
                                 if (serveurs.size() >= 2 ) {
                             this.serveurs();
-                            fail = true;
-                            while(fail){
+                            Error = true;
+                            while(Error){
                                 try{
                                     choix = Integer.parseInt(scan.nextLine());
                                     try{
                                         joueur2=choix;
-                                        fail = false;
+                                        Error = false;
                                         }
                                     catch(IndexOutOfBoundsException e){
                                         System.out.println("Désolé, ce numero ne correspond à aucun serveur");
-                                        fail = true;
+                                        Error = true;
                                     }
                                 }
                                 catch(NumberFormatException e){
                                     System.out.println("Veuillez entrer un entier");
-                                    fail = true;
+                                    Error = true;
                                 } 
                                     }
                              }
@@ -1340,22 +1333,22 @@ public void menu()
                             }
                             if(reponse.equals("c")){ //cas client 
                             this.joueurs();
-                            fail = true;
-                            while(fail){
+                            Error = true;
+                            while(Error){
                                 try{
                                     choix = Integer.parseInt(scan.nextLine());
                                     try{
                                         joueur1=choix;
-                                        fail = false;
+                                        Error = false;
                                         }
                                     catch(IndexOutOfBoundsException e){
                                         System.out.println("Désolé, ce numero ne correspond à aucun client.");
-                                        fail = true;
+                                        Error = true;
                                     }
                                 }
                                 catch(NumberFormatException e){
                                     System.out.println("Veuillez entrer un entier.");
-                                    fail = true;
+                                    Error = true;
                                  }
                                }
                             }
@@ -1363,26 +1356,26 @@ public void menu()
                             else { 
                                 if (serveurs.size() >= 2 ) {
                                     this.serveurs();
-                                    fail = true;
-                                    while(fail){
+                                    Error = true;
+                                    while(Error){
                                         try{
                                             choix = Integer.parseInt(scan.nextLine());
                                             try{
                                                 joueur1=choix;
-                                                fail = false;
+                                                Error = false;
                                                 }
                                             catch(IndexOutOfBoundsException e){
                                                 System.out.println("Désolé, ce numero ne correspond à aucun serveur.");
-                                                fail = true;
+                                                Error = true;
                                             }
                                         }
                                         catch(NumberFormatException e){
                                             System.out.println("Veuillez entrer un entier.");
-                                            fail = true;
+                                            Error = true;
                                         } 
                                             }
-                             }
-                                else System.out.print("Oula ce serveur ne peux pas jouer, il est le seul en service !");
+                            }
+                            else System.out.print("Oula ce serveur ne peux pas jouer, il est le seul en service !");
                             }
                             
    /*-------------------CHOIX J2--------------------*/
@@ -1394,22 +1387,22 @@ public void menu()
                             }
                             if(reponse.equals("c")){ //cas client 
                             this.joueurs();
-                            fail = true;
-                            while(fail){
+                            Error = true;
+                            while(Error){
                                 try{
                                     choix = Integer.parseInt(scan.nextLine());
                                     try{
                                         joueur2=choix;
-                                        fail = false;
+                                        Error = false;
                                         }
                                     catch(IndexOutOfBoundsException e){
                                         System.out.println("Désolé, ce numero ne correspond à aucun client");
-                                        fail = true;
+                                        Error = true;
                                     }
                                 }
                                 catch(NumberFormatException e){
                                     System.out.println("Veuillez entrer un entier");
-                                    fail = true;
+                                    Error = true;
                                  }
                                }
                             }
@@ -1418,22 +1411,22 @@ public void menu()
                                 //condition pour qu'il reste au moins 1 serveur dans le bar
                                 if (serveurs.size() >= 2 ) {
                             this.serveurs();
-                            fail = true;
-                            while(fail){
+                            Error = true;
+                            while(Error){
                                 try{
                                     choix = Integer.parseInt(scan.nextLine());
                                     try{
                                         joueur2=choix;
-                                        fail = false;
+                                        Error = false;
                                         }
                                     catch(IndexOutOfBoundsException e){
                                         System.out.println("Désolé, ce numero ne correspond à aucun serveur");
-                                        fail = true;
+                                        Error = true;
                                     }
                                 }
                                 catch(NumberFormatException e){
                                     System.out.println("Veuillez entrer un entier");
-                                    fail = true;
+                                    Error = true;
                                 } 
                                     }
                              }
@@ -1458,7 +1451,7 @@ public void menu()
                        
                         tournoiBelote.tournoiDebut();
                     }
-                   }
+                    }
                     break;
                 case 11 : 
                     this.declarerSaFlamme();     
@@ -1466,18 +1459,18 @@ public void menu()
                     break ;     
                 case 12 : 
                     float argent = 0;
-                    boolean conversionFail = true;
-                    while(conversionFail){
+                    boolean conversionError = true;
+                    while(conversionError){
                         try{
-                        conversionFail = false;
+                        conversionError = false;
                         System.out.println("-----------------------------------------------------------------------------------------------------------*");
-                        System.out.println("* ATM Wells Fargo - When it comes to bankin we know that you have a lot of choice, Thanks for choosing us. *");
+                        System.out.println("*                                                ATM Wells Fargo                                           *");
                         System.out.println("*                              Combien d'argent voulez vous retirer de votre compte ?                      *");
                         System.out.println("-----------------------------------------------------------------------------------------------------------*");
                         argent = Float.parseFloat(sc.nextLine());
                         }
                         catch(NumberFormatException e){
-                        conversionFail = true;
+                        conversionError = true;
                         System.out.println("Veuillez entrer un float");
                         }
                         }

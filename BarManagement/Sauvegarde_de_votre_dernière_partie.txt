@@ -1,18 +1,18 @@
-Prenom : iouyk
-Nom : oujyuku
+Prenom : hrthrthrth
+Nom : trhrhrh
 Sexe : homme
-Portemonnaie : 110.0 euros 
-Crie significatif : ytjyjtyjty
-côte de popularitié : 0
+Portemonnaie : 10.0 euros 
+Crie significatif : htrhrthrth
+côte de popularitié : 16
 taux d'alcoolemie : 0.0 gramme
-Accessoire : tshirt
+Accessoire : y
 Niveau d'experience en belote : 0
  
-boisson favorite - Nom de la boisson : Eau
-Prix de la boisson : 1.0
+boisson favorite - Nom de la boisson : Virgin Mojito
+Prix de la boisson : 5.0
 Taux d'alcoolemie de la boisson : 0.0
 
-Boisson de secours - Nom de la boisson : Virgin Mojito
-Prix de la boisson : 5.0
+Boisson de secours - Nom de la boisson : Chocolat chaud
+Prix de la boisson : 3.5
 Taux d'alcoolemie de la boisson : 0.0
 

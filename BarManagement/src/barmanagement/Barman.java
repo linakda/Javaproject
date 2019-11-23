@@ -77,20 +77,7 @@ public class Barman extends Humain{
     public String sePresenter(){
         return parler("Ici, c'est moi qui gère le bar.");
     }
-    
-    /**
-     * Cette méthode permet de vérifier la disponibilité d'une boisson dans le stock du bar.
-     * @param disponibilite : Stock le nom de la boisson demander et vérifie si elle est disponible.  
-     * @return : Retourne un boolean qui va nous dire si la boisson demandée est disponible.
-    */
-    public boolean disponible(Boisson disponibilite){
-        if(disponibilite.stock > 0){
-            disponibilite.stock -= 1;
-            return true;
-	}
-	return false;
-    }
-    
+        
     /**
      * Cette méthode permet au barman de boire sa boisson. 
      * @param consommation 
@@ -105,25 +92,38 @@ public class Barman extends Humain{
             this.parler("Cette eau est trop bonne !");
         }
     }
+    
+    /**
+     * Cette méthode permet de vérifier la disponibilité d'une boisson dans le stock du bar.
+     * @param disponibilite : Stock le nom de la boisson demander et vérifie si elle est disponible.  
+     * @return : Retourne un boolean qui va nous dire si la boisson demandée est disponible.
+    */
+    public boolean disponible(Boisson disponibilite){
+        if(disponibilite.stock > 0){
+            disponibilite.stock -= 1;
+            return true;
+	}
+	return false;
+    }
         
     /**
      * Cette méthode permet d'afficher dans la console la commande du barman au 
      * fournisseur concernant la boisson en rupture de stock à commander
-     * @param a : Stock la boisson qui est en rupture de stock 
-     * @param b : Stock le nom du fournisseur qui va réapprovisionner le stock du bar
+     * @param boissonRupture : Stock la boisson qui est en rupture de stock 
+     * @param nomFournisseur : Stock le nom du fournisseur qui va réapprovisionner le stock du bar
     */
-    public void commande(Boisson a,Fournisseur b){
-	System.out.println(this.parler("Allo (fournisseur)"+b.getPrenom() +" je suis a cours de "+a.getNom()+ ", tu peux m'en livrer "));
+    public void commande(Boisson boissonRupture,Fournisseur nomFournisseur){
+	System.out.println(this.parler("Allo (fournisseur)"+nomFournisseur.getPrenom() +" je suis a court de "+boissonRupture.getNom()+ ", tu peux m'en livrer "));
     }
     
     /**
      * Cette méthode permet d'afficher la reception de la commande du barman au
      * fournisseur concernant la boisson en rupture de stock à commander
-     * @param a : Stock la boisson en rupture de stock 
-     * @param b : Stock le fournisseur qui va réapprovisionner le stock du bar
+     * @param boissonRupture : Stock la boisson en rupture de stock 
+     * @param nomFournisseur : Stock le fournisseur qui va réapprovisionner le stock du bar
     */
-    public void recevoirCommande(Boisson a,Fournisseur b){
-	System.out.println(this.parler("Oh "+b.getPrenom() +" t'arrives pile au bon moment, oui c'est bien ça 5 verres de "+a.getNom()));
-	a.stock = 5;
+    public void recevoirCommande(Boisson boissonRupture,Fournisseur nomFournisseur){
+	System.out.println(this.parler("Oh "+nomFournisseur.getPrenom() +" t'arrives pile au bon moment, oui c'est bien ça 5 verres de "+boissonRupture.getNom()));
+	boissonRupture.stock = 5;
     }
 }
