@@ -145,6 +145,9 @@ public class Client extends Humain{
 	return "<Client> " + this.getPrenom() +" ("+ this.getAccessoire() + ") : " + phrase;
     }
    
+    /**
+     * Cette methode permet de changer le sexe d'un client. 
+     */
     public void changerSexe(){
         String perso = this.getSexe();
         if ("homme".equals(perso)){

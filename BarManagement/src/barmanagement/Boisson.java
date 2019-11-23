@@ -17,9 +17,7 @@ package barmanagement;
 public class Boisson{
     private String nom;
     int stock;
-    float prix;
-    float prixAchat;
-    float tauxAlcoolemie ;
+    float prix, prixAchat, tauxAlcoolemie;
     
     /*
      * Cette methode permet de sauvegarder et d'organiser les variables des boissons sans alcool.

@@ -49,8 +49,4 @@ public class Carte {
     public String toString () {
 	return figure + " de " + couleur;
     }
-   
-  
-
 }
-
