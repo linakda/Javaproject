@@ -1,18 +1,18 @@
-Prenom : hrthrthrth
-Nom : trhrhrh
+Prenom : egreg
+Nom : fgeg
 Sexe : homme
-Portemonnaie : 10.0 euros 
-Crie significatif : htrhrthrth
-côte de popularitié : 16
+Portemonnaie : 100.0 euros 
+Crie significatif : regerge
+côte de popularitié : 0
 taux d'alcoolemie : 0.0 gramme
-Accessoire : y
+Accessoire : ergerg
 Niveau d'experience en belote : 0
  
-boisson favorite - Nom de la boisson : Virgin Mojito
-Prix de la boisson : 5.0
-Taux d'alcoolemie de la boisson : 0.0
-
-Boisson de secours - Nom de la boisson : Chocolat chaud
+boisson favorite - Nom de la boisson : Chocolat chaud
 Prix de la boisson : 3.5
 Taux d'alcoolemie de la boisson : 0.0
+
+Boisson de secours - Nom de la boisson : Vodka
+Prix de la boisson : 8.0
+Taux d'alcoolemie de la boisson : 1.0
 

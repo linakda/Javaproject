@@ -4,16 +4,12 @@
  * and open the template in the editor.
  */
 package barmanagement;
-/**
- * @author Lina & Théophile
- */
-
 
 /**
  * Cette classee possède les methodes qui permettent d'initialiser les boissons,
  * de l'afficher et d'obtenir le nom. 
- * 
- */
+ * @author Lina & Théophile
+ **/
 public class Boisson{
     private String nom;
     int stock;

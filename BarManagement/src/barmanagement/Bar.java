@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package barmanagement;
-/**
- * @author Lina & Théophile
- */
+
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.List;
@@ -21,8 +19,9 @@ import java.util.List;
  * pour passer une commande à un serveur ou au barman et une méthode de gestion 
  * de l'interface utilisateur. 
  * Bien sûr, les exceptions sont gérées. 
- * 
- */
+ * @author Lina & Théophile
+ **/
+
 public final class Bar {
     int nbTables;
     float caisse;

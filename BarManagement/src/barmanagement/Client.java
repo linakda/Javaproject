@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package barmanagement;
-/**
- * @author Lina & Théophile
- */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -17,8 +15,8 @@ import java.io.IOException;
  * Cette classe est une classe fille de Humain.
  * Elle possède toute les méthodes et les paramètres de ce même type tel que
  * l'acoolemie, la boissonFavorite, la boissonSecours, le qualificatif, l'addition , le numéro de table
- * 
- */
+ * @author Lina & Théophile
+ **/
 
 public class Client extends Humain{
     float alcoolemie, addition;

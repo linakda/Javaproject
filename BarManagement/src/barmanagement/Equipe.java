@@ -4,14 +4,11 @@
  * and open the template in the editor.
  */
 package barmanagement;
-/**
- * @author Lina & Théophile
- */
 
 /**
  * Cette classe possède toutes les méthodes et paramètres d'une équipe avec
  * l'équipe et toString. 
- * 
+ * @author Lina & Théophile
  **/
 public class Equipe {
     

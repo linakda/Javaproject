@@ -13,7 +13,8 @@ import java.util.Random;
  * avec l'initialisation d'une partie de belotte, distribuer les cartes, jouer une partie
  * et enfin jouer une manche. 
  * @author Lina & Théophile
- */
+ **/
+
 class JeuBelote {
     Equipe equipe1;
     Equipe equipe2;

@@ -7,9 +7,9 @@ package barmanagement;
 
 /**
  * Cette classe est la classe de la carte possédant les différentes méthodes et paramètres
- pour censé être une carte, la figure de la carte et une fonction toString. 
- * 
- */
+ * pour censé être une carte, la figure de la carte et une fonction toString. 
+ * @author Lina et Théophile
+ **/
 
 public class Carte {
     String couleur;

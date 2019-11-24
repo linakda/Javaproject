@@ -6,7 +6,7 @@
 package barmanagement;
 /**
  * @author Lina & Théophile
- */
+ **/
 
 
 public class BarManagement {

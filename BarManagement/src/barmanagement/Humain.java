@@ -4,16 +4,15 @@
  * and open the template in the editor.
  */
 package barmanagement;
-/**
- * @author Lina & Théophile
- */
+
 
 /**
  * Cette classe est la classe mère Humain. 
  * Elle possède les méthodes qui permet d'initialiser un "humain", 
  * C'est de cette méthode que vont découler toute les classes filles
- * 
- */
+ * @author Lina & Théophile
+ **/
+
 public abstract class Humain {
     String nom, accessoire;
     private String prenom, cri, sexe ;

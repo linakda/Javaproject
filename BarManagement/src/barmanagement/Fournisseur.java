@@ -4,16 +4,14 @@
  * and open the template in the editor.
  */
 package barmanagement;
-/**
- * @author Lina & Théophile
- */
 
 /**
  * Cette classe est une classe fille de Humain.
  * Elle possède toute les méthodes et les paramètres de ce même type tel que
  * ajouter au porte-monnaie, boire, commander, livrer, offrir, parler, payer et se présenter. 
- *
- */
+ * @author Lina & Théophile
+ **/
+
 public class Fournisseur extends Humain{
     
     /*
