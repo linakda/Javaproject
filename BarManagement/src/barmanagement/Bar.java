@@ -733,7 +733,7 @@ public final class Bar {
      * et les informations qui y sont liées. 
      */
     public void serveurs(){
-    	System.out.println("Veuillez choisir un serveur");
+    	System.out.println("Veuillez choisir un serveur avec son numéro");
     	for( int i = 0 ; i < serveurs.size() ; i++ )
             System.out.println( i + " - " + serveurs.get(i).getPrenom()+ "(" + serveurs.get(i).getSexe() + ")");
     }
@@ -794,7 +794,6 @@ public final class Bar {
      */
     public void commanderServeur(Client payeur,Client consomateur){
         String phrase = null ;
-        System.out.println("Veuillez choisir un serveur avec le numéro.");
         this.serveurs();
         int numServeur = Integer.parseInt(sc.nextLine());
         while(numServeur < 0 || numServeur >= serveurs.size()){
