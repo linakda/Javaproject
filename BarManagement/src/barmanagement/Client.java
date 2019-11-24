@@ -132,7 +132,7 @@ public class Client extends Humain{
      */
     @Override
     public String toString(){
-        return "Prenom : "+this.getPrenom() +"\n"+ "Nom : "+this.getNom()+"\n"+ "Sexe : "+this.getSexe() +"\n" +"Portemonnaie : "+this.getPorteMonnaie() +" euros \n"+"Crie significatif : "+ this.getCri() + "\n"+ "côte de popularitié : "+this.getPopularite() +" %"+ "\n"+"taux d'alcoolemie : "+ this.alcoolemie +" gramme"+"\n"+"boisson favorite : "+ this.boissonFavorite+ "\n"+ "boisson de secours : "+ this.boissonSecours +"\n" ;     
+        return "Prenom : "+this.getPrenom() +"\n"+ "Nom : "+this.getNom()+"\n"+ "Sexe : "+this.getSexe() +"\n" +"Portemonnaie : "+this.getPorteMonnaie() +" euros \n"+"Crie significatif : "+ this.getCri() + "\n"+ "Csôte de popularitié : "+this.getPopularite() +" %"+ "\n"+"Taux d'alcoolemie : "+ this.alcoolemie +" gramme"+ "\nNiveau belote : "+ this.experienceBelote + "\n"+"boisson favorite : "+ this.boissonFavorite+ "\n"+ "boisson de secours : "+ this.boissonSecours +"\n" ;     
     }
    
     /**

@@ -107,6 +107,8 @@ class TournoiBelote {
                 	    scores [j] [i] = points [1]; 		
                             equipes.get (i).joueur1.monterCotePopularite(5);
                             equipes.get (i).joueur2.monterCotePopularite(5);
+                            equipes.get (i).joueur1.monterNiveauBelote(1);
+                            equipes.get (i).joueur2.monterNiveauBelote(1);
                         }
                         else {
 			// L'equipe j gagne			
@@ -115,6 +117,8 @@ class TournoiBelote {
                             scores [i] [j] = points [0];		
                             equipes.get (j).joueur1.monterCotePopularite (5);
                             equipes.get (j).joueur2.monterCotePopularite (5);
+                            equipes.get (j).joueur1.monterNiveauBelote(1);
+                            equipes.get (j).joueur2.monterNiveauBelote(1);
 			}		
 		actuScores ();
                 printScores ();
