@@ -312,12 +312,12 @@ public final class Bar {
     	boissons.add( new Boisson("Virgin Mojito", 5f,2f) );
     	boissons.add( new Boisson("Chocolat chaud",  3.5f,1.f) );
     	boissons.add( new Boisson("Jus d'orange", 2.5f,1.5f) );
-    	boissons.add( new Boisson ("Mojito", 5f ,2f, 4.5f ));
-    	boissons.add( new Boisson ("Vodka", 8f ,3f, 5f ));
-    	boissons.add( new Boisson ("Bière", 5f ,2f, 4f) );
-    	boissons.add( new Boisson ("Monaco", 3f ,2f ,3.5f) );
-    	boissons.add( new Boisson ("Wisky", 8f, 1f, 3f) );
-    	boissons.add( new Boisson ("Ricard", 2f ,2f, 2.5f) );
+    	boissons.add( new Boisson ("Mojito", 5f ,2f, 0.5f ));
+    	boissons.add( new Boisson ("Vodka", 8f ,3f, 1f ));
+    	boissons.add( new Boisson ("Bière", 5f ,2f, 0.5f) );
+    	boissons.add( new Boisson ("Monaco", 3f ,2f ,0.25f) );
+    	boissons.add( new Boisson ("Wisky", 8f, 1f, 1f) );
+    	boissons.add( new Boisson ("Ricard", 2f ,2f, 0.25f) );
     	
     }
     
